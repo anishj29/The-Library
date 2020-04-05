@@ -2,7 +2,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 .intro{
-	background-color: #9c27b0;
-	/*height: 300px;*/
-
+	background-color: #993399;
 }
+.homebg {
+	background-color: #0099cc;
+}
+.librarycolor{
+	background-color: #9c27b0;
+}
+.librarybg {
+	background-color: #76b852;
+}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
