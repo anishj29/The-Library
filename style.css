@@ -1,17 +1,22 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
-.intro{
+.homeheader{
 	background-color: #993399;
 }
 .homebg {
-	background-color: #0099cc;
+	background-color: #14ade0;
 }
-.librarycolor{
-	background-color: #9c27b0;
+.libraryheader{
+	background-color: #993399;
 }
 .librarybg {
-	background-color: #76b852;
+	background-color: #84df53;
 }
+.solid {
+	border-style: solid;
+}
+
+
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
