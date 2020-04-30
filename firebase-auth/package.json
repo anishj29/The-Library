@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "firebase-auth",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "vue": "^2.6.11"
+    "firebase": "^7.14.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.1.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",

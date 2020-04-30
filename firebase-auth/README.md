@@ -1,4 +1,4 @@
-# my-app
+# firebase-auth
 
 ## Project setup
 ```
