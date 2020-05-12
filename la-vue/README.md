@@ -1,4 +1,4 @@
-# firebase-auth
+# la-vue
 
 ## Project setup
 ```
