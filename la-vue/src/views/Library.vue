@@ -1,0 +1,140 @@
+<template>
+    <html>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="C:/CodeStuff/LA-Project/firebase-auth/src/assets/CSS-Folder/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <head>
+    <div class= "container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <img src="images/Logo.png" alt="Logo" style="width:60px;height:60px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+                <a class="btn btn-primary" href="HomePage.html" role="button">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="Library.html" role="button">Library</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="SignUpPage.html" role="button">Sign Up</a>
+            </li>
+            <li class="nav-item bg-white">
+                <a class="btn btn-primary" href="Library.html" role="button">Contact Us</a>
+            </li>
+            </ul>
+        </div>
+        </nav>
+    </div>
+
+    </head>
+
+    <body>
+    <div class = "libraryheader" style = "padding-top: 68px; padding-bottom: 68px;">
+        <div class = "container">
+            <div class="row text-center">
+            <div class = "col text-white">
+                <h1>THE GIANT LIBRARY</h1>
+                <br>
+                <p><i>Sign Up To Start Reading Books Today:</i></p>
+            <a class="btn btn-dark" href="SignUpPage.html" role="button">Sign Up To Begin</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class = "librarybg">
+        <div class = "container">
+            <div class = "row">
+                <b><span class="text-right mr-2">Filter:</span></b>
+                <button class=" btn-dark text-white mr-1">ALL</button>
+                <button class=" btn-dark text-white mr-1">Alphabetical</button>
+                <button class=" btn-dark text-white">Date</button>
+            </div>
+        
+        <div class="mt-3 row solid">
+            <div class="margin-bottom col">
+                <img src="images/OdysseyCover.jpg" alt="OdysseyCover" style="width:160px; height:220px;" class="-hover-opacity">
+                <div class="">
+                <p><b>The Odyssey</b></p>
+                <p>The Odyssey is Homer's epic of Odysseus' 10-year struggle to return home after the Trojan War. While Odysseus battles mystical creatures and faces the wrath of the gods, his wife Penelope and his son Telemachus stave off suitors vying for Penelope's hand and Ithaca's throne long enough for Odysseus to return.</p>
+                </div>
+            </div>
+            <div class="container margin-bottom col ">
+                <img src="images/RomeoJulietCover.jpg" alt="RomeoJulietCover" style="width:160px;height:220px;" class="-hover-opacity">
+                <div class="">
+                <p><b>Romeo and Juliet</b></p>
+                <p>Romeo and Juliet is a tragedy written by William Shakespeare early in his career about two young star-crossed lovers whose deaths ultimately reconcile their feuding families. </p>
+                </div>
+            </div>
+            <div class="container col ">
+                <img src="images/GreatExpectationsCover.jpg" alt="GreatExpectationsCover" style="width:160px;height:220px;">
+                <div class="">
+                <p><b>Great Expectations</b></p>
+                <p>Great Expectations is a novel by Charles Dickens. It depicts the growth and personal development of an orphan named Philip Pirrip ("Pip"). The novel was first published in serial form in Dickens' weekly periodical All the Year Round, from 1 December 1860 to August 1861.</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 row solid">
+            <div class="margin-bottom col ">
+            <img src="images/1984Cover.jpg" alt="1984Cover" style="width:160px; height:220px;">
+            <div class="">
+                <p><b>1984</b></p>
+                <p>1984 is a dystopian novell by George Orwell published in 1949, which follows the life of Winston Smith, a low ranking member of 'the Party', who is frustrated by the omnipresent eyes of the party, and its ominous ruler Big Brother. 'Big Brother' controls every aspect of people's lives.</p>
+            </div>
+            </div>
+            <div class="container margin-bottom col ">
+            <img src="images/LordOfTheFliesCover.jpg" alt="LordOfTheFliesCover" style="width:160px;height:220px;">
+            <div class="">
+                <p><b>Lord Of The Flies</b></p>
+                <p>William Golding's 1954 novel Lord of the Flies tells the story of a group of young boys who find themselves alone on a deserted island. They develop rules and a system of organization, but without any adults to serve as a 'civilizing' impulse, the children eventually become violent and brutal.</p>
+            </div>
+            </div>
+            <div class="third container col">
+            <img src="/images/nature.jpg" alt="" style="width:160px;height:220px;">
+            <div class="">
+                <p><b></b></p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- End of container tag -->
+
+    </body>
+    </html>
+</template>
+
+<script>
+export default {
+    
+}
+</script>
+
+<style lang="stylus" scoped>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-coffee {font-size:200px}
+    .homeheader{
+        background-color: #993399;
+    }
+    .homebg {
+        background-color: #14ade0;
+    }
+    .libraryheader{
+        background-color: #993399;
+    }
+    .librarybg {
+        background-color: #84df53;
+    }
+    .solid {
+        border-style: solid;
+    }
+
+
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
