@@ -24,9 +24,9 @@ Vue.use(VueRouter)
     component: () => import('../views/Contact.vue') 
   },
   {
-    path: '/homepage',
-    name: 'HomePage',
-    component: () => import('../views/HomePage.vue')
+    path: '/library',
+    name: 'Library',
+    component: () => import('../views/Library.vue') 
   }
 ]
 
