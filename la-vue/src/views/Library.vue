@@ -1,25 +1,29 @@
 <template>
-    <div class = "Library">
+    <div class = "library">
         <div class = "libraryheader" style = "padding-top: 68px; padding-bottom: 68px;">
-            <div class = "container">
-                <div class="row text-center">
-                <div class = "col text-white">
-                    <h1>THE GIANT LIBRARY</h1>
-                    <br>
-                    <p><i>Sign Up To Start Reading Books Today:</i></p>
-                <a class="btn btn-dark" href="SignUpPage.html" role="button">Sign Up To Begin</a>
-                </div>
-                </div>
-            </div>
+            <v-container>
+                <v-row class="text-center">
+                    <v-col class = "text-white">
+                        <h1>THE GIANT LIBRARY</h1>
+                        <br>
+                         <a class="btn btn-dark" href="SignUpPage.html" role="button">Sign Up To Begin</a>
+                    </v-col>
+                </v-row>
+            </v-container>
         </div>
         <div class = "librarybg">
-            <div class = "container">
-                <div class = "row">
+            <v-container>
+                <v-row>
                     <b><span class="text-right mr-2">Filter:</span></b>
                     <button class=" btn-dark text-white mr-1">ALL</button>
                     <button class=" btn-dark text-white mr-1">Alphabetical</button>
                     <button class=" btn-dark text-white">Date</button>
-                </div>
+                </v-row>
+            <v-row>
+                <v-col id="mydiv" @mouseover = "hoverr()" @mouseout = "unhoverr()">Hello</v-col>
+                <v-col id = "someElementId" class = "bg-primary" style = "display:none;">Hello</v-col>
+                <v-col>Hello</v-col>
+            </v-row>
             <Hello-world></Hello-world>
             <!-- <div class="mt-3 row solid">
                 <div class="margin-bottom col">
@@ -67,7 +71,7 @@
                 </div>
                 </div>
             </div> -->
-            </div>
+            </v-container>
         </div>
         <!-- End of container tag -->
     </div>
@@ -76,17 +80,26 @@
 <script>
    import HelloWorld from '@/components/HelloWorld.vue';
 
-     export default {
+    export default {
      name: 'Library',
 
         components: {
              HelloWorld,
         },
 
-    data: () => ({
-         
-     }),
-     };
+        data: () => ({
+            
+        }),
+       methods: {
+           hoverr() {
+            document.getElementById("someElementId").style.display = "block";
+            },
+           unhoverr() {
+            document.getElementById("someElementId").style.display = "none";
+
+            }
+       }
+    };
 </script>
 
 <style lang="stylus" scoped>

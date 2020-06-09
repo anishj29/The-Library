@@ -4,7 +4,7 @@
           <img src="@/assets/images/Logo.png" alt="Logo" style="width:60px;height:60px;">
         <v-btn rounded to="/">Home</v-btn>
         <v-btn rounded to ="/library">Library</v-btn>
-        <v-btn rounded to="/about">About</v-btn>
+        <v-btn rounded to="/signup">Sign Up/Login</v-btn>
         <v-btn rounded to ="/contact">Contact</v-btn>
 
       </v-app-bar>

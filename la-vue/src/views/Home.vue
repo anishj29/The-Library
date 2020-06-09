@@ -5,7 +5,7 @@
             <div>
                 <v-col style = "padding-top: 100px; padding-bottom: 100px;">
                     <h1 class = "text-white">THE BOOK GUIDE</h1>
-                    <a class="btn btn-dark" href="Library.html" role="button">Start Reading Today</a>
+                    <v-btn rounded to="/Library.vue">Start Reading Today</v-btn>
                 </v-col>
             </div>
         </v-container>
@@ -35,12 +35,12 @@
                 </v-row>
                 <br><br>
                 <v-row>
-                    <div class="col text-center ">
+                    <v-col class="text-center ">
                         
                         <div class = "solid">
                         <h1>Testimonials</h1>
                         <h5><i>"This is an AMAZING Product!"</i></h5>
-                            <div class = "row">
+                            <v-row>
                                 <v-col>
                                      <v-card class="mx-auto" max-width="400">
                                         <v-img
@@ -73,9 +73,9 @@
                                         </v-card-text>
                                         </v-card>
                                 </v-col>
-                            </div>
+                            </v-row>
                         </div>
-                    </div>
+                    </v-col>
                 </v-row>
         <br><br><br> 
         </v-container>

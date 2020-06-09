@@ -2,7 +2,6 @@
   <v-container>
     <v-row>
       <v-col cols = "4" v-for="(book, i) in books" :key="i">
-     
         <img :src="require(`@/assets/images/${book.img}`)" alt="OdysseyCover" style="width:160px; height:220px;" class="-hover-opacity">
         <div class="">
         <p><b>{{book.name}}</b></p>
