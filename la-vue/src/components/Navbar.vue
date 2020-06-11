@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-    <div class="container">
+    <v-container>
       <router-link to="/" class="navbar-brand">Vue Firebase Auth</router-link>
       <button
         class="navbar-toggler"
@@ -32,7 +32,7 @@
           </template>
         </ul>
       </div>
-    </div>
+    </v-container>
   </nav>
 </template>
 <script>
