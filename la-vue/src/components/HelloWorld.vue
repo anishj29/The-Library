@@ -1,10 +1,32 @@
+
 <template>
+
   <v-container>
     <v-row>
-      <v-col cols = "4" v-for="(book, i) in books" :key="i">
-        <img :src="require(`@/assets/images/${book.img}`)" alt="OdysseyCover" style="width:160px; height:220px;" class="-hover-opacity">
+      <v-col>
+        <v-row style = "width: 50%;" id="mydiv" @mouseover = "hoverr()" @mouseout = "unhoverr()">
+          <v-col>
+             <v-img src= "@/assets/images/OdysseyCover.jpg" alt="OdysseyCover" style="width:160px; height:220px;" class="-hover-opacity"></v-img>
+          </v-col>
+          <v-col id = "lol" style = "diplay:none;">random letters </v-col>
+        </v-row>
+      </v-col>
+      
+      <v-col style = "border: 1px solid purple">bye</v-col>
+      
+      <v-col style = "border: 1px solid blue">welcome</v-col>
+
+    </v-row>
+    <v-row>
+      <v-col id = "someElementId" class = "bg-primary" style = "display:none; border: 1px solid red">Hello</v-col>
+       <v-col cols = "4" v-for="(book, i) in books" :key="i">
+        <v-img :src="require(`@/assets/images/${book.img}`)" alt="OdysseyCover" style="width:160px; height:220px;" class="-hover-opacity"></v-img>
         <div class="">
         <p><b>{{book.name}}</b></p>
+        </div>
+      </v-col>
+      <v-col cols = "4" v-for="(book, i) in books" :key="i">
+        <div class="">
         <p>{{book.description}}</p>
         </div>
       </v-col>
@@ -49,5 +71,16 @@
 
 
     }),
+    methods: {
+           hoverr() {
+            document.getElementById("mydiv").style.width = "100%";
+            document.getElementById("lol").style.display = "block";
+            },
+           unhoverr() {
+            document.getElementById("mydiv").style.width = "50%";
+            document.getElementById("lol").style.display = "none";
+
+            }
+    }
   }
 </script>

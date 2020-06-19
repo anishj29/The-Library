@@ -8,6 +8,7 @@
         <v-btn rounded to ="/contact">Contact</v-btn>
 
       </v-app-bar>
+      
       <v-content>
           <router-view></router-view>
       </v-content>
@@ -15,17 +16,5 @@
 </template>
 
 <script>
-    // import HelloWorld from './components/HelloWorld.vue';
 
-    // export default {
-    // name: 'App',
-
-    //    components: {
-    //         HelloWorld,
-    //    },
-
-    // data: () => ({
-    //     //
-    // }),
-    // };
 </script>

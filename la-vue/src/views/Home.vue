@@ -5,7 +5,7 @@
             <div>
                 <v-col style = "padding-top: 100px; padding-bottom: 100px;">
                     <h1 class = "text-white">THE BOOK GUIDE</h1>
-                    <v-btn rounded to="/Library.vue">Start Reading Today</v-btn>
+                    <v-btn rounded to="/Library">Start Reading Today</v-btn>
                 </v-col>
             </div>
         </v-container>

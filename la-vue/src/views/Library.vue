@@ -6,7 +6,7 @@
                     <v-col class = "text-white">
                         <h1>THE GIANT LIBRARY</h1>
                         <br>
-                         <a class="btn btn-dark" href="SignUpPage.html" role="button">Sign Up To Begin</a>
+                         <v-btn rounded to="/SignUp">Sign Up To Begin</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -19,11 +19,7 @@
                     <button class=" btn-dark text-white mr-1">Alphabetical</button>
                     <button class=" btn-dark text-white">Date</button>
                 </v-row>
-            <v-row>
-                <v-col id="mydiv" @mouseover = "hoverr()" @mouseout = "unhoverr()">Hello</v-col>
-                <v-col id = "someElementId" class = "bg-primary" style = "display:none;">Hello</v-col>
-                <v-col>Hello</v-col>
-            </v-row>
+           
             <Hello-world></Hello-world>
             <!-- <div class="mt-3 row solid">
                 <div class="margin-bottom col">
@@ -90,15 +86,6 @@
         data: () => ({
             
         }),
-       methods: {
-           hoverr() {
-            document.getElementById("someElementId").style.display = "block";
-            },
-           unhoverr() {
-            document.getElementById("someElementId").style.display = "none";
-
-            }
-       }
     };
 </script>
 
