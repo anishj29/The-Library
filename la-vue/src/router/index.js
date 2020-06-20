@@ -1,13 +1,16 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router  from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Dashboard from '../components/Dashboard'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-  const routes = [
+const router = new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
   {
     path: '/',
     name: 'Home',
@@ -47,5 +50,6 @@ Vue.use(VueRouter)
     component: Dashboard
   }
 ]
+});
 
 export default router

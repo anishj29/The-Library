@@ -1,6 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
+    <login></login>
     <main class="py-4">
       <router-view></router-view>
     </main>
@@ -8,10 +9,12 @@
 </template>
 
 <script>
-import navbar from "../components/Navbar";
+import navbar from '../components/Navbar.vue';
+import login from '../components/Login.vue';
 export default {
   components: {
-    navbar
+    navbar,
+    login
   }
 };
 </script>

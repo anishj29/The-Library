@@ -3,7 +3,6 @@
     <v-row class=" justify-content-center">
       <v-col class="-md-8">
         <div class="card">
-          <div class="card-header">Login</div>
           <div class="card-body">
             <div v-if="error" class="alert alert-danger">{{error}}</div>
             <form action="#" @submit.prevent="submit">
@@ -14,7 +13,7 @@
                   <input
                     id="email"
                     type="email"
-                    class="form-control"
+                    class="form-control amber lighten-4"
                     name="email"
                     value
                     required
@@ -31,7 +30,7 @@
                   <input
                     id="password"
                     type="password"
-                    class="form-control"
+                    class="form-control amber lighten-4"
                     name="password"
                     required
                     v-model="form.password"
@@ -41,7 +40,8 @@
 
               <v-row class="form-group mb-0">
                 <v-col class="-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">Login</button>
+                  <v-btn rounded type="submit" class="primary">Login</v-btn>
+
                 </v-col>
               </v-row>
             </form>
@@ -70,7 +70,7 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.form.email, this.form.password)
-        .then(data => {
+        .then(() => {
           this.$router.replace({ name: "Dashboard" });
         })
         .catch(err => {
