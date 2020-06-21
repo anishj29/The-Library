@@ -1,6 +1,6 @@
 <template>
     <div class = "library">
-        <div class = "libraryheader" style = "padding-top: 68px; padding-bottom: 68px;">
+        <div class = "libraryheader" style = "padding-top: 110px; padding-bottom: 68px;">
             <v-container>
                 <v-row class="text-center">
                     <v-col class = "text-white">

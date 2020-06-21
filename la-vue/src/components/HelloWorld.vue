@@ -26,15 +26,15 @@
     <v-row class="pt-5">
             <v-col cols = "4" v-for="(book, i) in books" :key="i">
                 <v-hover v-slot:default="{ hover }">
-                    <v-card class="mx-auto" color="grey lighten-4" max-width="100%">
-                    <v-img :src="require(`@/assets/images/${book.img}`)" alt="OdysseyCover"  style="width:160px; height:220px;">
+                    <div class="mx-auto" color="grey lighten-4" max-width="100%">
+                    <v-img :src="require(`@/assets/images/${book.img}`)" alt="OdysseyCover" style="width:220px; height:300px;">
                         <v-expand-x-transition>
-                            <div v-if="hover" class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text" style="height: 100%;" >
-                                $14.99
+                            <div v-if="hover" class="d-flex transition-fast-in-fast-out orange darken-2 white--text" style="height:100%;" >
+                              <p>{{book.description}}</p>
                             </div>
                         </v-expand-x-transition>
                     </v-img>
-                    </v-card>
+                    </div>
                 </v-hover>
             </v-col>
     </v-row>
