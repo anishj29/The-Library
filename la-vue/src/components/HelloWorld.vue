@@ -26,7 +26,7 @@
     <v-row class="pt-5">
             <v-col cols = "4" v-for="(book, i) in books" :key="i">
                 <v-hover v-slot:default="{ hover }">
-                    <div class="mx-auto" color="grey lighten-4" max-width="100%">
+                    <!-- <div class="mx-auto" color="grey lighten-4" max-width="100%"> -->
                     <v-img :src="require(`@/assets/images/${book.img}`)" alt="OdysseyCover" style="width:220px; height:300px;">
                         <v-expand-x-transition>
                             <div v-if="hover" class="d-flex transition-fast-in-fast-out orange darken-2 white--text" style="height:100%;" >
@@ -34,7 +34,7 @@
                             </div>
                         </v-expand-x-transition>
                     </v-img>
-                    </div>
+                    <!-- </div> -->
                 </v-hover>
             </v-col>
     </v-row>
