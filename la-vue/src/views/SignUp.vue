@@ -1,8 +1,9 @@
 <template>
   <div>
-    <login></login>
-    <hello></hello>
-    <main class="py-4">
+    <v-container>
+       <hello></hello>
+    </v-container>
+     <main class="py-4">
       <router-view></router-view>
     </main>
   </div>
@@ -10,11 +11,9 @@
 
 <script>
 import hello from '../components/Hello.vue';
-import login from '../components/Login.vue';
 export default {
   components: {
-    hello,
-    login
+    hello
   }
 };
 </script>

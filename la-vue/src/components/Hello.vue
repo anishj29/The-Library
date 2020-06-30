@@ -3,7 +3,7 @@
     <button v-if="!authenticated" @click="login">Login</button>
     <div v-if="authenticated">
         <button @click="logout">Logout</button>
-        <h1>Hi {{ firstName }}!</h1>
+        <h1>Hi {{ firstName }} {{ lastName }}</h1>
         <h1>{{ msg }}</h1>
     </div>
 </div>

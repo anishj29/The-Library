@@ -51,7 +51,7 @@
                                         </v-img>
                                 
                                         <v-card-text class="text--primary">
-                                            <div>Whitehaven Beach</div>
+                                            <div>Person 1</div>
                                     
                                             <div>Sample-The website allowed me to </div>
                                         </v-card-text>
@@ -67,7 +67,7 @@
                                         </v-img>
                                 
                                         <v-card-text class="text--primary">
-                                            <div>Whitehaven Beach</div>
+                                            <div>Person 2</div>
                                     
                                             <div>Sample-The website allowed me to </div>
                                         </v-card-text>

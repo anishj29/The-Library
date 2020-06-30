@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import Router  from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../components/Login'
-import Register from '../components/Register'
-import Dashboard from '../components/Dashboard'
 
 Vue.use(Router)
 
@@ -25,6 +22,11 @@ const router = new Router({
     component: () => import(/* webpackChunkName: "about" */ '../views/SignUp.vue')
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "about" */ '../components/Hello.vue')
+  },
+  {
     path: '/contact',
     name: 'Contact',
     component: () => import('../views/Contact.vue') 
@@ -33,21 +35,6 @@ const router = new Router({
     path: '/library',
     name: 'Library',
     component: () => import('../views/Library.vue') 
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard
   }
 ]
 });
