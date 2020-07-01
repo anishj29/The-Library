@@ -1,10 +1,10 @@
 <template>
   <v-app>
      <v-app-bar class="black darken-1">
-          <img src="@/assets/images/Logo.png" alt="Logo" style="width:60px;height:60px;">
+        <img src="@/assets/images/Logo.png" alt="Logo" style="width:60px;height:60px;">
         <v-btn rounded to="/">Home</v-btn>
         <v-btn rounded to ="/library">Library</v-btn>
-        <v-btn rounded to="/signup">Sign Up/Login</v-btn>
+        <hello></hello> 
         <v-btn rounded to ="/contact">Contact</v-btn>
 
       </v-app-bar>
@@ -16,5 +16,10 @@
 </template>
 
 <script>
-
+import hello from '@/components/Hello.vue';
+export default {
+  components: {
+    hello
+  }
+};
 </script>

@@ -1,10 +1,12 @@
 <template>
 <div class="hello">
-    <button v-if="!authenticated" @click="login">Login</button>
+    <v-btn rounded v-if="!authenticated" @click="login">
+      <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;">
+      LOGIN</v-btn>
     <div v-if="authenticated">
-        <button @click="logout">Logout</button>
-        <h1>Hi {{ firstName }} {{ lastName }}</h1>
-        <h1>{{ msg }}</h1>
+    <v-btn rounded @click="logout">
+      <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;">
+      LOGOUT</v-btn>
     </div>
 </div>
 </template>
