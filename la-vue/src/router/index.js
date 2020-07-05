@@ -27,6 +27,11 @@ const router = new Router({
     path: '/library',
     name: 'Library',
     component: () => import('../views/Library.vue') 
+  },
+   {
+    path: '/1984pdf',
+    name: '1984pdf',
+    component: () => import('../views/1984pdf.vue') 
   }
 ]
 });

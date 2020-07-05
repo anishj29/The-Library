@@ -5,6 +5,7 @@
         <v-btn rounded to="/">Home</v-btn>
         <v-btn rounded to ="/library">Library</v-btn>
         <hello></hello> 
+        <v-btn rounded to ="/1984pdf">1984</v-btn>
         <v-btn rounded to ="/contact">Contact</v-btn>
 
       </v-app-bar>
