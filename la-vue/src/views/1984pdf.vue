@@ -17,11 +17,13 @@
 </template>
 
 <script>
-import PDFViewer from './components/PDFViewer.vue'
+import PDFUploader from '../components/PDFUploader.vue'
+import PDFViewer from '../components/PDFViewer.vue'
 export default {
-  name: 'app',
+  name: '1984pdf',
   components: {
-    PDFViewer
+    PDFUploader,
+    PDFViewer,
   },
   data() {
     return {
