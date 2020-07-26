@@ -1,29 +1,29 @@
 <template>
   <div id="1984pdf">
 
-    <PDFViewer
+    <Pdfviewer
       v-bind="{url}"
       @document-errored="onDocumentErrored"
       >
-      <PDFUploader
+      <Pdfuploader
         v-if="enableUploader"
         :documentError="documentError"
         @updated="urlUpdated"
         slot="header"
         class="header-item"
         />
-    </PDFViewer>
+    </Pdfviewer>
   </div>
 </template>
 
 <script>
-import PDFUploader from '../components/PDFUploader.vue'
-import PDFViewer from '../components/PDFViewer.vue'
+import Pdfuploader from '../components/PDFUploader.vue'
+import Pdfviewer from '../components/PDFViewer.vue'
 export default {
   name: '1984pdf',
   components: {
-    PDFUploader,
-    PDFViewer,
+    Pdfuploader,
+    Pdfviewer,
   },
   data() {
     return {

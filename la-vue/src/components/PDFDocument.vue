@@ -20,8 +20,8 @@
 <script>
 import {PIXEL_RATIO, VIEWPORT_RATIO} from '../utils/constants';
 
-import ScrollingDocument from './ScrollingDocument';
-import PDFPage from './PDFPage';
+import ScrollingDocument from '../components/ScrollingDocument.vue';
+import PDFPage from '../components/PDFPage.vue';
 
 export default {
   name: 'PDFDocument',
@@ -152,6 +152,3 @@ export default {
   }
 }
 </style>
-}
-
-</script>>
