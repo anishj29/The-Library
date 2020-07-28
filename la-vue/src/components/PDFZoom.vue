@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import ZoomInIcon from '../assets/icon-zoom-in.svg';
-import ZoomOutIcon from '../assets/icon-zoom-out.svg';
-import ExpandIcon from '../assets/icon-expand.svg';
-import ShrinkIcon from '../assets/icon-shrink.svg';
+import ZoomInIcon from '../assets/svgs/icon-zoom-in.svg';
+import ZoomOutIcon from '../assets/svgs/icon-zoom-out.svg';
+import ExpandIcon from '../assets/svgs/icon-expand.svg';
+import ShrinkIcon from '../assets/svgs/icon-shrink.svg';
 
 export default {
   name: 'PDFZoom',

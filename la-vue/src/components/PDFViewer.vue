@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import PreviewIcon from '../assets/icon-preview.svg';
+import PreviewIcon from '../assets/svgs/icon-preview.svg';
 import PDFDocument from './PDFDocument';
 import PDFData from './PDFData';
 import PDFPaginator from './PDFPaginator';

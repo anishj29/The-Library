@@ -1,14 +1,14 @@
 <template>
-<div class="hello">
-    <v-btn rounded v-if="!authenticated" @click="login">
-      <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;">
-      LOGIN</v-btn>
-    <div v-if="authenticated">
-    <v-btn rounded @click="logout">
-      <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;">
-      LOGOUT</v-btn>
-    </div>
-</div>
+  <div class="hello">
+      <v-btn rounded dark v-if="!authenticated" @click="login">
+        <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;">
+        LOGIN</v-btn>
+      <div v-if="authenticated">
+      <v-btn rounded dark @click="logout">
+        <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;">
+        LOGOUT</v-btn>
+      </div>
+  </div>
 </template>
 
 <script>
