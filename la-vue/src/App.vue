@@ -14,7 +14,6 @@
       <v-content>
           <router-view></router-view>
       </v-content>
-      <div style="height:200px;"></div>
   </v-app>
 </template>
 
