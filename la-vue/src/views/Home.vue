@@ -1,15 +1,14 @@
 <template>
-<v-container id="home" class="py-0" fluid >
-
-   <v-row class="text-center">
-      <v-col class="py-12 deep-purple darken-1">
+<div id="home">
+   <v-row class="text-center deep-purple darken-1" style="padding-top: 90px; padding-bottom: 60px;">
+      <v-container class="white--text">
          <h1>THE BOOK GUIDE</h1>
-         <v-btn rounded to="/Library">Start Reading Today</v-btn> 
-      </v-col>
+         <v-btn color="blue-grey darken-4 white--text" rounded to="/Library">Start Reading Today</v-btn> 
+      </v-container>
    </v-row>
 
 
-   <v-row>
+   <v-row class="cyan lighten-2">
       <v-spacer></v-spacer>
       <v-col class="text-center" cols="9">
          <h1>About Us</h1>
@@ -23,8 +22,8 @@
       </v-col>
       <v-spacer></v-spacer>
    </v-row>
-   <hr class="px-6">
-   <v-row>
+   <hr class="px-6 black">
+   <v-row class="cyan lighten-2"> 
       <v-col class="text-center">
          <h1>Testimonials</h1>
          <h5><i>"This is an AMAZING Product!"</i></h5>
@@ -51,6 +50,6 @@
       </v-col>
    </v-row>
 
-</v-container>
+</div>
 
 </template>
