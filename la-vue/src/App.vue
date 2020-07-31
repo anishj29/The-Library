@@ -6,7 +6,8 @@
         </v-toolbar-title>
         <v-btn text dark rounded to="/">Home</v-btn>
         <v-btn text dark rounded to ="/library">Library</v-btn>
-        <hello></hello> 
+        <hello></hello>
+        <v-btn text dark rounded to="/tester">Tester</v-btn>
         <v-btn text dark rounded to ="/1984pdf">1984</v-btn>
         <v-btn text dark rounded to ="/contact">Contact</v-btn>
       </v-app-bar>
@@ -22,6 +23,6 @@ import hello from '@/components/Hello.vue';
 export default {
   components: {
     hello
-  }
+  },
 };
 </script>

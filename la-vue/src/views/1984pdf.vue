@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import WebViewer from '../components/WebViewer.vue'
+// import WebViewer from '../components/WebViewer.vue'
 export default {
   name: 'PDF1984',
   components: {
-    WebViewer
+    // WebViewer
   },
   data () {
     return {
