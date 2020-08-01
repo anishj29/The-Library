@@ -5,7 +5,6 @@
         LOGIN</v-btn>
       <div v-if="authenticated">
       <v-btn text rounded class="white--text" @click="logout">
-        <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;">
         LOGOUT</v-btn>
       </div>
   </div>

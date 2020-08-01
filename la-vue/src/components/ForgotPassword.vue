@@ -8,7 +8,7 @@
                 <input type="email" class="form-control form-control-lg" v-model="user.email" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Reset password</button>
+            <v-btn type="submit">Reset password</v-btn >
         </form>
     </div>
 </template>

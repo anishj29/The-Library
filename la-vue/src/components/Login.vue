@@ -1,25 +1,46 @@
 <template>
-    <div class="vue-tempalte">
-        <form @submit.prevent="userLogin">
-            <h3>Sign In</h3>
+		<div class="vue-tempalte">
+				<form @submit.prevent="userLogin">
+						<v-container fluid>
+							<h3>Sign In</h3>
+							<v-text-field
+								v-model="user.email"
+								:error-messages="emailErrors"
+								label="E-mail address"
+								required
+								@input="$v.email.$touch()"
+								@blur="$v.email.$touch()"
+							></v-text-field>
+							<v-text-field
+								v-model="user.password"
+								:error-messages="passwordErrors"
+								:append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+								:rules="[rules.required, rules.min]"
+								:type="show1 ? 'text' : 'password'"
+								name="input-10-1"
+								label="Password"
+								@input="$v.password.$touch()"
+								@blur="$v.password.$touch()"
+								@click:append="show1 = !show1"
+							></v-text-field>
+						<!-- <div class="form-group">
+								<label>Email address</label>
+								<input type="email" class="form-control form-control-lg" v-model="user.email" />
+						</div>
 
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" v-model="user.email" />
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control form-control-lg" v-model="user.password" />
-            </div>
-
-            <v-btn type="submit" >Sign In</v-btn>
-
-            <p class="forgot-password text-right mt-2 mb-4">
-                <router-link to="/forgot-password">Forgot password ?</router-link>
-            </p>
-        </form>
-    </div>
+						<div class="form-group">
+								<label>Password</label>
+								<input type="password" class="form-control form-control-lg" v-model="user.password" />
+						</div> -->
+							<v-btn type="submit" >Sign In</v-btn>
+						</v-container>
+						<v-container fluid>
+							<p class="forgot-password mt-2 mb-5">
+									<router-link to="/forgot-password">Forgot password ?</router-link>
+							</p>
+						</v-container>
+				</form>
+		</div>
 </template>
 
 
@@ -27,26 +48,35 @@
 import firebase from "firebase";
 
 export default {
-  data() {
-    return {
-      user: {   
-        email: '',
-        password: ''
-      }
-    };
-  },
-  methods: {
-    userLogin() {
-        firebase
-        .auth()
-        .signInWithEmailAndPassword(this.user.email, this.user.password)
-        .then(() => {
-            this.$router.push('/tester')
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    }
-  }
+	data() {
+		return {
+			show1: false,
+				show2: true,
+				show3: false,
+				show4: false,
+				rules: {
+					required: value => !!value || 'Required.',
+					min: v => v.length >= 8 || 'Min 8 characters',
+					emailMatch: () => ('The email and password you entered don\'t match'),
+			},
+			user: {
+				email: '',
+				password: ''
+			}
+		};
+	},
+	methods: {
+		userLogin() {
+				firebase
+				.auth()
+				.signInWithEmailAndPassword(this.user.email, this.user.password)
+				.then(() => {
+						this.$router.push('/tester')
+				})
+				.catch((error) => {
+					alert(error.message);
+				});
+		}
+	}
 };
 </script>
