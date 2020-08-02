@@ -29,6 +29,11 @@ const router = new Router({
     component: () => import('../views/Library.vue') 
   },
   {
+    path: '/Bookpage',
+    name: 'Bookpage',
+    component: () => import('../components/Bookpage.vue') 
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login

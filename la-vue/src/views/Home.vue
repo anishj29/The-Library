@@ -6,8 +6,6 @@
          <v-btn color="blue-grey darken-4 white--text" rounded to="/Library">Start Reading Today</v-btn> 
       </v-container>
    </v-row>
-
-
    <v-row class="cyan lighten-2">
       <v-spacer></v-spacer>
       <v-col class="text-center" cols="9">
@@ -49,7 +47,5 @@
          </v-row>
       </v-col>
    </v-row>
-
 </div>
-
 </template>
