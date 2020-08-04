@@ -32,11 +32,11 @@
 								<label>Password</label>
 								<input type="password" class="form-control form-control-lg" v-model="user.password" />
 						</div> -->
-							<v-btn type="submit" >Sign In</v-btn>
+						<v-btn type="submit" >Sign In</v-btn>
 						</v-container>
 						<v-container fluid>
 							<p class="forgot-password mt-2 mb-5">
-									<router-link to="/forgot-password">Forgot password ?</router-link>
+									<router-link to="/forgot-password">Forgot password?</router-link>
 							</p>
 						</v-container>
 				</form>
@@ -71,7 +71,7 @@ export default {
 				.auth()
 				.signInWithEmailAndPassword(this.user.email, this.user.password)
 				.then(() => {
-						this.$router.push('/tester')
+						this.$router.push('/library')
 				})
 				.catch((error) => {
 					alert(error.message);

@@ -8,7 +8,6 @@
         <v-btn text dark rounded to ="/library">Library</v-btn>
         <v-btn text dark rounded to="/signup">Sign Up</v-btn>
         <hello></hello>
-        <v-btn text dark rounded to ="/1984pdf">1984</v-btn>
         <v-btn text dark rounded to ="/contact">Contact</v-btn>
       </v-app-bar>
       

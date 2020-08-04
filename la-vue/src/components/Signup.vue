@@ -57,8 +57,8 @@
           </v-container>
           <v-container fluid>
             <p class="forgot-password">
-              Already registered 
-              <router-link :to="{name: 'Login'}">Sign In?</router-link>
+              Already registered? 
+              <router-link :to="{name: 'Login'}">Sign In</router-link>
             </p>
           </v-container>
         </form>

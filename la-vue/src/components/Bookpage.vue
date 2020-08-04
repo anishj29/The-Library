@@ -5,7 +5,7 @@
 			<v-img max-width="100%" :src="require(`@/assets/images/${img}`)"></v-img>
 		</v-col>
 		<v-col>
-			<h1 class="text-left">{{title}}</h1>
+			<h1 class="text-center">{{title}}</h1>
 		</v-col>
 	</v-row>
 	<v-row>
@@ -15,25 +15,28 @@
 		</v-col>
 	</v-row>
 	<v-row class="pt-5">
-		<v-col cols="7" style="background: grey" >
+		<v-col cols="7"  class="blue-grey darken-4 white--text">
 			<div height="700">
-				placeholder
-				[Where pdf comp would go]
+				<PDF1984></PDF1984>
 			</div>
 			
 		</v-col>
 		<v-col>
 			<v-expansion-panels>
-				<v-expansion-panel>
+				<v-expansion-panel class="blue-grey darken-4 white--text">
 					<v-expansion-panel-header>Description</v-expansion-panel-header>
 					<v-expansion-panel-content>
 						{{description}}	
 					</v-expansion-panel-content>
 				</v-expansion-panel>
-				<v-expansion-panel>
+				<v-expansion-panel class="blue-grey darken-4 white--text">
 					<v-expansion-panel-header>Filter</v-expansion-panel-header>
 					<v-expansion-panel-content>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						<v-btn class="mr-1">Tags</v-btn>
+						<v-btn>Characters</v-btn>
+						<p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit
+						, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+						, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 					</v-expansion-panel-content>
 				</v-expansion-panel>
 			</v-expansion-panels>
@@ -43,8 +46,11 @@
 </template>
 
 <script>
-
+import PDF1984 from '@/components/1984pdf.vue'; 
 export default {
+	components:{
+		PDF1984
+	},
 	props:{
 		bookObj: Object
 	},

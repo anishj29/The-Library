@@ -53,11 +53,6 @@ const router = new Router({
     name: 'tester',
     component: tester
   },
-  {
-    path: '/1984pdf',
-    name: '1984pdf',
-    component: () => import('../views/1984pdf.vue') 
-  }
 ]
 });
 export default router;
