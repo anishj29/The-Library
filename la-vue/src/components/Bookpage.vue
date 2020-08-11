@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import OdysseyBook from '@/components/OdysseyBook.vue'; 
+import OdysseyBook from './OdysseyBook.vue'; 
 export default {
 	components:{
 		OdysseyBook
@@ -61,7 +61,7 @@ export default {
 		description: "The Odyssey is Homer's epic of Odysseus' 10-year struggle to return home after the Trojan War. While Odysseus battles mystical creatures and faces the wrath of the gods, his wife Penelope and his son Telemachus stave off suitors vying for Penelope's hand and Ithaca's throne long enough for Odysseus to return.",
 		filter: "Please select a filter",
 		main_characters: "Characters: Odysseus, Telemachus, Athena, Zeus, Circe, Calpyso, Poseidon...",
-		locations: "Troy, Calypso's Island, "
+		locations: "Troy, Calypso's Island, Island of Scheria"
 	
 	})
 }
