@@ -1,5 +1,4 @@
 <template>
-
 <v-container fluid class="px-12 light-blue lighten-3">
 	<v-row class="pt-8">
 		<v-col cols="1">
@@ -25,14 +24,14 @@
 			
 		</v-col>
 		<v-col>
-			<v-expansion-panels>
-				<v-expansion-panel class="blue-grey darken-4 white--text">
+			<v-expansion-panels dark>
+				<v-expansion-panel  class="blue-grey darken-4">
 					<v-expansion-panel-header>Description</v-expansion-panel-header>
 					<v-expansion-panel-content>
 						{{description}}	
 					</v-expansion-panel-content>
 				</v-expansion-panel>
-				<v-expansion-panel class="blue-grey darken-4 white--text">
+				<v-expansion-panel  class="blue-grey darken-4">
 					<v-expansion-panel-header>Filter</v-expansion-panel-header>
 					<v-expansion-panel-content>
 						<v-btn class="mr-1" v-on:click="filter = locations">Locations</v-btn>

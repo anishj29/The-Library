@@ -1,11 +1,15 @@
 <template>
     <div>
-        <input v-model.number="page" type="number" style="width: 5em"> /{{numPages}}
-        <button @click="rotate += 90">&#x27F3;</button>
-        <button @click="rotate -= 90">&#x27F2;</button>
+        <div class="d-flex flex-row">
+            <v-text-field :rules="rules" class="" dark v-model.number="page" type="number" style="max-width: 80px"></v-text-field>
+            <p class="ma-0 d-flex align-center mr-2">/{{numPages}}</p>
+            <!-- <input v-model.number="page" type="number" style="width: 5em"> /{{numPages}} -->
+            <button class="mr-2" @click="rotate += 90">&#x27F3;</button>
+            <button @click="rotate -= 90">&#x27F2;</button>
+        </div>    
         <div style="width: 50%">
             <div v-if="loadedRatio > 0 && loadedRatio < 1" style="background-color: green; color: white; text-align: center" :style="{ width: loadedRatio * 100 + '%' }">{{ Math.floor(loadedRatio * 100) }}%</div>
-            <pdf v-if="show" ref="pdf" :src="src" :page="page" :rotate="rotate" @password="password" @progress="loadedRatio = $event" @error="error" @num-pages="numPages = $event" @link-clicked="page = $event"></pdf>
+            <pdf v-if="show" ref="pdf" :src="src" :page="page" :rotate="rotate" @progress="loadedRatio = $event"></pdf>
         </div>
     </div>
 </template>
@@ -14,7 +18,7 @@ import pdf from 'vue-pdf'
  
 export default {
     components: {
-        pdf: pdf
+        pdf
     },
     data () {
         return {
@@ -30,20 +34,24 @@ export default {
             ],
             src:'https://www.planetebook.com/free-ebooks/the-odyssey.pdf',
             loadedRatio: 0,
-            page: 25,
+            page: 1,
             numPages: 443,
             rotate: 0,
+            rules: [
+                page => !!page || 'Enter a page number.',
+                page => page >= 1 || 'Enter a page number greater than or equal to 1',                
+            ],
         }
     },
-    methods: {
-        password: function(updatePassword) {
+    // methods: {
+    //     password: function(updatePassword) {
  
-            updatePassword(prompt('password is "test"'));
-        },
-        error: function(err) {
+    //         updatePassword(prompt('password is "test"'));
+    //     },
+    //     error: function(err) {
  
-            console.log(err);
-        }
-    }
+    //         console.log(err);
+    //     }
+    // }
 }
 </script>
