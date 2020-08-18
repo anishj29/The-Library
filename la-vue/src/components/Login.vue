@@ -32,7 +32,7 @@
 								<label>Password</label>
 								<input type="password" class="form-control form-control-lg" v-model="user.password" />
 						</div> -->
-						<v-btn type="submit" >Sign In</v-btn>
+						<v-btn type="submit" color="primary">Sign In</v-btn>
 						</v-container>
 						<v-container fluid>
 							<p class="forgot-password mt-2 mb-5">

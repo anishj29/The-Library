@@ -1,7 +1,8 @@
 <template>
-    <div class="vue-tempalte">
+    <div class="sign-up">
+      <div class="">
         <form @submit.prevent="userRegistration">
-            <v-container fluid>
+          <v-container fluid>
               <h3>Sign Up</h3>
               <v-text-field
                 v-model="user.name"
@@ -36,22 +37,7 @@
                 @click:append="show1 = !show1"
 
               ></v-text-field>
-            <!-- <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control form-control-lg" v-model="user.name" />
-            </div>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control form-control-lg" v-model="user.email" />
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control form-control-lg" v-model="user.password" />
-            </div> -->
-
-              <v-btn type="submit">
+              <v-btn type="submit" color="primary">
                 Sign Up
               </v-btn>
           </v-container>
@@ -62,6 +48,7 @@
             </p>
           </v-container>
         </form>
+      </div>  
     </div>
 </template>
 
