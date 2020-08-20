@@ -1,7 +1,7 @@
 <template>
-    <div class="contact">    
+  <div class="contact">    
         <v-card flat>
-            <v-snackbar v-model="snackbar" absolute top right color="success">
+            <v-snackbar>
                 <span>Message Sent!</span>
                 <v-icon dark>mdi-checkbox-marked-circle</v-icon>
             </v-snackbar>
@@ -10,16 +10,16 @@
                 <v-row>
                 <v-col cols="12" sm="6">
                     <v-text-field
-                    v-model="form.first"
+                    v-model="form.last"                    
                     :rules="rules.name"
                     color="blue darken-2"
                     label="First name"
                     required
                     ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6">
+                 <v-col cols="12" sm="6">
                     <v-text-field
-                    v-model="form.last"
+                    v-model="form.last"                    
                     :rules="rules.name"
                     color="blue darken-2"
                     label="Last name"
@@ -27,7 +27,7 @@
                     ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6">
-                     <v-text-field
+                     <v-text-field 
                     v-model="form.email"
                     color="blue darken-2"
                     label="Email"
@@ -57,7 +57,7 @@
             </v-card-actions>
             </v-form>
         </v-card>
-    </div>    
+  </div>    
 </template>
 
 <script>

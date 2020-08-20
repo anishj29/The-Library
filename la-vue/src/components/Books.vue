@@ -8,7 +8,7 @@
 					<v-img max-width="220" max-height="300" :src="require(`@/assets/images/${book.img}`)"></v-img>
 					<v-fade-transition>
 						<v-overlay v-if="hover" absolute color="#036358">
-							<v-btn to="/Bookpage">Go to book</v-btn>
+							<v-btn v-on:click="redirect(i)">Go to book</v-btn>
 						</v-overlay>
 					</v-fade-transition>
 				</v-card>
@@ -51,6 +51,17 @@ export default {
 				description: "William Golding's 1954 novel Lord of the Flies tells the story of a group of young boys who find themselves alone on a deserted island. They develop rules and a system of organization, but without any adults to serve as a 'civilizing' impulse, the children eventually become violent and brutal."
 			}
 		]
-	})
+	}),
+	methods: {
+		// redirect(i) {
+		// 	if (i == 0){
+				
+		// 	}
+		// 	if(i == 1){
+				
+		// 	}
+		// }
+	}
+
 }
 </script>

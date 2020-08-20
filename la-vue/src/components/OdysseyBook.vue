@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="OdysseyBook">
         <div class="d-flex flex-row">
             <v-text-field :rules="rules" class="" dark v-model.number="page" type="number" style="max-width: 80px"></v-text-field>
             <p class="ma-0 d-flex align-center mr-2">/{{numPages}}</p>

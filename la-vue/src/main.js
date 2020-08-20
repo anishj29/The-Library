@@ -24,4 +24,5 @@ const firebaseConfig = {
   appId: "1:816345200412:web:8d88e9041e10ec95396cd9",
   measurementId: "G-MQR88GMSTV"
 };
+
 firebase.initializeApp(firebaseConfig);
