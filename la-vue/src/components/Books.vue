@@ -53,14 +53,7 @@ export default {
 		]
 	}),
 	methods: {
-		// redirect(i) {
-		// 	if (i == 0){
-				
-		// 	}
-		// 	if(i == 1){
-				
-		// 	}
-		// }
+	
 	}
 
 }
