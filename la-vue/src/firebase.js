@@ -1,4 +1,5 @@
 import * as firebase from 'firebase/app';
+import VueFire from 'vuefire';
 import 'firebase/auth';
 import 'firebase/firestore';
 
