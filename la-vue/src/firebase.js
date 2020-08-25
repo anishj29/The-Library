@@ -1,5 +1,4 @@
 import * as firebase from 'firebase/app';
-import VueFire from 'vuefire';
 import 'firebase/auth';
 import 'firebase/firestore';
 
@@ -13,9 +12,8 @@ firebase.initializeApp({
     appId: "1:816345200412:web:8d88e9041e10ec95396cd9",
     measurementId: "G-MQR88GMSTV"
 });
-const db = firebase.firestore();
+export const db = firebase.firestore();
 export default {
-    db,
     auth: firebase.auth(),
     login() {
       const provider = new firebase.auth.GoogleAuthProvider();

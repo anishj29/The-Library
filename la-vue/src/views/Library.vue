@@ -12,7 +12,7 @@
             <v-btn rounded>ALL</v-btn>
             <v-btn rounded>Alphabetical</v-btn>
             <v-btn rounded>Date</v-btn>
-            {{books}}
+            {{ books }}
             <book></book>
         </v-container>
     </v-row>
@@ -21,21 +21,22 @@
 
 <script>
 import book from '@/components/Books.vue';
-import db from '@/firebase.js';
+import { db } from '@/firebase.js';
 export default {
     name: 'Library',
     components: {
         book,
     },
-    firestore() {
+    data() {
+        return {
+            books: [],   
+        }
+    },
+    firestore () {
         return {
             books: db.collection('books')
         }
-    },
-    data: function () { 
-        return { 
-             books: []
-        }
-    }
+    }   
 };
+
 </script>

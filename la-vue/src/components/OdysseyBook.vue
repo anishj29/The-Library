@@ -3,7 +3,6 @@
         <div class="d-flex flex-row">
             <v-text-field :rules="rules" class="" dark v-model.number="page" type="number" style="max-width: 80px"></v-text-field>
             <p class="ma-0 d-flex align-center mr-2">/{{numPages}}</p>
-            <!-- <input v-model.number="page" type="number" style="width: 5em"> /{{numPages}} -->
             <button class="mr-2" @click="rotate += 90">&#x27F3;</button>
             <button @click="rotate -= 90">&#x27F2;</button>
         </div>    
@@ -42,16 +41,6 @@ export default {
                 page => page >= 1 || 'Enter a page number greater than or equal to 1',                
             ],
         }
-    },
-    // methods: {
-    //     password: function(updatePassword) {
- 
-    //         updatePassword(prompt('password is "test"'));
-    //     },
-    //     error: function(err) {
- 
-    //         console.log(err);
-    //     }
-    // }
+    }
 }
 </script>

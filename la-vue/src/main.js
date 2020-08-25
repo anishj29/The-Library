@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueFire from 'vuefire';
 import router from './router/index'
-import vuetify from '@/plugins/vuetify' // path to vuetify export
-import Vuelidate from 'vuelidate'
+import vuetify from '@/plugins/vuetify'
 
-Vue.use(VueFire);
-Vue.use(Vuelidate)
+import { firestorePlugin } from 'vuefire'
+Vue.use(firestorePlugin)
+
 Vue.config.productionTip = false
 new Vue({
   router,

@@ -51,9 +51,6 @@ export default {
 	components:{
 		OdysseyBook
 	},
-	// props:{
-	// 	bookObj: Object
-	// },
 	data: () => ({
 		img:"OdysseyCover.jpg",
 		title: "The Odyssey",
