@@ -12,7 +12,9 @@
             <v-btn rounded>ALL</v-btn>
             <v-btn rounded>Alphabetical</v-btn>
             <v-btn rounded>Date</v-btn>
-            {{ books }}
+            <div  v-for="book of books" :key="book['.key']">
+                Name: {{ book.name }}
+            </div>
             <book></book>
         </v-container>
     </v-row>
@@ -33,9 +35,15 @@ export default {
         }
     },
     firestore () {
-        return {
-            books: db.collection('books')
-        }
+        db.collection('books').get()
+        .then(snapshot => {
+        snapshot.forEach(doc => {
+          let item = doc.data()
+          item.id = doc.id
+          this.books.push(item)
+        })
+      })
+  
     }   
 };
 
