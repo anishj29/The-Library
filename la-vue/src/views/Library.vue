@@ -6,18 +6,21 @@
             <v-btn color="blue-grey darken-4 white--text" rounded to="/SignUp">Sign Up To Begin</v-btn>
         </v-container>
     </v-row>
-    <v-row class="teal lighten-2">
-        <v-container>
-            <span class="mr-2 font-weight-bold">Filter:</span>
-            <v-btn rounded>ALL</v-btn>
-            <v-btn rounded>Alphabetical</v-btn>
-            <v-btn rounded>Date</v-btn>
-            <div  v-for="book of books" :key="book['.key']">
-                Name: {{ book.name }}
-            </div>
-            <book></book>
-        </v-container>
-    </v-row>
+    <div class="teal lighten-2">
+        <v-row class="">
+            <v-container>
+                <span class="mr-2 font-weight-bold">Filter:</span>
+                <v-btn rounded>ALL</v-btn>
+                <v-btn rounded>Alphabetical</v-btn>
+                <v-btn rounded>Date</v-btn>
+            </v-container>
+        </v-row>
+        <v-row>
+            <v-col cols = "4" v-for="book of books" :key="book['.key']">
+                <book :bookTitle = "book.name" :img = "book.imgFile" :id = "book.id"></book>
+            </v-col>    
+        </v-row>
+    </div>    
 </div>
 </template>
 

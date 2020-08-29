@@ -29,7 +29,7 @@ const router = new Router({
     component: () => import('../views/Library.vue') 
   },
   {
-    path: '/Bookpage',
+    path: '/Bookpage/:id',
     name: 'Bookpage',
     component: () => import('../components/Bookpage.vue') 
   },
