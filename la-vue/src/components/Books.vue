@@ -22,6 +22,7 @@ export default {
 		bookTitle: String,
 		img: String,
 		id: String,
+		pdf1: String, 
 	},
 	data: () => ({
 		// books: [

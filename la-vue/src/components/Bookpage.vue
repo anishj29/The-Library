@@ -2,10 +2,10 @@
 <v-container fluid class="px-12 light-blue lighten-3">
 	<v-row class="pt-8">
 		<v-col cols="1">
-			<v-img max-width="100%" :src="require(`@/assets/images/${img}`)"></v-img>
+			<v-img max-width="100%" :src="book.imgFile"></v-img>
 		</v-col>
 		<v-col>
-			<h1 class="text-left mt-10" style="padding-left: 600px">{{title}}</h1>
+			<h1 class="text-left mt-10" style="padding-left: 600px">{{book.name}}</h1>
 		</v-col>
 	</v-row>
 	<v-row>
@@ -14,14 +14,12 @@
 			<v-text-field class="" outlined dense label="Solo" placeholder="Search Bar" solo>
 			</v-text-field>
 		</v-col>
-	
 	</v-row>
 	<v-row class="pt-5">
 		<v-col cols="7"  class="blue-grey darken-4 white--text">
 			<div height="700">
-				<OdysseyBook></OdysseyBook>
+				<PDF :pdf1 = "book.pdfLink"></PDF>
 			</div>
-			
 		</v-col>
 		<v-col>
 			<v-expansion-panels dark>
@@ -37,7 +35,6 @@
 						<v-btn class="mr-1" v-on:click="filter = locations">Locations</v-btn>
 						<v-btn v-on:click="filter = main_characters">Characters</v-btn>
 						<p class="mt-5">{{filter}}</p>
-						{{book}}
 					</v-expansion-panel-content>
 				</v-expansion-panel>
 			</v-expansion-panels>
@@ -48,18 +45,19 @@
 </template>
 
 <script>
-import OdysseyBook from './OdysseyBook.vue'; 
+import PDF from './PDF.vue'; 
 import { db } from '@/firebase.js';
 
 export default {
 	components:{
-		OdysseyBook
+		PDF
 	},
 	data () { return {
 		id: this.$route.params.id,
 		book:{},
-		img:"OdysseyCover.jpg",
-		title: "The Odyssey",
+		img: this.$route.params.imgFile,
+		pdf: this.$route.params.pdf,
+		title: this.$route.params.name,
 		description: "The Odyssey is Homer's epic of Odysseus' 10-year struggle to return home after the Trojan War. While Odysseus battles mystical creatures and faces the wrath of the gods, his wife Penelope and his son Telemachus stave off suitors vying for Penelope's hand and Ithaca's throne long enough for Odysseus to return.",
 		filter: "Please select a filter",
 		main_characters: "Characters: Odysseus, Telemachus, Athena, Zeus, Circe, Calpyso, Poseidon...",

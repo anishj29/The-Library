@@ -17,7 +17,7 @@
         </v-row>
         <v-row>
             <v-col cols = "4" v-for="book of books" :key="book['.key']">
-                <book :bookTitle = "book.name" :img = "book.imgFile" :id = "book.id"></book>
+                <book :bookTitle = "book.name" :img = "book.imgFile" :pdf = "book.pdfLink" :id = "book.id"></book>
             </v-col>    
         </v-row>
     </div>    
@@ -26,7 +26,7 @@
 
 <script>
 import book from '@/components/Books.vue';
-import { db } from '@/firebase.js';
+import { db } from '@/firebase.js' ;
 export default {
     name: 'Library',
     components: {
