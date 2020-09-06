@@ -18,24 +18,26 @@
 	<v-row class="pt-5">
 		<v-col cols="7"  class="blue-grey darken-4 white--text">
 			<div height="700">
-				<PDF :pdf1 = "book.pdfLink"></PDF>
+				<PDF :pdf1 = "book.pdfLink" @page="summaryPage" :chapter1 = "book.chapter1"></PDF>
 			</div>
 		</v-col>
 		<v-col>
 			<v-expansion-panels dark>
 				<v-expansion-panel  class="blue-grey darken-4">
-					<v-expansion-panel-header>Description</v-expansion-panel-header>
-					<v-expansion-panel-content>
-						{{description}}	
-					</v-expansion-panel-content>
+					<v-expansion-panel-header> Description </v-expansion-panel-header>
+					<v-expansion-panel-content>{{book.description}}</v-expansion-panel-content>
 				</v-expansion-panel>
 				<v-expansion-panel  class="blue-grey darken-4">
 					<v-expansion-panel-header>Filter</v-expansion-panel-header>
 					<v-expansion-panel-content>
-						<v-btn class="mr-1" v-on:click="filter = locations">Locations</v-btn>
-						<v-btn v-on:click="filter = main_characters">Characters</v-btn>
+						<v-btn class="mr-1" v-on:click="filter = book.locations">Locations</v-btn>
+						<v-btn v-on:click="filter = book.mainCharacters">Characters</v-btn>
 						<p class="mt-5">{{filter}}</p>
 					</v-expansion-panel-content>
+				</v-expansion-panel>
+				<v-expansion-panel  class="blue-grey darken-4">
+					<v-expansion-panel-header>Chapter Summary</v-expansion-panel-header>
+					<v-expansion-panel-content>{{ summary }}</v-expansion-panel-content>
 				</v-expansion-panel>
 			</v-expansion-panels>
 		</v-col>
@@ -55,13 +57,11 @@ export default {
 	data () { return {
 		id: this.$route.params.id,
 		book:{},
+		summary: '',
 		img: this.$route.params.imgFile,
 		pdf: this.$route.params.pdf,
 		title: this.$route.params.name,
-		description: "The Odyssey is Homer's epic of Odysseus' 10-year struggle to return home after the Trojan War. While Odysseus battles mystical creatures and faces the wrath of the gods, his wife Penelope and his son Telemachus stave off suitors vying for Penelope's hand and Ithaca's throne long enough for Odysseus to return.",
 		filter: "Please select a filter",
-		main_characters: "Characters: Odysseus, Telemachus, Athena, Zeus, Circe, Calpyso, Poseidon...",
-		locations: "Troy, Calypso's Island, Island of Scheria"
 	}},
 	methods: {
 		async wait() {
@@ -71,6 +71,9 @@ export default {
 			})
 			console.log(this.id)
 			console.log(this.book)
+		},
+		summaryPage(value) {
+			this.summary = value;
 		}
 	},
 	mounted() {

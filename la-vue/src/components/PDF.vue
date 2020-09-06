@@ -12,31 +12,19 @@
         </div>
     </div>
 </template>
+
 <script>
 import pdf from 'vue-pdf'
 import { db } from '@/firebase.js';
 
- 
 export default {
     components: {
         pdf
     },
     props:{
-        pdf1: String
+        pdf1: String,
+        chapter1: String,
     },
-    methods: {
-		async wait() {
-			await db.collection('books').doc(this.id).get()
-			.then(snapshot => {
-				this.book = snapshot.data()
-			})
-			console.log(this.id)
-			console.log(this.book.pdfLink)
-		}
-    },
-    mounted() {
-		this.wait()
-	},
     data () {
         return {
             show: true,
@@ -57,6 +45,35 @@ export default {
                 page => !!page || 'Enter a page number.',
                 page => page >= 1 || 'Enter a page number greater than or equal to 1',                
             ],
+        }
+    },
+    methods: {
+		async wait() {
+			await db.collection('books').get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                let item = doc.data()
+                item.id = doc.id
+                this.books.push(item)
+            })})
+        }, 
+    },
+    mounted() {
+		this.wait()
+    },
+    watch: {
+        page: function (page) {
+            // if(this.book.name == "The Odyssey") {
+                if (page >= 13 && page <= 26) {
+                    var chap1 = "chapter1"
+                    this.$emit('page', chap1);
+
+                } 
+                else {
+                    var hi = "hi";
+                    this.$emit('page', hi);
+                }
+            // }
         }
     },
 }
