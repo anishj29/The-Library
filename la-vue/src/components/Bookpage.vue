@@ -18,7 +18,7 @@
 	<v-row class="pt-5">
 		<v-col cols="7"  class="blue-grey darken-4 white--text">
 			<div height="700">
-				<PDF :pdf1 = "book.pdfLink" @page="summaryPage" :chapter1 = "book.chapter1"></PDF>
+				<PDF :book = "book" @page="summaryPage" ></PDF>
 			</div>
 		</v-col>
 		<v-col>
@@ -69,8 +69,6 @@ export default {
 			.then(snapshot => {
 				this.book = snapshot.data()
 			})
-			console.log(this.id)
-			console.log(this.book)
 		},
 		summaryPage(value) {
 			this.summary = value;

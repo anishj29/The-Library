@@ -5,25 +5,23 @@
             <p class="ma-0 d-flex align-center mr-2">/{{numPages}}</p>
             <button class="mr-2" @click="rotate += 90">&#x27F3;</button>
             <button @click="rotate -= 90">&#x27F2;</button>
-        </div>    
+        </div>
         <div style="width: 50%">
             <div v-if="loadedRatio > 0 && loadedRatio < 1" style="background-color: green; color: white; text-align: center" :style="{ width: loadedRatio * 100 + '%' }">{{ Math.floor(loadedRatio * 100) }}%</div>
-            <pdf v-if="show" ref="pdf" :src="pdf1" :page="page" :rotate="rotate" @progress="loadedRatio = $event"></pdf>
+            <pdf v-if="show" ref="pdf" :src="book.pdfLink" :page="page" :rotate="rotate" @progress="loadedRatio = $event"></pdf>
         </div>
     </div>
 </template>
 
 <script>
 import pdf from 'vue-pdf'
-import { db } from '@/firebase.js';
 
 export default {
     components: {
         pdf
     },
     props:{
-        pdf1: String,
-        chapter1: String,
+        book: String
     },
     data () {
         return {
@@ -47,33 +45,36 @@ export default {
             ],
         }
     },
-    methods: {
-		async wait() {
-			await db.collection('books').get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-                let item = doc.data()
-                item.id = doc.id
-                this.books.push(item)
-            })})
-        }, 
-    },
-    mounted() {
-		this.wait()
-    },
+    // methods: {
+    //     async wait() {
+    //         await db.collection('books').doc(this.id).get()
+    //         .then(snapshot => {
+    //             this.book = snapshot.data()
+    //         })
+    //     },
+    // },
+    // mounted() {
+    //     this.wait()
+    // },
     watch: {
         page: function (page) {
-            // if(this.book.name == "The Odyssey") {
+            if(this.book.name == "The Odyssey") {
                 if (page >= 13 && page <= 26) {
-                    var chap1 = "chapter1"
-                    this.$emit('page', chap1);
+                    this.$emit('page', this.book.chapter1);
 
                 } 
+                else if (page >= 27 && page <=40) {
+                    this.$emit('page', this.book.chapter2);
+                }
                 else {
-                    var hi = "hi";
+                    var hi = "";
                     this.$emit('page', hi);
                 }
-            // }
+            }else if(this.book.name == "Romeo and Juliet") {
+                this.$emit('page', this.book.name);
+            }else if(this.book.name == "1984") {
+                this.$emit('page', this.book.name);
+            }
         }
     },
 }
