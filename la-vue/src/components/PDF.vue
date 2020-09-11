@@ -58,6 +58,8 @@ export default {
     // },
     watch: {
         page: function (page) {
+            var hi = "No summary available";
+
             if(this.book.name == "The Odyssey") {
                 if (page >= 13 && page <= 26) {
                     this.$emit('page', this.book.chapter1);
@@ -67,13 +69,17 @@ export default {
                     this.$emit('page', this.book.chapter2);
                 }
                 else {
-                    var hi = "";
                     this.$emit('page', hi);
                 }
             }else if(this.book.name == "Romeo and Juliet") {
                 this.$emit('page', this.book.name);
             }else if(this.book.name == "1984") {
-                this.$emit('page', this.book.name);
+                if(page >=3 && page <=25 ){
+                    this.$emit('page', this.book.chapter1);
+                }
+                else{
+                    this.$emit('page', hi);
+                }
             }
         }
     },
