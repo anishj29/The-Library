@@ -37,7 +37,7 @@ export default {
             ],
             loadedRatio: 0,
             page: 1,
-            numPages: 443,
+            numPages: 0,
             rotate: 0,
             rules: [
                 page => !!page || 'Enter a page number.',
@@ -45,30 +45,16 @@ export default {
             ],
         }
     },
-    // methods: {
-    //     async wait() {
-    //         await db.collection('books').doc(this.id).get()
-    //         .then(snapshot => {
-    //             this.book = snapshot.data()
-    //         })
-    //     },
-    // },
-    // mounted() {
-    //     this.wait()
-    // },
     watch: {
         page: function (page) {
             var hi = "No summary available";
-
             if(this.book.name == "The Odyssey") {
                 if (page >= 13 && page <= 26) {
                     this.$emit('page', this.book.chapter1);
-
                 } 
                 else if (page >= 27 && page <=40) {
                     this.$emit('page', this.book.chapter2);
-                }
-                else {
+                }else {
                     this.$emit('page', hi);
                 }
             }else if(this.book.name == "Romeo and Juliet") {
@@ -76,6 +62,14 @@ export default {
             }else if(this.book.name == "1984") {
                 if(page >=3 && page <=25 ){
                     this.$emit('page', this.book.chapter1);
+                }else{
+                    this.$emit('page', hi);
+                }
+            }else if(this.book.name == "Great Expectations") {
+                if(page >=2 && page <=8) {
+                    this.$emit('page', this.book.chapter1);
+                }else if(page >=9 && page <=20) {
+                    this.$emit('page', this.book.chapter2);
                 }
                 else{
                     this.$emit('page', hi);

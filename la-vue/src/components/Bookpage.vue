@@ -5,7 +5,7 @@
 			<v-img max-width="100%" :src="book.imgFile"></v-img>
 		</v-col>
 		<v-col>
-			<h1 class="text-left mt-10" style="padding-left: 600px">{{book.name}}</h1>
+			<h1 class="mt-10" style="padding-left: 400px">{{book.name}}</h1>
 		</v-col>
 	</v-row>
 	<v-row>
