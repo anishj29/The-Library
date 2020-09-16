@@ -15,7 +15,6 @@
 
 <script>
 import pdf from 'vue-pdf'
-
 export default {
     components: {
         pdf
@@ -50,15 +49,14 @@ export default {
             var hi = "No summary available";
             if(this.book.name == "The Odyssey") {
                 if (page >= 13 && page <= 26) {
-                    this.$emit('page', this.book.chapter1);
-                } 
-                else if (page >= 27 && page <=40) {
-                    this.$emit('page', this.book.chapter2);
+                    this.$emit('page', this.book.chapter1, page);
+                }else if (page >= 27 && page <=40) {
+                    this.$emit('page', this.book.chapter2, page);
                 }else {
-                    this.$emit('page', hi);
+                    this.$emit('page', hi, page);
                 }
             }else if(this.book.name == "Romeo and Juliet") {
-                this.$emit('page', this.book.name);
+                this.$emit('page', this.book.name, page);
             }else if(this.book.name == "1984") {
                 if(page >=3 && page <=25 ){
                     this.$emit('page', this.book.chapter1);
