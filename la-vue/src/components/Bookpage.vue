@@ -11,7 +11,7 @@
     <v-row>
         <v-spacer></v-spacer>
         <v-col cols="4">
-            <v-text-field class="" outlined dense label="Solo" placeholder="Search Bar" solo>
+            <v-text-field outlined dense label="Solo" placeholder="Search Bar" solo>
             </v-text-field>
         </v-col>
     </v-row>
@@ -42,24 +42,19 @@
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
-                    <v-expansion-panel-header>Annotations On Page {{page}}</v-expansion-panel-header>
+                    <v-expansion-panel-header>Annotations For Page {{page}}</v-expansion-panel-header>
                     <v-expansion-panel-content>
                         <v-container>
-                            <h1>{{ }}</h1>
                             <v-row>
                                 <v-col class="d-flex align-start flex-column mb-6">
                                     <v-btn @click="bookAnno = book" v-for="book in annotationsAnalysis" :key="book" color="primary" class="mb-2">{{book.title}}</v-btn>
                                 </v-col>
                                 <v-col>
-                                     <v-card
-                                        class="mx-auto"
-                                        max-width="344"
-                                        outlined
-                                    >
+                                    <v-card class="mx-auto" max-width="344" outlined>
                                         <v-list-item three-line>
                                         <v-list-item-content>
                                             <div class="overline mb-4">OVERLINE</div>
-                                            <v-list-item-subtitle>{{bookAnno.title}}</v-list-item-subtitle>
+                                            <v-list-item-subtitle>{{bookAnno.annotation}}</v-list-item-subtitle>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </v-card>
@@ -78,7 +73,6 @@
 <script>
 import PDF from './PDF.vue'; 
 import { db } from '@/firebase.js';
-
 export default {
     components:{
         PDF
@@ -87,8 +81,8 @@ export default {
         id: this.$route.params.id,
         book:{},
         annotationsAnalysis:[
-        {title: "quote1",annotation: "annotation1"},
-        {title: "quote2",annotation: "annotation2"}],
+        {title: "q1",annotation: this.anno1},
+        {title: "q2", annotation: "annotation2"}],
         page: null,
         bookAnno: {},
         summary: '',
@@ -104,10 +98,11 @@ export default {
                 this.book = snapshot.data()
             })
         },
+        
         summaryPage(value, page) {
             this.summary = value;
             this.page = page;
-        }
+        },
     },
     mounted() {
         this.wait()

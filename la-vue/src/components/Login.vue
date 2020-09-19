@@ -23,15 +23,6 @@
 								@blur="$v.password.$touch()"
 								@click:append="show1 = !show1"
 							></v-text-field>
-						<!-- <div class="form-group">
-								<label>Email address</label>
-								<input type="email" class="form-control form-control-lg" v-model="user.email" />
-						</div>
-
-						<div class="form-group">
-								<label>Password</label>
-								<input type="password" class="form-control form-control-lg" v-model="user.password" />
-						</div> -->
 						<v-btn type="submit" color="primary">Sign In</v-btn>
 						</v-container>
 						<v-container fluid>

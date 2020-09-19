@@ -2,7 +2,7 @@
     <div class="PDF">
         <div class="d-flex flex-row">
             <v-text-field :rules="rules" class="" dark v-model.number="page" type="number" style="max-width: 80px"></v-text-field>
-            <p class="ma-0 d-flex align-center mr-2">/{{numPages}}</p>
+            <p class="ma-0 d-flex align-center mr-2">/{{book.maxPage}}</p>
             <button class="mr-2" @click="rotate += 90">&#x27F3;</button>
             <button @click="rotate -= 90">&#x27F2;</button>
         </div>
@@ -36,7 +36,6 @@ export default {
             ],
             loadedRatio: 0,
             page: 1,
-            numPages: 0,
             rotate: 0,
             rules: [
                 page => !!page || 'Enter a page number.',
