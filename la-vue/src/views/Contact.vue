@@ -1,105 +1,115 @@
 <template>
-  <div class="contact">    
-        <v-card flat>
-            <v-snackbar>
-                <span>Message Sent!</span>
-                <v-icon dark>mdi-checkbox-marked-circle</v-icon>
-            </v-snackbar>
-            <v-form ref="form" @submit.prevent="submit">
-            <v-container fluid>
-                <v-row>
-                <v-col cols="12" sm="6">
-                    <v-text-field
-                    v-model="form.last"                    
-                    :rules="rules.name"
-                    color="blue darken-2"
-                    label="First name"
-                    required
-                    ></v-text-field>
-                </v-col>
-                 <v-col cols="12" sm="6">
-                    <v-text-field
-                    v-model="form.last"                    
-                    :rules="rules.name"
-                    color="blue darken-2"
-                    label="Last name"
-                    required
-                    ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6">
-                     <v-text-field 
-                    v-model="form.email"
-                    color="blue darken-2"
-                    label="Email"
-                    required
-                    ></v-text-field>
-                </v-col>
-                <v-col cols="12">
-                    <v-textarea
-                    v-model="form.message"
-                    color="blue darken-2"
-                    >
-                    <template v-slot:label>
-                        <div>
-                            Message
-                        </div>
-                    </template>
-                    </v-textarea>
-                </v-col>
-                </v-row>
-            </v-container>
-            <v-card-actions>
-                <v-btn
-                
-                color="primary"
-                type="submit"
-                >Register</v-btn>
-            </v-card-actions>
-            </v-form>
-        </v-card>
-  </div>    
+    <form class="contact-form" @submit.prevent="sendMail">
+        <div class="form-group">
+            <label for="msg-name">Email</label>
+            <input type="text" id="msg-name" class="form-control" v-model="contactFormData.name">
+        </div>
+        <div class="form-group">
+            <label for="msg-email">Name</label>
+            <input type="text" id="msg-email" class="form-control" v-model="contactFormData.email">
+        </div>
+        <div class="form-group">
+            <label for="msg-message">Message</label>
+            <textarea rows="10" id="msg-message" class="form-control" v-model="contactFormData.message"></textarea>
+        </div>
+        <div class="form-result">
+            <p class="alert alert-success" v-if="success && !error">Message sent successfully.</p>
+            <p class="alert alert-error" v-if="!success && error">Message failed.</p>
+        </div>
+        <div class="form-group">
+            <button class="btn" type="submit">Send</button>
+        </div>
+    </form>
 </template>
 
 <script>
 export default {
-    data () {
-      const defaultForm = Object.freeze({
-        first: '',
-        last: '',
-        message: '',
-        email: '',
-      })
-
-      return {
-        form: Object.assign({}, defaultForm),
-        rules: {
-    
-        },
-        snackbar: false,
-        defaultForm,
-      }
+    name: 'ContactForm',
+    data: function () {
+        return {
+            contactFormData: {
+                name: '',
+                email: '',
+                message: '',
+            },
+            success: false,
+            error: false,
+        }
     },
-
-    computed: {
-      formIsValid () {
-        return (
-          this.form.first &&
-          this.form.last &&
-          this.form.message &&
-          this.form.email
-        )
-      },
-    },
-
     methods: {
-      resetForm () {
-        this.form = Object.assign({}, this.defaultForm)
-        this.$refs.form.reset()
-      },
-      submit () {
-        this.snackbar = true
-        this.resetForm()
-      },
+        sendMail: function () {
+            // in a real app, it would be better if the URL is extracted as a env variable
+            const url = 'http://localhost:8080/contact';
+            const {name, email, message} = this.contactFormData;
+            const payload = {name, email, message};
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(() => {
+                    this.success = true;
+                    this.resetForm();
+                })
+                .catch(() => {
+                    this.error = true;
+                })
+        },
+        resetForm: function () {
+            this.contactFormData = {
+                name: '',
+                email: '',
+                message: '',
+            };
+        },
     },
 }
 </script>
+
+<style scoped>
+.contact-form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 360px;
+}
+.form-group {
+    padding: 10px;
+}
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=text].form-control {
+    margin: 8px 0;
+    display: inline-block;
+}
+textarea.form-control {
+    resize: none;
+}
+.btn {
+    cursor: pointer;
+    padding: 8px 10px;
+    outline: none;
+    border: none;
+    background: #3be249;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 4px;
+    text-align: center;
+}
+.alert {
+    padding:0 10px;
+}
+.alert-success {
+    color:#3be249;
+}
+.alert-error {
+    color: #ff2121;
+}
+</style>

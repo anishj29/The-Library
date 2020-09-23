@@ -20,7 +20,7 @@ export default {
         pdf
     },
     props:{
-        book: String
+        book: Object
     },
     data () {
         return {

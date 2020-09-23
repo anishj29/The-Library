@@ -3,7 +3,7 @@
       <div class="">
         <form @submit.prevent="userRegistration">
           <v-container fluid>
-              <h3>Sign Up</h3>
+              <h3>Register</h3>
               <v-text-field
                 v-model="user.name"
                 :error-messages="nameErrors"
@@ -37,7 +37,7 @@
                 @click:append="show1 = !show1"
 
               ></v-text-field>
-              <v-btn type="submit" color="primary">
+              <v-btn type="submit" dark color="blue-grey darken-4">
                 Sign Up
               </v-btn>
           </v-container>

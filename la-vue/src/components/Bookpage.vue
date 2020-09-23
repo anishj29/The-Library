@@ -23,11 +23,11 @@
         </v-col>
         <v-col>
             <v-expansion-panels dark>
-                <v-expansion-panel  class="blue-grey darken-4">
+                <v-expansion-panel class="blue-grey darken-4">
                     <v-expansion-panel-header> Description </v-expansion-panel-header>
                     <v-expansion-panel-content>{{book.description}}</v-expansion-panel-content>
                 </v-expansion-panel>
-                <v-expansion-panel  class="blue-grey darken-4">
+                <v-expansion-panel class="blue-grey darken-4">
                     <v-expansion-panel-header>Filter</v-expansion-panel-header>
                     <v-expansion-panel-content>
                         <v-btn class="mr-1" v-on:click="filter = book.locations">Locations</v-btn>
@@ -47,14 +47,16 @@
                         <v-container>
                             <v-row>
                                 <v-col class="d-flex align-start flex-column mb-6">
-                                    <v-btn @click="bookAnno = book" v-for="book in annotationsAnalysis" :key="book" color="primary" class="mb-2">{{book.title}}</v-btn>
+                                    <v-btn @click="bookAnno = quote" v-for="quote in callAnno" :key="quote" color="primary" class="mb-2">
+                                        <h2 class="truncate">{{quote.quote1}}</h2>
+                                    </v-btn>
                                 </v-col>
                                 <v-col>
                                     <v-card class="mx-auto" max-width="344" outlined>
                                         <v-list-item three-line>
                                         <v-list-item-content>
-                                            <div class="overline mb-4">OVERLINE</div>
-                                            <v-list-item-subtitle>{{bookAnno.annotation}}</v-list-item-subtitle>
+                                            <div v-if="page > book.annoStart && page < book.annoStop" class="overline mb-4">{{bookAnno.quote}}</div>
+                                            <div v-if="page > book.annoStart && page < book.annoStop">{{bookAnno.anno}}</div>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </v-card>
@@ -80,16 +82,15 @@ export default {
     data () { return {
         id: this.$route.params.id,
         book:{},
-        annotationsAnalysis:[
-        {title: "q1",annotation: this.anno1},
-        {title: "q2", annotation: "annotation2"}],
+        callAnno: [],
         page: null,
         bookAnno: {},
-        summary: '',
+        summary: "hello",
         img: this.$route.params.imgFile,
         pdf: this.$route.params.pdf,
         title: this.$route.params.name,
         filter: "Please select a filter",
+        annotationsAnalysis:[],
     }},
     methods: {
         async wait() {
@@ -97,8 +98,13 @@ export default {
             .then(snapshot => {
                 this.book = snapshot.data()
             })
-        },
-        
+            await db.collection('books').doc(this.id).collection('annotations').get()
+            .then(snapshot => {
+                snapshot.forEach( doc => {
+                    this.annotationsAnalysis.push(doc.data());
+                }) 
+            })  
+        },  
         summaryPage(value, page) {
             this.summary = value;
             this.page = page;
@@ -107,5 +113,20 @@ export default {
     mounted() {
         this.wait()
     },
+    watch: {
+        page: function (page) {
+            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === page);
+            console.log(this.callAnno);
+        }
+    }
 }
 </script>
+
+<style scoped>
+    .truncate {
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+    }
+</style>

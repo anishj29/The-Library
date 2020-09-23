@@ -6,7 +6,7 @@
         </v-toolbar-title>
         <v-btn text dark rounded to="/">Home</v-btn>
         <v-btn text dark rounded to ="/library">Library</v-btn>
-        <v-btn text dark rounded to="/signup">Sign Up</v-btn>
+        <v-btn text dark rounded to="/signup">Register</v-btn>
         <hello></hello>
         <v-btn text dark rounded to ="/contact">Contact</v-btn>
       </v-app-bar>

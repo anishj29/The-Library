@@ -23,7 +23,7 @@
 								@blur="$v.password.$touch()"
 								@click:append="show1 = !show1"
 							></v-text-field>
-						<v-btn type="submit" color="primary">Sign In</v-btn>
+						<v-btn type="submit" dark color="blue-grey darken-4">Sign In</v-btn>
 						</v-container>
 						<v-container fluid>
 							<p class="forgot-password mt-2 mb-5">

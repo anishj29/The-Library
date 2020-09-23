@@ -1,14 +1,17 @@
 <template>
     <div class="vue-tempalte">
         <form @submit.prevent="forgetPassword">
-            <h3>Forgot Password</h3>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control form-control-lg" v-model="user.email" />
-            </div>
-
-            <v-btn type="submit">Reset password</v-btn >
+            <v-container fluid>
+              <h3>Forgot Password</h3>
+              <div class="form-group">
+                  <v-text-field
+                    v-model="user.email"
+                    label="E-mail address"
+                    required
+                  ></v-text-field>
+              </div>
+              <v-btn dark color="blue-grey darken-4" type="submit">Reset password</v-btn >
+            </v-container>
         </form>
     </div>
 </template>

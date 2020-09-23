@@ -10,9 +10,9 @@
         <v-row class="">
             <v-container>
                 <span class="mr-2 font-weight-bold">Filter:</span>
-                <v-btn rounded>ALL</v-btn>
-                <v-btn rounded>Alphabetical</v-btn>
-                <v-btn rounded>Date</v-btn>
+                <v-btn class="mr-2" rounded>ALL</v-btn>
+                <v-btn class="mr-2" rounded>A-Z</v-btn>
+                <v-btn class="mr-2" rounded>Date</v-btn>
             </v-container>
         </v-row>
         <v-row>
