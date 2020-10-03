@@ -3,17 +3,17 @@ const nodemailer = require('nodemailer');
 const cors = require('cors')({ origin: true });
 
 const mailTransport = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'smtp.gmail.com',
   port: 465,
   auth: {
-    user: 'your username',
-    pass: 'your password',
+    user: 'The Flash Gamer',
+    pass: '$AnishFortnite2007',
   },
 });
 
 exports.sendEmailCF = functions.https.onRequest((req, res) => {
   const mailOptions = {
-    from: `contactform@domain.com`,
+    from: `anishwestwindsor@gmail.com`,
     to: `myemail@domain.com`
   };
 
