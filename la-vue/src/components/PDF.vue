@@ -45,34 +45,35 @@ export default {
     },
     watch: {
         pageNum: function (pageNum) {
-            console.log(this.pageNum);
-
             var hi = "No summary available";
-            if(this.book.name == "The Odyssey") {
-                if (this.pageNum >= 13 && this.pageNum <= 26) {
-                    this.$emit('pageNum', this.book.chapter1, this.pageNum);
-                }else if (this.pageNum >= 27 && this.pageNum <=40) {
-                    this.$emit('pageNum', this.book.chapter2, this.pageNum);
-                }else {
-                    this.$emit('pageNum', hi, pageNum);
-                }
-            }else if(this.book.name == "Romeo and Juliet") {
-                this.$emit('pageNum', this.book.name, this.pageNum);
-            }else if(this.book.name == "1984") {
-                if(this.pageNum >=3 && this.pageNum <=25 ){
-                    this.$emit('pageNum', this.book.chapter1, this.pageNum);
-                }else{
-                    this.$emit('pageNum', hi);
-                }
-            }else if(this.book.name == "Great Expectations") {
-                if(this.pageNum >=2 && this.pageNum <=8) {
-                    this.$emit('pageNum', this.book.chapter1, this.pageNum);
-                }else if(this.pageNum >=9 && this.pageNum <=20) {
-                    this.$emit('pageNum', this.book.chapter2, this.pageNum);
-                }
-                else{
-                    this.$emit('pageNum', hi);
-                }
+            switch(this.book.name) {
+                case "The Odyssey":
+                    if (this.pageNum >= 13 && this.pageNum <= 26) {
+                        this.$emit('pageNum', this.book.chapter1, this.pageNum);
+                    }else if (this.pageNum >= 27 && this.pageNum <=40) {
+                        this.$emit('pageNum', this.book.chapter2, this.pageNum);
+                    }else {
+                        this.$emit('pageNum', hi, pageNum);
+                    }
+                    break;
+                case "1984":
+                    if(this.pageNum >=3 && this.pageNum <=25 ){
+                        this.$emit('pageNum', this.book.chapter1, this.pageNum);
+                    }else{
+                        this.$emit('pageNum', hi, pageNum);
+                    }                    
+                    break;
+                case "Great Expectations":
+                    if(this.pageNum >=2 && this.pageNum <=8) {
+                        this.$emit('pageNum', this.book.chapter1, this.pageNum);
+                    }else if(this.pageNum >=9 && this.pageNum <=20) {
+                        this.$emit('pageNum', this.book.chapter2, this.pageNum);
+                    }else{
+                        this.$emit('pageNum', hi, pageNum);
+                    }                   
+                    break;
+                default:
+                    this.$emit('pageNum', this.book.name, this.pageNum);
             }
         }
     },

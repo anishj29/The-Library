@@ -18,7 +18,7 @@
     <v-row class="pt-5">
         <v-col cols="7"  class="blue-grey darken-4 white--text">
             <div height="700">
-                <PDF :book = "book" @pageNum="summaryPage" ></PDF>
+                <PDF :book="book" :pageNum="pageNu" @pageNum="summaryPage"></PDF>
             </div>
         </v-col>
         <v-col>
@@ -27,18 +27,10 @@
                     <v-expansion-panel-header> Description </v-expansion-panel-header>
                     <v-expansion-panel-content>{{book.description}}</v-expansion-panel-content>
                 </v-expansion-panel>
-                <!-- <v-expansion-panel class="blue-grey darken-4">
-                    <v-expansion-panel-header>Filter</v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                        <v-btn class="mr-1" v-on:click="filter = book.locations">Locations</v-btn>
-                        <v-btn v-on:click="filter = book.mainCharacters">Characters</v-btn>
-                        <p class="mt-5">{{filter}}</p>
-                    </v-expansion-panel-content>
-                </v-expansion-panel> -->
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Table Of Contents</v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        <v-btn @click="sendChapter()">Chapter 1</v-btn>
+                        <v-btn @click="sendChapter1()">Chapter 1</v-btn>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
@@ -48,7 +40,7 @@
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
-                    <v-expansion-panel-header>Annotations For Page {{pageNum}}</v-expansion-panel-header>
+                    <v-expansion-panel-header>Annotations For Page {{pageNu}}</v-expansion-panel-header>
                     <v-expansion-panel-content>
                         <v-container>
                             <v-row>
@@ -61,8 +53,8 @@
                                     <v-card class="mx-auto" max-width="344" outlined>
                                         <v-list-item three-line>
                                         <v-list-item-content>
-                                            <div v-if="pageNum > book.annoStart && pageNum < book.annoStop" class="overline mb-4">{{bookAnno.quote}}</div>
-                                            <div v-if="pageNum > book.annoStart && pageNum < book.annoStop">{{bookAnno.anno}}</div>
+                                            <div v-if="pageNu > book.annoStart && pageNu < book.annoStop" class="overline mb-4">{{bookAnno.quote}}</div>
+                                            <div v-if="pageNu > book.annoStart && pageNu < book.annoStop">{{bookAnno.anno}}</div>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </v-card>
@@ -89,8 +81,9 @@ export default {
         id: this.$route.params.id,
         book:{},
         callAnno: [],
-        pageNum: 1,
         dict: [],
+        chap1: "",
+        pageNu: 1,
         bookAnno: {},
         summary: "hello",
         img: this.$route.params.imgFile,
@@ -114,19 +107,30 @@ export default {
         },  
         summaryPage(value, pageNum) {
             this.summary = value;
-            this.pageNum = pageNum;
+            this.pageNu = pageNum;
         },
-        sendChapter(){
-            this.pageNum = 13;
-            this.$emit('pageNum', this.pageNum);
+        sendChapter1(){
+            switch(this.book.name) {
+                case "The Odyssey":
+                    this.pageNu = 13;
+                    break;
+                case "1984":
+                    this.pageNu = 3;
+                    break;
+                case "Great Expectations":
+                   this.pageNu= 2;
+                    break;
+                default:
+                    this.pageNu= 1;
+            }
         }
     },
     mounted() {
         this.wait()
     },
     watch: {
-        page: function (page) {
-            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === page);
+        pageNu: function (pageNu) {
+            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === pageNu);
             console.log(this.callAnno);
 
            
