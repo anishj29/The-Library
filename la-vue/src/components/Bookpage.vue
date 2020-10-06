@@ -30,7 +30,10 @@
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Table Of Contents</v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        <v-btn @click="sendChapter1()">Chapter 1</v-btn>
+                        <v-btn class="mr-2" @click="sendChapter1()">Chapter 1</v-btn>
+                        <v-btn class="mr-2" @click="sendChapter2()">Chapter 2</v-btn>
+                        <v-btn class="mr-2" @click="sendChapter3()">Chapter 3</v-btn>
+                        <v-btn class="mr-2" @click="increment()">Chapter 4</v-btn>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
@@ -123,6 +126,55 @@ export default {
                 default:
                     this.pageNu= 1;
             }
+        },
+        sendChapter2(){
+            switch(this.book.name) {
+                case "The Odyssey":
+                    this.pageNu = 27;
+                    break;
+                case "1984":
+                    this.pageNu = 26;
+                    break;
+                case "Great Expectations":
+                    this.pageNu= 9;
+                    break;
+                default:
+                    this.pageNu= 1;
+            }
+        },
+        sendChapter3(){
+            switch(this.book.name) {
+                case "The Odyssey":
+                    this.pageNu = 41;
+                    break;
+                case "1984":
+                    this.pageNu = 37;
+                    break;
+                case "Great Expectations":
+                   this.pageNu = 21;
+                    break;
+                default:
+                    this.pageNu = 1;
+            }
+        },
+        sendChapter4(){
+            switch(this.book.name) {
+                case "The Odyssey":
+                    this.pageNu = 57;
+                    break;
+                case "1984":
+                    this.pageNu = 48;
+                    break;
+                case "Great Expectations":
+                   this.pageNu = 28;
+                    break;
+                default:
+                    this.pageNu = 1;
+            }
+        },
+        increment() {
+            this.$store.commit('increment')
+            console.log(this.$store.state.count)
         }
     },
     mounted() {
