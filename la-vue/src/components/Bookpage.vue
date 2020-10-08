@@ -18,7 +18,7 @@
     <v-row class="pt-5">
         <v-col cols="7"  class="blue-grey darken-4 white--text">
             <div height="700">
-                <PDF :book="book" :pageNum="pageNu" @pageNum="summaryPage"></PDF>
+                <PDF :book="book" @page="summaryPage"></PDF>
             </div>
         </v-col>
         <v-col>
@@ -33,7 +33,7 @@
                         <v-btn class="mr-2" @click="sendChapter1()">Chapter 1</v-btn>
                         <v-btn class="mr-2" @click="sendChapter2()">Chapter 2</v-btn>
                         <v-btn class="mr-2" @click="sendChapter3()">Chapter 3</v-btn>
-                        <v-btn class="mr-2" @click="increment()">Chapter 4</v-btn>
+                        <v-btn class="mr-2" @click="sendChapter4()">Chapter 4</v-btn>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
@@ -43,7 +43,7 @@
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
-                    <v-expansion-panel-header>Annotations For Page {{pageNu}}</v-expansion-panel-header>
+                    <v-expansion-panel-header>Annotations For Page {{this.$store.getters.getPage}}</v-expansion-panel-header>
                     <v-expansion-panel-content>
                         <v-container>
                             <v-row>
@@ -56,8 +56,8 @@
                                     <v-card class="mx-auto" max-width="344" outlined>
                                         <v-list-item three-line>
                                         <v-list-item-content>
-                                            <div v-if="pageNu > book.annoStart && pageNu < book.annoStop" class="overline mb-4">{{bookAnno.quote}}</div>
-                                            <div v-if="pageNu > book.annoStart && pageNu < book.annoStop">{{bookAnno.anno}}</div>
+                                            <div v-if="this.$store.getters.getPage > book.annoStart && this.$store.getters.getPage < book.annoStop" class="overline mb-4">{{bookAnno.quote}}</div>
+                                            <div v-if="this.$store.getters.getPage > book.annoStart && this.$store.getters.getPage < book.annoStop">{{bookAnno.anno}}</div>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </v-card>
@@ -85,8 +85,8 @@ export default {
         book:{},
         callAnno: [],
         dict: [],
+        page: this.$store.getters.getPage,
         chap1: "",
-        pageNu: 1,
         bookAnno: {},
         summary: "hello",
         img: this.$route.params.imgFile,
@@ -108,81 +108,76 @@ export default {
                 }) 
             })  
         },  
-        summaryPage(value, pageNum) {
+        summaryPage(value) {
             this.summary = value;
-            this.pageNu = pageNum;
         },
         sendChapter1(){
             switch(this.book.name) {
                 case "The Odyssey":
-                    this.pageNu = 13;
+                    this.$store.commit('changePage', 13)
                     break;
                 case "1984":
-                    this.pageNu = 3;
+                    this.$store.commit('changePage', 3);
                     break;
                 case "Great Expectations":
-                   this.pageNu= 2;
+                    this.$store.commit('changePage', 2);
                     break;
                 default:
-                    this.pageNu= 1;
+                    this.$store.commit('changePage', 1);
             }
         },
         sendChapter2(){
             switch(this.book.name) {
                 case "The Odyssey":
-                    this.pageNu = 27;
+                    this.$store.commit('changePage',27);
                     break;
                 case "1984":
-                    this.pageNu = 26;
+                    this.$store.commit('changePage', 26);
                     break;
                 case "Great Expectations":
-                    this.pageNu= 9;
+                    this.$store.commit('changePage', 9);
                     break;
                 default:
-                    this.pageNu= 1;
+                    this.$store.commit('changePage', 1);
             }
         },
         sendChapter3(){
             switch(this.book.name) {
                 case "The Odyssey":
-                    this.pageNu = 41;
+                    this.$store.commit('changePage', 41);
                     break;
                 case "1984":
-                    this.pageNu = 37;
+                    this.$store.commit('changePage', 37);
                     break;
                 case "Great Expectations":
-                   this.pageNu = 21;
+                    this.$store.commit('changePage', 21);
                     break;
                 default:
-                    this.pageNu = 1;
+                    this.$store.commit('changePage', 21);
             }
         },
         sendChapter4(){
             switch(this.book.name) {
                 case "The Odyssey":
-                    this.pageNu = 57;
+                    this.$store.commit('changePage', 57)
                     break;
                 case "1984":
-                    this.pageNu = 48;
+                    this.$store.commit('changePage', 48);
                     break;
                 case "Great Expectations":
-                   this.pageNu = 28;
+                    this.$store.commit('changePage', 28);
                     break;
                 default:
-                    this.pageNu = 1;
+                    this.$store.commit('changePage', 1);
             }
         },
-        increment() {
-            this.$store.commit('increment')
-            console.log(this.$store.state.count)
-        }
     },
     mounted() {
         this.wait()
     },
     watch: {
-        pageNu: function (pageNu) {
-            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === pageNu);
+        page: function () {
+            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === this.$store.getters.getPage);
             console.log(this.callAnno);
 
            

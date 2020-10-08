@@ -13,11 +13,16 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 0
+    page: 1
   },
   mutations: {
-    increment (state) {
-      state.count++
+    changePage (state, page) {
+      state.page = page
+    }
+  },
+  getters: {
+    getPage: state => {
+      return state.page
     }
   }
 })

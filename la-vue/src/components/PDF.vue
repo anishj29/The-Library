@@ -1,14 +1,14 @@
 <template>
     <div class="PDF">
         <div class="d-flex flex-row">
-            <v-text-field :rules="rules" class="" dark v-model.number="pageNum" type="number" style="max-width: 80px"></v-text-field>
+            <v-text-field :rules="rules" class="" dark v-model.number="this.$store.getters.getPage" type="number" style="max-width: 80px"></v-text-field>
             <p class="ma-0 d-flex align-center mr-2">/{{book.maxPage}}</p>
             <button class="mr-2" @click="rotate += 90">&#x27F3;</button>
             <button @click="rotate -= 90">&#x27F2;</button>
         </div>
         <div style="width: 50%">
             <div v-if="loadedRatio > 0 && loadedRatio < 1" style="background-color: green; color: white; text-align: center" :style="{ width: loadedRatio * 100 + '%' }">{{ Math.floor(loadedRatio * 100) }}%</div>
-            <pdf v-if="show" ref="pdf" :src="book.pdfLink" :page="pageNum" :rotate="rotate" @progress="loadedRatio = $event"></pdf>
+            <pdf v-if="show" ref="pdf" :src="book.pdfLink" :page="this.$store.getters.getPage" :rotate="rotate" @progress="loadedRatio = $event"></pdf>
         </div>
     </div>
 </template>
@@ -21,7 +21,6 @@ export default {
     },
     props:{
         book: Object,
-        pageNum: Number,
     },
     data () {
         return {
@@ -38,42 +37,51 @@ export default {
             loadedRatio: 0,
             rotate: 0,
             rules: [
-                pageNum => !!pageNum || 'Enter a page number.',
-                pageNum => pageNum >= 1 || 'Enter a page number greater than or equal to 1',                
+                page => !!page || 'Enter a page number.',
+                page => page >= 1 || 'Enter a page number greater than or equal to 1',                
             ],
         }
     },
     watch: {
-        pageNum: function (pageNum) {
+        page: function () {
             var hi = "No summary available";
             switch(this.book.name) {
                 case "The Odyssey":
-                    if (this.pageNum >= 13 && this.pageNum <= 26) {
-                        this.$emit('pageNum', this.book.chapter1, this.pageNum);
-                    }else if (this.pageNum >= 27 && this.pageNum <=40) {
-                        this.$emit('pageNum', this.book.chapter2, this.pageNum);
+                    if (this.$store.getters.getPage >= 13 && this.$store.getters.getPage <= 26) {
+                        this.$store.commit('changePage', page);
+                        console.log(this.$store.getters.getPage);
+                        this.$emit('page', this.book.chapter1);
+                    }else if (this.$store.getters.getPage >= 27 && this.$store.getters.getPage <=40) {
+                        this.$store.commit('changePage', page);
+                        this.$emit('page', this.book.chapter2);
                     }else {
-                        this.$emit('pageNum', hi, pageNum);
+                        this.$store.commit('changePage', page);
+                        this.$emit('page', hi);
                     }
                     break;
                 case "1984":
-                    if(this.pageNum >=3 && this.pageNum <=25 ){
-                        this.$emit('pageNum', this.book.chapter1, this.pageNum);
+                    if(this.$store.getters.getPage >=3 && this.$store.getters.getPage <=25 ){
+                        this.$store.commit('changePage', page);
+                        this.$emit('page', this.book.chapter1);
                     }else{
-                        this.$emit('pageNum', hi, pageNum);
+                        this.$store.commit('changePage', page);
+                        this.$emit('page', hi);
                     }                    
                     break;
                 case "Great Expectations":
-                    if(this.pageNum >=2 && this.pageNum <=8) {
-                        this.$emit('pageNum', this.book.chapter1, this.pageNum);
-                    }else if(this.pageNum >=9 && this.pageNum <=20) {
-                        this.$emit('pageNum', this.book.chapter2, this.pageNum);
+                    if(this.$store.getters.getPage >=2 && this.$store.getters.getPage <=8) {
+                        this.$store.commit('changePage', page);
+                        this.$emit('page', this.book.chapter1);
+                    }else if(this.$store.getters.getPage >=9 && this.$store.getters.getPage <=20) {
+                        this.$store.commit('changePage', page);
+                        this.$emit('page', this.book.chapter2);
                     }else{
-                        this.$emit('pageNum', hi, pageNum);
+                        this.$store.commit('changePage', page);
+                        this.$emit('page', hi);
                     }                   
                     break;
                 default:
-                    this.$emit('pageNum', this.book.name, this.pageNum);
+                    this.$emit('page', this.book.name);
             }
         }
     },
