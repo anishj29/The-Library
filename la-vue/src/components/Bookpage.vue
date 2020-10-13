@@ -18,7 +18,7 @@
     <v-row class="pt-5">
         <v-col cols="7"  class="blue-grey darken-4 white--text">
             <div height="700">
-                <PDF :book="book" @page="summaryPage"></PDF>
+                <PDF :book="book"></PDF>
             </div>
         </v-col>
         <v-col>
@@ -38,8 +38,8 @@
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Chapter Summary</v-expansion-panel-header>
-                    <v-expansion-panel-content>{{ summary }}(Students search up chapter summaries after reading something because they don't get the meaning of a passage in the chapter or the chapter itself)
-
+                    <v-expansion-panel-content>{{ this.$store.getters.getSummary }}
+                        (Students search up chapter summaries after reading something because they don't get the meaning of a passage in the chapter or the chapter itself)
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
@@ -84,15 +84,11 @@ export default {
         id: this.$route.params.id,
         book:{},
         callAnno: [],
-        dict: [],
         page: this.$store.getters.getPage,
-        chap1: "",
         bookAnno: {},
-        summary: "hello",
         img: this.$route.params.imgFile,
         pdf: this.$route.params.pdf,
         title: this.$route.params.name,
-        filter: "Please select a filter",
         annotationsAnalysis:[],
     }},
     methods: {
@@ -108,9 +104,6 @@ export default {
                 }) 
             })  
         },  
-        summaryPage(value) {
-            this.summary = value;
-        },
         sendChapter1(){
             switch(this.book.name) {
                 case "The Odyssey":
@@ -178,9 +171,7 @@ export default {
     watch: {
         page: function () {
             this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === this.$store.getters.getPage);
-            console.log(this.callAnno);
-
-           
+            console.log(this.callAnno);      
         }
     }
 }
