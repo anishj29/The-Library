@@ -18,6 +18,9 @@ const store = new Vuex.Store({
   mutations: {
     changePage (state, page) {
       state.page = page
+    },
+    addPage (state, page) {
+      state.page += page;
     }
   },
   getters: {

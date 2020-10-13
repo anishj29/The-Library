@@ -30,10 +30,10 @@
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Table Of Contents</v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        <v-btn class="mr-2" @click="sendChapter1()">Chapter 1</v-btn>
-                        <v-btn class="mr-2" @click="sendChapter2()">Chapter 2</v-btn>
-                        <v-btn class="mr-2" @click="sendChapter3()">Chapter 3</v-btn>
-                        <v-btn class="mr-2" @click="sendChapter4()">Chapter 4</v-btn>
+                        <v-btn class="mr-2 mt-2" @click="sendChapter1()">Chapter 1</v-btn>
+                        <v-btn class="mr-2 mt-2" @click="sendChapter2()">Chapter 2</v-btn>
+                        <v-btn class="mr-2 mt-2" @click="sendChapter3()">Chapter 3</v-btn>
+                        <v-btn class="mr-2 mt-2" @click="sendChapter4()">Chapter 4</v-btn>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
