@@ -24,8 +24,8 @@ export default {
     },
     data () {
         return {
+            page: 1,
             show: true,
-            page: this.$store.getters.getPage,
             loadedRatio: 0,
             rotate: 0,
             rules: [
@@ -34,9 +34,22 @@ export default {
             ],
         }
     },
+    computed: {
+        pageNum() {
+            return this.$store.state.page;
+        }
+    },
     methods: {
     },
+    mounted() {
+        this.page = 1;
+        this.$store.commit('changePage', 1);
+    },
     watch: {
+        pageNum: function(ev){
+            console.log("in page watcher");
+            this.page = ev;
+        },
         page: function () {
             var hi = "No summary available";
             switch(this.book.name) {
@@ -53,7 +66,7 @@ export default {
                     }
                     break;
                 case "1984":
-                    if(this.page >=3 && this.page <=25 ){
+                    if(this.page >=3 && this.page <= 25){
                         this.$store.commit('changePage', this.page);
                         this.$store.commit('changeSummary', this.book.chapter1);
                     }else{

@@ -47,6 +47,11 @@
                     <v-expansion-panel-content>
                         <v-container>
                             <v-row>
+                                <v-radio-group v-model="column" column>
+                                    <v-radio label="None" value="radio-1"></v-radio>
+                                    <v-radio @click="getSymbolism()" label="Symbolism" value="radio-2"></v-radio>
+                                    <v-radio label="Metaphor" value="radio-3"></v-radio>
+                                </v-radio-group>
                                 <v-col class="d-flex align-start flex-column mb-6">
                                     <v-btn @click="bookAnno = book" v-for="book in callAnno" :key="book" color="primary" class="mb-2">
                                         <h2 class="truncate">{{book.quote}}</h2>
@@ -91,6 +96,11 @@ export default {
         title: this.$route.params.name,
         annotationsAnalysis:[],
     }},
+    computed: {
+        pageNum(){
+            return this.$store.state.page;
+        }
+    },
     methods: {
         async wait() {
             await db.collection('books').doc(this.id).get()
@@ -103,7 +113,18 @@ export default {
                     this.annotationsAnalysis.push(doc.data());
                 }) 
             })  
-        },  
+        },
+        getSymbolism() {
+            if(this.callAnno.symbolism != "N/A") {
+                this.bookAnno.quote = this.callAnno.symbolism;
+            }
+            else {
+                this.bookAnno.quote = "No symbolism detected!";
+            }
+        },
+        getMetaphor() {
+
+        }, 
         sendChapter1(){
             switch(this.book.name) {
                 case "The Odyssey":
@@ -166,11 +187,12 @@ export default {
         },
     },
     mounted() {
+        this.page = 1;
         this.wait()
     },
     watch: {
-        page: function () {
-            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === this.$store.getters.getPage);
+        pageNum: function (ev) {
+            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === ev);
             console.log(this.callAnno);      
         }
     }
