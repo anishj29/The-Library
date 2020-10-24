@@ -1,37 +1,37 @@
 <template>
-		<div class="vue-tempalte">
-				<form @submit.prevent="userLogin">
-						<v-container fluid>
-							<h3>Sign In</h3>
-							<v-text-field
-								v-model="user.email"
-								:error-messages="emailErrors"
-								label="E-mail address"
-								required
-								@input="$v.email.$touch()"
-								@blur="$v.email.$touch()"
-							></v-text-field>
-							<v-text-field
-								v-model="user.password"
-								:error-messages="passwordErrors"
-								:append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-								:rules="[rules.required, rules.min]"
-								:type="show1 ? 'text' : 'password'"
-								name="input-10-1"
-								label="Password"
-								@input="$v.password.$touch()"
-								@blur="$v.password.$touch()"
-								@click:append="show1 = !show1"
-							></v-text-field>
-						<v-btn type="submit" dark color="blue-grey darken-4">Sign In</v-btn>
-						</v-container>
-						<v-container fluid>
-							<p class="forgot-password mt-2 mb-5">
-									<router-link to="/forgot-password">Forgot password?</router-link>
-							</p>
-						</v-container>
-				</form>
-		</div>
+	<div class="vue-template cyan lighten-3">
+		<form @submit.prevent="userLogin">
+			<v-container fluid>
+				<h3>Sign In</h3>
+				<v-text-field
+					v-model="user.email"
+					:error-messages="emailErrors"
+					label="E-mail address"
+					required
+					@input="$v.email.$touch()"
+					@blur="$v.email.$touch()"
+				></v-text-field>
+				<v-text-field
+					v-model="user.password"
+					:error-messages="passwordErrors"
+					:append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+					:rules="[rules.required, rules.min]"
+					:type="show1 ? 'text' : 'password'"
+					name="input-10-1"
+					label="Password"
+					@input="$v.password.$touch()"
+					@blur="$v.password.$touch()"
+					@click:append="show1 = !show1"
+				></v-text-field>
+				<v-btn type="submit" dark color="blue-grey darken-4">Sign In</v-btn>
+				</v-container>
+				<v-container fluid>
+					<p class="forgot-password mt-2 mb-5">
+						<router-link to="/forgot-password">Forgot password?</router-link>
+					</p>
+				</v-container>
+		</form>
+	</div>
 </template>
 
 

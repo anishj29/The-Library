@@ -1,12 +1,12 @@
 <template>
 <div id="library">
-    <v-row class="deep-purple darken-1" style="padding-top: 90px; padding-bottom: 60px;">
+    <v-row class="deep-purple purple darken-2" style="padding-top: 100px; padding-bottom: 70px;">
         <v-container class="text-center">
             <h1 class="white--text">THE GIANT LIBRARY</h1>
             <v-btn color="blue-grey darken-4 white--text" rounded to="/SignUp">Sign Up To Begin</v-btn>
         </v-container>
     </v-row>
-    <div class="teal lighten-2">
+    <div class="cyan darken-1">
         <v-row class="pt-5">
             <v-col cols = "4" v-for="book of books" :key="book['.key']">
                 <book :bookTitle = "book.name" :img = "book.imgFile" :pdf = "book.pdfLink" :id = "book.id"></book>

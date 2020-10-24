@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-tempalte">
+    <div class="vue-template cyan lighten-3">
         <form @submit.prevent="forgetPassword">
             <v-container fluid>
               <h3>Forgot Password</h3>

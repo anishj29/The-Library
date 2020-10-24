@@ -1,6 +1,5 @@
 <template>
-    <div class="sign-up">
-      <div class="">
+    <v-col class="sign-up cyan lighten-3">
         <form @submit.prevent="userRegistration">
           <v-container fluid>
               <h3>Register</h3>
@@ -48,8 +47,7 @@
             </p>
           </v-container>
         </form>
-      </div>  
-    </div>
+    </v-col>
 </template>
 
 <script>

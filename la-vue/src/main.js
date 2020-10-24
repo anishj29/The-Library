@@ -14,7 +14,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     page: 1,
-    summary: ""
+    summary: "",
+    quote: "",
   },
   mutations: {
     changePage (state, page) {
@@ -25,11 +26,17 @@ const store = new Vuex.Store({
     },
     addPage (state, page) {
       state.page += page;
+    },
+    changeQuote(state, quote) {
+      state.quote = quote;
     }
   },
   getters: {
     getPage: state => {
       return state.page
+    },
+    getQuote: state => {
+      return state.quote
     },
     getSummary: state => {
       return state.summary

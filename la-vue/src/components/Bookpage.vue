@@ -10,14 +10,10 @@
     </v-row>
     <v-row>
         <v-spacer></v-spacer>
-        <v-col cols="4">
-            <v-text-field outlined dense label="Solo" placeholder="Search Bar" solo>
-            </v-text-field>
-        </v-col>
     </v-row>
     <v-row class="pt-5">
-        <v-col cols="7"  class="blue-grey darken-4 white--text">
-            <div height="700">
+        <v-col cols="6" class="blue-grey darken-4 white--text">
+            <div>
                 <PDF :book="book"></PDF>
             </div>
         </v-col>
@@ -42,18 +38,18 @@
                         (Students search up chapter summaries after reading something because they don't get the meaning of a passage in the chapter or the chapter itself)
                     </v-expansion-panel-content>
                 </v-expansion-panel>
-                <v-expansion-panel  class="blue-grey darken-4">
+                <v-expansion-panel class="blue-grey darken-4">
                     <v-expansion-panel-header>Annotations For Page {{this.$store.getters.getPage}}</v-expansion-panel-header>
                     <v-expansion-panel-content>
                         <v-container>
                             <v-row>
                                 <v-radio-group v-model="column" column>
-                                    <v-radio label="None" value="radio-1"></v-radio>
-                                    <v-radio @click="getSymbolism()" label="Symbolism" value="radio-2"></v-radio>
-                                    <v-radio label="Metaphor" value="radio-3"></v-radio>
+                                    <v-radio v-on:change="getNothing()" label="None" value="radio-1"></v-radio>
+                                    <v-radio v-on:change="getSymbolism()" label="Symbolism" value="radio-2"></v-radio>
+                                    <v-radio v-on:change="getMetaphor()" label="Metaphor" value="radio-3"></v-radio>
                                 </v-radio-group>
                                 <v-col class="d-flex align-start flex-column mb-6">
-                                    <v-btn @click="bookAnno = book" v-for="book in callAnno" :key="book" color="primary" class="mb-2">
+                                    <v-btn @click="bookAnno = book;helloAnno = book" v-for="book in callAnno" :key="book" color="primary" class="mb-2">
                                         <h2 class="truncate">{{book.quote}}</h2>
                                     </v-btn>
                                 </v-col>
@@ -61,8 +57,8 @@
                                     <v-card class="mx-auto" max-width="344" outlined>
                                         <v-list-item three-line>
                                         <v-list-item-content>
-                                            <div v-if="this.$store.getters.getPage > book.annoStart && this.$store.getters.getPage < book.annoStop" class="overline mb-4">{{bookAnno.quote}}</div>
-                                            <div v-if="this.$store.getters.getPage > book.annoStart && this.$store.getters.getPage < book.annoStop">{{bookAnno.anno}}</div>
+                                            <div v-if="this.$store.getters.getPage >= book.annoStart && this.$store.getters.getPage < book.annoStop" class="overline mb-4">{{bookAnno.quote}}</div>
+                                            <div v-if="this.$store.getters.getPage >= book.annoStart && this.$store.getters.getPage < book.annoStop">{{bookAnno.anno}}</div>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </v-card>
@@ -88,6 +84,8 @@ export default {
     data () { return {
         id: this.$route.params.id,
         book:{},
+        quotes: "",
+        helloAnno: {},
         callAnno: [],
         page: this.$store.getters.getPage,
         bookAnno: {},
@@ -99,6 +97,12 @@ export default {
     computed: {
         pageNum(){
             return this.$store.state.page;
+        }
+    },
+    watch: {
+        pageNum: function (ev) {
+            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === ev);
+            console.log(this.callAnno);      
         }
     },
     methods: {
@@ -114,22 +118,45 @@ export default {
                 }) 
             })  
         },
+        getNothing() {
+            this.bookAnno.quote = this.$store.getters.getQuote;
+        },
         getSymbolism() {
-            if(this.callAnno.symbolism != "N/A") {
-                this.bookAnno.quote = this.callAnno.symbolism;
+            this.$store.commit('changeQuote', this.helloAnno.quote);
+            if(this.$store.getters.getPage > this.book.annoStart) {
+                if(this.callAnno.symbolism != "N/A") {
+                    this.bookAnno.quote = "hello";
+                }
+                else {
+                    this.bookAnno.quote = "No symbolism detected!";
+                }
             }
             else {
-                this.bookAnno.quote = "No symbolism detected!";
+                this.bookAnno.quote = "N/A";
             }
         },
         getMetaphor() {
-
+            this.$store.commit('changeQuote', this.helloAnno.quote);
+            if(this.$store.getters.getPage > this.book.annoStart) {
+                if(this.callAnno.symbolism != "N/A") {
+                    this.bookAnno.quote = "hi";
+                }
+                else {
+                    this.bookAnno.quote = "No metaphors detected!";
+                }
+            }
+            else {
+                this.bookAnno.quote = "N/A";
+            }
         }, 
         sendChapter1(){
             switch(this.book.name) {
                 case "The Odyssey":
                     this.$store.commit('changePage', 13)
                     break;
+                case "The Adventures of Tom Sawyer":
+                    this.$store.commit('changePage', 3)
+                    break;    
                 case "1984":
                     this.$store.commit('changePage', 3);
                     break;
@@ -148,11 +175,14 @@ export default {
                 case "1984":
                     this.$store.commit('changePage', 26);
                     break;
+                case "The Adventures of Tom Sawyer":
+                    this.$store.commit('changePage', 13);
+                    break;    
                 case "Great Expectations":
                     this.$store.commit('changePage', 9);
                     break;
                 default:
-                    this.$store.commit('changePage', 1);
+                    this.$store.commit('changePage', 10);
             }
         },
         sendChapter3(){
@@ -166,6 +196,9 @@ export default {
                 case "Great Expectations":
                     this.$store.commit('changePage', 21);
                     break;
+                case "The Adventures of Tom Sawyer":
+                    this.$store.commit('changePage', 21);
+                    break;    
                 default:
                     this.$store.commit('changePage', 21);
             }
@@ -181,8 +214,29 @@ export default {
                 case "Great Expectations":
                     this.$store.commit('changePage', 28);
                     break;
+                case "The Adventures of Tom Sawyer":
+                    this.$store.commit('changePage', 29);
+                    break;    
                 default:
-                    this.$store.commit('changePage', 1);
+                    this.$store.commit('changePage', 40);
+            }
+        },
+        sendChapter5(){
+            switch(this.book.name) {
+                case "The Odyssey":
+                    this.$store.commit('changePage', 84)
+                    break;
+                case "1984":
+                    this.$store.commit('changePage', 62);
+                    break;
+                case "Great Expectations":
+                    this.$store.commit('changePage', 28);
+                    break;
+                case "The Adventures of Tom Sawyer":
+                    this.$store.commit('changePage', 29);
+                    break;    
+                default:
+                    this.$store.commit('changePage', 40);
             }
         },
     },
@@ -190,12 +244,6 @@ export default {
         this.page = 1;
         this.wait()
     },
-    watch: {
-        pageNum: function (ev) {
-            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === ev);
-            console.log(this.callAnno);      
-        }
-    }
 }
 </script>
 

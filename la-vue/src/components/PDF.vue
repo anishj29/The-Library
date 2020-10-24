@@ -3,10 +3,10 @@
         <div class="d-flex flex-row">
             <p class="ma-0 d-flex align-center mr-2">
             <v-text-field :rules="rules" dark v-model.number="page" type="number" style="max-width: 80px"></v-text-field>/{{book.maxPage}}</p>
-            <button class="mr-2" @click="rotate += 90">&#x27F3;</button>
-            <button @click="rotate -= 90">&#x27F2;</button>
+            <v-btn class="blue-grey darken-4 white--text mt-4 mr-2" @click="rotate += 90">&#x27F3;</v-btn>
+            <v-btn class="blue-grey darken-4 white--text mt-4 mr-2" @click="rotate -= 90">&#x27F2;</v-btn>
         </div>
-        <div style="width: 50%">
+        <div>
             <div v-if="loadedRatio > 0 && loadedRatio < 1" style="background-color: green; color: white; text-align: center" :style="{ width: loadedRatio * 100 + '%' }">{{ Math.floor(loadedRatio * 100) }}%</div>
             <pdf v-if="show" ref="pdf" :src="book.pdfLink" :page="this.$store.getters.getPage" :rotate="rotate" @progress="loadedRatio = $event"></pdf>
         </div>
@@ -65,6 +65,18 @@ export default {
                         this.$store.commit('changeSummary', hi);
                     }
                     break;
+                case "The Adventures of Tom Sawyer":
+                    if (this.page >= 3 && this.page <= 13) {
+                        this.$store.commit('changePage', this.page);
+                        this.$store.commit('changeSummary', hi);
+                    }else if (this.page >= 13 && this.page <=40) {
+                        this.$store.commit('changePage', this.page);
+                        this.$store.commit('changeSummary', hi);
+                    }else {
+                        this.$store.commit('changePage', this.page);
+                        this.$store.commit('changeSummary', hi);
+                    }
+                    break;    
                 case "1984":
                     if(this.page >=3 && this.page <= 25){
                         this.$store.commit('changePage', this.page);
