@@ -12,7 +12,7 @@
                 <book :bookTitle = "book.name" :img = "book.imgFile" :pdf = "book.pdfLink" :id = "book.id"></book>
             </v-col>    
         </v-row>
-    </div>    
+    </div>
 </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
   
     },
     methods: {
-    
+        
     },   
 }
 </script>
