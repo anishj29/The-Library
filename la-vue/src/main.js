@@ -16,6 +16,7 @@ const store = new Vuex.Store({
     page: 1,
     summary: "",
     quote: "",
+    email: "",
   },
   mutations: {
     changePage (state, page) {
@@ -24,11 +25,11 @@ const store = new Vuex.Store({
     changeSummary(state, summary) {
       state.summary = summary;
     },
-    addPage (state, page) {
-      state.page += page;
-    },
     changeQuote(state, quote) {
       state.quote = quote;
+    },
+    assignUser(state, email) {
+      state.email = email;
     }
   },
   getters: {
@@ -40,6 +41,9 @@ const store = new Vuex.Store({
     },
     getSummary: state => {
       return state.summary
+    },
+    getUser: state => {
+      return state.email
     }
   }
 })

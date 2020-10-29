@@ -26,15 +26,14 @@
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Table Of Contents</v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        <v-btn class="mr-2 mt-2" @click="sendChapter1()">Chapter 1</v-btn>
-                        <v-btn class="mr-2 mt-2" @click="sendChapter2()">Chapter 2</v-btn>
-                        <v-btn class="mr-2 mt-2" @click="sendChapter3()">Chapter 3</v-btn>
-                        <v-btn class="mr-2 mt-2" @click="sendChapter4()">Chapter 4</v-btn>
+                            <v-btn class="mr-2 mt-2" v-for="hi in theChapters" :key="hi">
+                                {{hi}}
+                            </v-btn>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Chapter Summary</v-expansion-panel-header>
-                    <v-expansion-panel-content>{{ this.$store.getters.getSummary }}
+                    <v-expansion-panel-content>{{this.$store.getters.getUser}}
                         (Students search up chapter summaries after reading something because they don't get the meaning of a passage in the chapter or the chapter itself)
                     </v-expansion-panel-content>
                 </v-expansion-panel>
@@ -49,7 +48,7 @@
                                     <v-radio v-on:change="getMetaphor()" label="Metaphor" value="radio-3"></v-radio>
                                 </v-radio-group>
                                 <v-col class="d-flex align-start flex-column mb-6">
-                                    <v-btn @click="bookAnno = book;helloAnno = book" v-for="book in callAnno" :key="book" color="primary" class="mb-2">
+                                    <v-btn @click="bookAnno = book;" v-for="book in callAnno" :key="book" color="primary" class="mb-2">
                                         <h2 class="truncate">{{book.quote}}</h2>
                                     </v-btn>
                                 </v-col>
@@ -84,6 +83,8 @@ export default {
     data () { return {
         id: this.$route.params.id,
         book:{},
+        theChapters: ["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5", "Chapter 6"],
+        listChapters: [this.sendChapter1, this.sendChapter2, this.sendChapter3, this.sendChapter4, this.sendChapter5],
         quotes: "",
         helloAnno: {},
         callAnno: [],
@@ -233,10 +234,10 @@ export default {
                     this.$store.commit('changePage', 28);
                     break;
                 case "The Adventures of Tom Sawyer":
-                    this.$store.commit('changePage', 29);
+                    this.$store.commit('changePage', 41);
                     break;    
                 default:
-                    this.$store.commit('changePage', 40);
+                    this.$store.commit('changePage', 50);
             }
         },
     },

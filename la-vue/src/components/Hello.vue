@@ -40,7 +40,7 @@ export default {
         Firebase.login();
       },
       logout() {
-        Firebase.logout()
+        Firebase.logout();
       }
     },
     mounted: function() {
@@ -53,6 +53,7 @@ export default {
           this.user.loggedIn = false;
           this.user.data = {};
         }
+        this.$store.commit('assignUser', this.user.data.email);
       })
     }
 }

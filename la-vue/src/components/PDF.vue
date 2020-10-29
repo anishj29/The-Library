@@ -15,6 +15,8 @@
 
 <script>
 import pdf from 'vue-pdf'
+import { db } from '@/firebase.js';
+
 export default {
     components: {
         pdf
@@ -40,6 +42,7 @@ export default {
         }
     },
     methods: {
+        
     },
     mounted() {
         this.page = 1;
@@ -54,6 +57,9 @@ export default {
             var hi = "No summary available";
             switch(this.book.name) {
                 case "The Odyssey":
+                    db.collection('users').doc("87vkfAFz6ygldRmR8fdU").update({
+                        odysseyPage: this.page
+                    })
                     if (this.page >= 13 && this.page <= 26) {
                         this.$store.commit('changePage', this.page);
                         this.$store.commit('changeSummary', this.book.chapter1);
@@ -66,6 +72,9 @@ export default {
                     }
                     break;
                 case "The Adventures of Tom Sawyer":
+                    db.collection('users').doc("87vkfAFz6ygldRmR8fdU").update({
+                        adventuresPage: this.page
+                    })
                     if (this.page >= 3 && this.page <= 13) {
                         this.$store.commit('changePage', this.page);
                         this.$store.commit('changeSummary', hi);
@@ -78,6 +87,9 @@ export default {
                     }
                     break;    
                 case "1984":
+                    db.collection('users').doc("87vkfAFz6ygldRmR8fdU").update({
+                        nineFourPage: this.page
+                    })
                     if(this.page >=3 && this.page <= 25){
                         this.$store.commit('changePage', this.page);
                         this.$store.commit('changeSummary', this.book.chapter1);
