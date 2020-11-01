@@ -1,5 +1,5 @@
 <template>
-    <v-col class="sign-up cyan lighten-3">
+    <v-col class="sign-up teal lighten-3">
         <form @submit.prevent="userRegistration">
           <v-container fluid>
               <h3>Register</h3>

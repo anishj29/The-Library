@@ -1,12 +1,12 @@
 <template>
 <div id="home">
-   <v-row class="text-center deep-purple darken-2" style="padding-top: 100px; padding-bottom: 70px;">
+   <v-row class="text-center purple darken-1" style="padding-top: 100px; padding-bottom: 70px;">
       <v-container class="white--text">
          <h1>THE BOOK GUIDE</h1>
          <v-btn color="blue-grey darken-4 white--text" rounded to="/Library">Start Reading Today</v-btn> 
       </v-container>
    </v-row>
-   <v-row class="cyan darken-1">
+   <v-row class="teal lighten-2">
       <v-spacer></v-spacer>
       <v-col class="text-center" cols="9">
          <h1>About Us</h1>
@@ -21,7 +21,7 @@
       <v-spacer></v-spacer>
    </v-row>
    <hr class="px-6 black">
-   <v-row class="cyan darken-1"> 
+   <v-row class="teal lighten-2"> 
       <v-col class="text-center">
          <h1>Testimonials</h1>
          <h5><i>"This is an AMAZING Product!"</i></h5>

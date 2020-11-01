@@ -1,5 +1,5 @@
 <template>
-  <v-form class="cyan lighten-3 contact-form" @submit.prevent="sendEmail">
+  <v-form class="teal lighten-3 contact-form" @submit.prevent="sendEmail">
     <v-container fluid>
       <v-text-field
         label="Name"

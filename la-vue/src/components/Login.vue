@@ -23,7 +23,10 @@
 					@blur="$v.password.$touch()"
 					@click:append="show1 = !show1"
 				></v-text-field>
-				<v-btn type="submit" dark color="blue-grey darken-4">Sign In</v-btn>
+				<div class="d-flex flex-row">
+					<v-btn class="mb-3" type="submit" dark color="blue-grey darken-4">Sign In</v-btn>
+					<hello></hello>
+				</div>
 				</v-container>
 				<v-container fluid>
 					<p class="forgot-password mt-2 mb-5">
@@ -37,8 +40,11 @@
 
 <script>
 import firebase from "firebase";
-
+import hello from "../components/Hello.vue";
 export default {
+	components: {
+		hello,
+	},
 	data() {
 		return {
 			show1: false,

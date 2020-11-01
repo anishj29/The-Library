@@ -7,49 +7,7 @@
         <v-col>
             <h1 class="mt-10" style="padding-left: 400px">{{book.name}}</h1>
         </v-col>
-    </v-row>
-    <v-row justify="center">
-        <v-dialog
-        v-model="dialog"
-        persistent
-        max-width="290"
-        >
-            <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                color="primary"
-                dark
-                v-bind="attrs"
-                v-on="on"
-                >
-                Open Dialog
-                </v-btn>
-            </template>
-            <v-card>
-                <v-card-title class="headline">
-                Use Google's location service?
-                </v-card-title>
-                <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
-                <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                    color="green darken-1"
-                    text
-                    @click="dialog = false"
-                >
-                    Disagree
-                </v-btn>
-                <v-btn
-                    color="green darken-1"
-                    text
-                    to="/login"
-                >
-                    Login
-                </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
-    </v-row>    
-    
+    </v-row>   
     <v-row>
         <v-spacer></v-spacer>
     </v-row>
@@ -68,8 +26,8 @@
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Table Of Contents</v-expansion-panel-header>
                     <v-expansion-panel-content>
-                            <v-btn class="mr-2 mt-2" v-for="hi in theChapters" :key="hi">
-                                {{hi}}
+                            <v-btn class="mr-2 mt-2" v-for="hi in theChapters" :key="hi" @click="hi.list">
+                                {{hi.chapter}}
                             </v-btn>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
@@ -118,7 +76,6 @@
 <script>
 import PDF from './PDF.vue'; 
 import { db } from '@/firebase.js';
-import Firebase from '../firebase.js'
 export default {
     components:{
         PDF
@@ -126,29 +83,25 @@ export default {
     data () { return {
         id: this.$route.params.id,
         book:{},
-        theChapters: ["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5", "Chapter 6"],
-        listChapters: [this.sendChapter1, this.sendChapter2, this.sendChapter3, this.sendChapter4, this.sendChapter5],
+        theChapters: [
+            {chapter: "Chapter1", list: this.sendChapter1},
+            {chapter: "Chapter 2", list: this.sendChapter2},
+            {chapter: "Chapter 3", list: this.sendChapter3},
+            {chapter: "Chapter 4", list: this.sendChapter4},
+            {chapter: "Chapter 5", list: this.sendChapter5},
+            {chapter: "Chapter 6", list: this.sendChapter6}
+        ],
         quotes: "",
         helloAnno: {},
         callAnno: [],
         page: this.$store.getters.getPage,
+        user: this.$store.getters.getLoggedIn,
         bookAnno: {},
         img: this.$route.params.imgFile,
         pdf: this.$route.params.pdf,
         title: this.$route.params.name,
         annotationsAnalysis:[],
     }},
-    computed: {
-        pageNum(){
-            return this.$store.state.page;
-        }
-    },
-    watch: {
-        pageNum: function (ev) {
-            this.callAnno = this.annotationsAnalysis.filter(anno => anno.pageNumber === ev);
-            console.log(this.callAnno);      
-        }
-    },
     methods: {
         async wait() {
             await db.collection('books').doc(this.id).get()
@@ -274,28 +227,35 @@ export default {
                     this.$store.commit('changePage', 62);
                     break;
                 case "Great Expectations":
-                    this.$store.commit('changePage', 28);
+                    this.$store.commit('changePage', 41);
                     break;
                 case "The Adventures of Tom Sawyer":
-                    this.$store.commit('changePage', 41);
+                    this.$store.commit('changePage', 42);
                     break;    
                 default:
                     this.$store.commit('changePage', 50);
             }
         },
+        sendChapter6() {
+            switch(this.book.name) {
+                case "The Odyssey":
+                    this.$store.commit('changePage', 99)
+                    break;
+                case "1984":
+                    this.$store.commit('changePage', 81);
+                    break;
+                case "Great Expectations":
+                    this.$store.commit('changePage', 56);
+                    break;
+                case "The Adventures of Tom Sawyer":
+                    this.$store.commit('changePage', 49);
+                    break;    
+                default:
+                    this.$store.commit('changePage', 50);
+            }
+        }
     },
     mounted() {
-        if(noLoginIn = true) {
-        }
-        Firebase.auth.onAuthStateChanged(user => {
-            if (user) {
-                this.$store.commit('loggedIn', "Logged");
-                console.log(user);
-            }else {
-                this.$store.commit('loggedIn', "N/A");
-                console.log(user); 
-            }
-        })
         this.page = 1;
         this.wait()
     },
