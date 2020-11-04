@@ -1,6 +1,6 @@
 <template>
-  <v-form class="teal lighten-3 contact-form" @submit.prevent="sendEmail">
-    <v-container fluid>
+  <v-form @submit.prevent="sendEmail" class="cyan accent-2 contact-form" style="height: 100%">
+    <v-container>
       <v-text-field
         label="Name"
         name="user_name"

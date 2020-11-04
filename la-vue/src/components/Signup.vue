@@ -1,8 +1,8 @@
 <template>
-    <v-col class="sign-up teal lighten-3">
+    <v-col class="sign-up cyan accent-2" style="height: 100%">
         <form @submit.prevent="userRegistration">
-          <v-container fluid>
-              <h3>Register</h3>
+          <v-container>
+              <h3 class="mt-5" style="text-align:center;">Sign Up</h3>
               <v-text-field
                 v-model="user.name"
                 :error-messages="nameErrors"
@@ -36,14 +36,14 @@
                 @click:append="show1 = !show1"
 
               ></v-text-field>
-              <v-btn type="submit" dark color="blue-grey darken-4">
-                Sign Up
+              <v-btn rounded type="submit" dark color="blue-grey darken-4">
+                Submit
               </v-btn>
           </v-container>
-          <v-container fluid>
+          <v-container>
             <p class="forgot-password">
               Already registered? 
-              <router-link :to="{name: 'Login'}">Sign In</router-link>
+              <router-link :to="{name: 'Login'}" color="light-blue accent-3">Sign In</router-link>
             </p>
           </v-container>
         </form>

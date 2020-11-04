@@ -6,7 +6,7 @@
          <v-btn color="blue-grey darken-4 white--text" rounded to="/Library">Start Reading Today</v-btn> 
       </v-container>
    </v-row>
-   <v-row class="teal lighten-2">
+   <v-row class="cyan accent-2">
       <v-spacer></v-spacer>
       <v-col class="text-center" cols="9">
          <h1>About Us</h1>
@@ -21,11 +21,20 @@
       <v-spacer></v-spacer>
    </v-row>
    <hr class="px-6 black">
-   <v-row class="teal lighten-2"> 
+   <v-row class="cyan accent-2"> 
       <v-col class="text-center">
          <h1>Testimonials</h1>
-         <h5><i>"This is an AMAZING Product!"</i></h5>
+         <h5 class="font-italic">"This is an AMAZING Product!"</h5>
          <v-row>
+            <v-col>
+               <v-card class="mx-auto" max-width="400">
+                  <v-img height="200px" src="@/assets/images/funnyimage1.webp"></v-img>
+                  <v-card-text class="text--primary">
+                     <div>Person 1</div>
+                     <div>Sample-The website allowed me to </div>
+                  </v-card-text>
+               </v-card>
+            </v-col>
             <v-col>
                <v-card class="mx-auto" max-width="400">
                   <v-img height="200px" src="@/assets/images/funnyimage1.webp"></v-img>

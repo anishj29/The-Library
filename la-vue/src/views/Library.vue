@@ -13,13 +13,13 @@
                 <v-card-text>Sign in to save important information like the page number that you're on for each book along with your own annotations.</v-card-text>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="dialog=false" color="blue-grey darken-4" text>No</v-btn>
-                <v-btn color="blue-grey darken-4" text to="/login">Login</v-btn>
+                <v-btn @click="dialog=false" rounded color="blue-grey darken-4" text>No</v-btn>
+                <v-btn color="amber darken-2" rounded text to="/login">Login</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
     </v-row> 
-    <div class="teal lighten-2">
+    <div class="cyan accent-2">
         <v-row class="pt-5">
             <v-col cols = "4" v-for="book of books" :key="book['.key']">
                 <book :bookTitle = "book.name" :img = "book.imgFile" :pdf = "book.pdfLink" :id = "book.id"></book>
