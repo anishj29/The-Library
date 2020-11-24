@@ -66,6 +66,34 @@
                         </v-container>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
+                <v-expansion-panel  class="blue-grey darken-4">
+                    <v-expansion-panel-header>Create Annotations</v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                        <form @submit.prevent="createNew">
+                            <v-text-field
+                                label="Collection"
+                                v-model="collectionName"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                label="Subcollection"
+                                v-model="subcollection"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                label="Name"
+                                v-model="name"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                label="Bio"
+                                v-model="bio"
+                            >
+                            </v-text-field>
+                            <v-btn type="submit">Click</v-btn>
+                        </form>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
             </v-expansion-panels>
         </v-col>
     </v-row>
@@ -101,6 +129,11 @@ export default {
         pdf: this.$route.params.pdf,
         title: this.$route.params.name,
         annotationsAnalysis:[],
+        docName: '',
+        bio: '',
+        collectionName: '',
+        subcollection: '',
+        name: '',
     }},
     methods: {
         async wait() {
@@ -253,6 +286,14 @@ export default {
                 default:
                     this.$store.commit('changePage', 50);
             }
+        },
+        createNew() {
+            db.collection(this.collectionName).doc("KeJSIOyk8QJxTduftxgB").collection(this.subcollection).doc().set({
+                bio: this.bio,
+                name: this.name,
+            }).catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
         }
     },
     mounted() {

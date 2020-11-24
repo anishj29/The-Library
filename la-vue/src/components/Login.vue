@@ -68,7 +68,7 @@ export default {
                 .auth()
                 .signInWithEmailAndPassword(this.user.email, this.user.password)
                 .then(() => {
-                        this.$router.push('/library')
+                    this.$router.push('/library')
                 })
                 .catch((error) => {
                     alert(error.message);
