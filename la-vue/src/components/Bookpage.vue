@@ -69,15 +69,18 @@
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Create Annotations</v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        <form @submit.prevent="createNew">
+                        <v-radio-group v-model="column" column>
+                            <v-radio v-on:change="fire = 'character'" label="Character" value="radio-1"></v-radio>
+                            <v-radio v-on:change="fire = 'annotation'" label="Annotation" value="radio-2"></v-radio>
+                        </v-radio-group>
+                        <div>
+                            <p>The Odyssey - BookDoc: ZsZR1rFb7Vh9iRAxXFvx CharDoc: KeJSIOyk8QJxTduftxgB</p>
+                            <p>1984 - BookDoc: eUTa0NvdkgWK9i9kN0RE CharDoc: bfKRVdlHmIFq5HnuknUq</p>
+                        </div>
+                        <form v-if="fire == 'character'" @submit.prevent="characterCollection">
                             <v-text-field
-                                label="Collection"
-                                v-model="collectionName"
-                            >
-                            </v-text-field>
-                            <v-text-field
-                                label="Subcollection"
-                                v-model="subcollection"
+                                label="Document"
+                                v-model="docName"
                             >
                             </v-text-field>
                             <v-text-field
@@ -88,6 +91,34 @@
                             <v-text-field
                                 label="Bio"
                                 v-model="bio"
+                            >
+                            </v-text-field>
+                            <v-btn type="submit">Click</v-btn>
+                        </form>
+                        <form v-if="fire == 'annotation'" @submit.prevent="bookAnnoCollection">
+                            <v-text-field
+                                label="Collection"
+                                v-model="collectionName"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                label="Document"
+                                v-model="docName"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                label="Page"
+                                v-model="pageNew"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                label="Quote"
+                                v-model="quoteSend"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                label="Annotation"
+                                v-model="annoSend"
                             >
                             </v-text-field>
                             <v-btn type="submit">Click</v-btn>
@@ -130,7 +161,11 @@ export default {
         title: this.$route.params.name,
         annotationsAnalysis:[],
         docName: '',
+        fire: '',
         bio: '',
+        annoSend: '',
+        quoteSend: '',
+        pageNew: 0,
         collectionName: '',
         subcollection: '',
         name: '',
@@ -287,10 +322,19 @@ export default {
                     this.$store.commit('changePage', 50);
             }
         },
-        createNew() {
-            db.collection(this.collectionName).doc("KeJSIOyk8QJxTduftxgB").collection(this.subcollection).doc().set({
+        characterCollection() {
+            db.collection("characters").doc(this.docName).collection("characterBio").doc().set({
                 bio: this.bio,
                 name: this.name,
+            }).catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        },
+        bookAnnoCollection(){
+            db.collection(this.collectionName).doc(this.docName).collection("annotations").doc().set({
+                anno: this.annoSend,
+                pageNumber: this.pageNew,
+                quote: this.quoteSend,
             }).catch(function(error) {
                 console.error("Error writing document: ", error);
             });
