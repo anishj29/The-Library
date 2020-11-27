@@ -1,8 +1,8 @@
 <template>
     <v-col class="vue-template cyan accent-2" style="height: 100%">
-        <form @submit.prevent="userLogin">
+        <form @submit.prevent="userLogin" class="wrap">
             <v-container>
-                <h3 class="mt-5" style="text-align:center;">Sign In</h3>
+                <h2 class="mt-5" style="text-align:center;">Sign In</h2>
                 <v-text-field
                     v-model="user.email"
                     :error-messages="emailErrors"
@@ -77,3 +77,11 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.wrap{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+</style>

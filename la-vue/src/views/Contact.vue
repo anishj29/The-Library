@@ -1,6 +1,7 @@
 <template>
-  <v-form @submit.prevent="sendEmail" class="cyan accent-2 contact-form" style="height: 100%">
-    <v-container>
+  <v-container fluid class="cyan accent-2" style="height: 100%">
+    <h2 class="mt-5" style="text-align: center">Contact</h2>
+    <v-form @submit.prevent="sendEmail" class="wrap">
       <v-text-field
         label="Name"
         name="user_name"
@@ -24,27 +25,50 @@
         full-width
         single-line
       ></v-textarea>
-      <v-btn @click="returnToHome()" type="submit" dark color="blue-grey darken-4">Send</v-btn>
-    </v-container>  
-  </v-form>
+      <v-btn
+        @click="returnToHome()"
+        type="submit"
+        dark
+        color="blue-grey darken-4"
+        >Send</v-btn
+      >
+    </v-form>
+  </v-container>
 </template>
 
 <script>
-import emailjs from 'emailjs-com';
+import emailjs from "emailjs-com";
 
 export default {
   methods: {
     sendEmail: (e) => {
-      emailjs.sendForm('service_1uasidd', 'template_qxicxxu', e.target, 'user_96BbfAz0kirbDn2jH3DSL')
-        .then((result) => {
-            console.log('SUCCESS!', result.status, result.text);
-        }, (error) => {
-            console.log('FAILED...', error);
-        });
+      emailjs
+        .sendForm(
+          "service_1uasidd",
+          "template_qxicxxu",
+          e.target,
+          "user_96BbfAz0kirbDn2jH3DSL"
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS!", result.status, result.text);
+          },
+          (error) => {
+            console.log("FAILED...", error);
+          }
+        );
     },
-    returnToHome(){
-      this.$router.push('/');
-    }
-  }
-}
+    returnToHome() {
+      this.$router.push("/");
+    },
+  },
+};
 </script>
+
+<style lang="scss" scoped>
+.wrap {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+</style>

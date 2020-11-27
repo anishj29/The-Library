@@ -1,5 +1,5 @@
 <template>
-<v-container fluid class="px-12 light-blue lighten-3">
+<v-container fluid class="px-12 light-blue lighten-3" style="height: 100%">
     <v-row class="pt-8">
         <v-col cols="1">
             <v-img max-width="100%" :src="book.imgFile"></v-img>
@@ -66,6 +66,13 @@
                         </v-container>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
+                <v-expansion-panel class="blue-grey darken-4">
+                    <v-expansion-panel-header>Characters</v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                        <v-radio v-on:change="fire = 'all'" label="All" value="radio-1"></v-radio>
+                        <v-radio v-on:change="fire = 'on page'" label="On Page" value="radio-2"></v-radio>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
                 <v-expansion-panel  class="blue-grey darken-4">
                     <v-expansion-panel-header>Create Annotations</v-expansion-panel-header>
                     <v-expansion-panel-content>
@@ -76,6 +83,7 @@
                         <div>
                             <p>The Odyssey - BookDoc: ZsZR1rFb7Vh9iRAxXFvx CharDoc: KeJSIOyk8QJxTduftxgB</p>
                             <p>1984 - BookDoc: eUTa0NvdkgWK9i9kN0RE CharDoc: bfKRVdlHmIFq5HnuknUq</p>
+                            <p>Adventures of Tom Sawyer - BookDoc: Ay5xq0VnuBirb1OAZuc9 CharDoc: pLq9LQklnGxJhCebfvdz</p>
                         </div>
                         <form v-if="fire == 'character'" @submit.prevent="characterCollection">
                             <v-text-field
