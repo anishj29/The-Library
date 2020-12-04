@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router  from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../components/Login.vue';
-import SignUp from '../components/Signup.vue';
 import ForgotPassword from '../components/ForgotPassword.vue'
 import tester from '../components/tester.vue';
 
@@ -32,16 +30,6 @@ const router = new Router({
     path: '/Bookpage/:id',
     name: 'Bookpage',
     component: () => import('../components/Bookpage.vue') 
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/signup',
-    name: 'Signup',
-    component: SignUp
   },
   {
     path: '/forgot-password',
