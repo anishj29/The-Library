@@ -32,6 +32,16 @@ const router = new Router({
     component: () => import('../components/Bookpage.vue') 
   },
   {
+    path: '/sign-up',
+    name: 'Sign Up',
+    component: () => import('../components/Signup.vue') 
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../components/Login.vue') 
+  },
+  {
     path: '/forgot-password',
     name: 'ForgotPassword',
     component: ForgotPassword

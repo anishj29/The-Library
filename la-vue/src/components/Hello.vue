@@ -1,9 +1,9 @@
 <template>
   <div>
-      <v-btn rounded class="blue-grey darken-4 white--text" text v-if="!authenticated" @click="login">
+      <v-btn rounded dark v-if="!authenticated" @click="login">
         <img src="@/assets/images/gloginlogo.png" alt="Logo" style="width:25px;height:25px;"></v-btn>
       <div v-if="authenticated">
-        <v-btn text rounded @click="logout">LOGOUT</v-btn>
+        <v-btn dark rounded @click="logout">LOGOUT</v-btn>
       </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
     },
     computed: {
         authenticated(){
+          this.$store.commit('dialogLogIn', false);
           return this.user.loggedIn
         },
         firstName(){
@@ -34,6 +35,7 @@ export default {
     methods: {
       login() {
         Firebase.login();
+
       },
       logout() {
         Firebase.logout();

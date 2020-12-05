@@ -41,6 +41,9 @@ export default {
           alert(error)
         })
     }
+  },
+  mounted: function() {
+    this.$store.commit('dialogLogIn', false);
   }
 };
 </script>

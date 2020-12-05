@@ -19,6 +19,8 @@ const store = new Vuex.Store({
     email: "",
     dialog: false,
     loggedIn: null,
+    dialogLogIn: false,
+    dialogSignUp: false
   },
   mutations: {
     changePage (state, page) {
@@ -38,6 +40,12 @@ const store = new Vuex.Store({
     },
     noSignIn(state, dialog) {
       state.dialog = dialog;
+    },
+    dialogLogIn(state, dialogLogIn) {
+      state.dialogLogIn = dialogLogIn;
+    },
+    dialogSignUp(state, dialogSignUp) {
+      state.dialogSignUp = dialogSignUp;
     }
   },
   getters: {
@@ -58,6 +66,12 @@ const store = new Vuex.Store({
     },
     noSignIn: state => {
       return state.dialog
+    },
+    getDialogLogIn: state => {
+      return state.dialogLogIn
+    },
+    getDialogSignUp: state => {
+      return state.dialogSignUp
     }
   }
 })
