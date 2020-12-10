@@ -50,7 +50,7 @@
           <v-expansion-panel class="blue-grey darken-4">
             <v-expansion-panel-header
               >Annotations For Page
-              {{ this.$store.getters.loggedIn }}</v-expansion-panel-header
+              {{ page }}</v-expansion-panel-header
             >
             <v-expansion-panel-content>
               <v-container>
@@ -115,16 +115,47 @@
           <v-expansion-panel class="blue-grey darken-4">
             <v-expansion-panel-header>Characters</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <v-radio
-                v-on:change="fire = 'all'"
-                label="All"
-                value="radio-1"
-              ></v-radio>
-              <v-radio
-                v-on:change="fire = 'on page'"
-                label="On Page"
-                value="radio-2"
-              ></v-radio>
+              <div class="d-flex flex-row">
+                <v-radio
+                  v-on:change="getAllCharacters"
+                  label="All"
+                  value="radio-1"
+                ></v-radio>
+                <v-radio
+                  v-on:change="getCharactersOnPage"
+                  label="On Page"
+                  class="ml-2"
+                  value="radio-2"
+                ></v-radio>
+              </div>
+              <v-container>
+                <v-row>
+                  <v-col style="width: 30px">
+                    <VueSlickCarousel v-bind="settings">
+                      <div v-for="char in characterArray" :key="char">
+                        <v-card outlined>
+                          <v-list-item three-line>
+                            <v-list-item-content>
+                              <div class="overline mb-4">
+                                {{ char.name }}
+                              </div>
+                              <div>
+                                {{ char.bio }}
+                              </div>
+                            </v-list-item-content>
+                          </v-list-item>
+                          <v-card-action>
+                            <!-- buttons 
+                            Opens annotation panel and annotation panel has cards 
+                            Takes you to the page
+                            -->
+                          </v-card-action>
+                        </v-card>
+                      </div>
+                    </VueSlickCarousel>
+                  </v-col>
+                </v-row>
+              </v-container>
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel class="blue-grey darken-4">
@@ -134,12 +165,10 @@
             <v-expansion-panel-content>
               <v-radio-group v-model="column" column>
                 <v-radio
-                  v-on:change="fire = 'character'"
                   label="Character"
                   value="radio-1"
                 ></v-radio>
                 <v-radio
-                  v-on:change="fire = 'annotation'"
                   label="Annotation"
                   value="radio-2"
                 ></v-radio>
@@ -192,10 +221,15 @@
 
 <script>
 import PDF from "./PDF.vue";
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+
 import { db } from "@/firebase.js";
 export default {
   components: {
     PDF,
+    VueSlickCarousel,
   },
   data() {
     return {
@@ -219,16 +253,32 @@ export default {
       pdf: this.$route.params.pdf,
       title: this.$route.params.name,
       annotationsAnalysis: [],
+      characterArray: [],
+      thirdCharacterArray: [],
+      secondCharacterArray: [],
       docName: "",
-      fire: "",
       bio: "",
       annoSend: "",
+      fire: '',
       quoteSend: "",
       pageNew: 0,
       collectionName: "",
       subcollection: "",
       name: "",
+      settings: {
+        centerMode: true,
+        centerPadding: "20px",
+        focusOnSelect: true,
+        infinite: true,
+        slidesToShow: 3,
+        speed: 500,
+      },
     };
+  },
+  computed: {
+    pageNum() {
+      return this.$store.state.page;
+    },
   },
   methods: {
     async wait() {
@@ -249,6 +299,31 @@ export default {
             this.annotationsAnalysis.push(doc.data());
           });
         });
+      await db
+        .collection("characters")
+        .where("bookTitle", "==", this.book.name)
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.characterArray.push(doc.data());
+            this.thirdCharacterArray.push(doc.data());
+            console.log(this.thirdCharacterArray);
+          });
+        });
+    },
+    getAllCharacters() {
+      this.characterArray = this.thirdCharacterArray;
+    },
+    getCharactersOnPage() {
+      db.collection("characters")
+        .where("numInPage", "array-contains", this.page)
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.secondCharacterArray.push(doc.data());
+          });
+        });
+      this.characterArray = this.secondCharacterArray;
     },
     getNothing() {
       this.bookAnno.quote = this.$store.getters.getQuote;
@@ -413,6 +488,11 @@ export default {
         });
     },
   },
+  watch: {
+    pageNum: function (ev) {
+      this.page = ev;
+    }
+  },      
   mounted() {
     this.page = 1;
     this.wait();
