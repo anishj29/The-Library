@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="px-12 light-blue lighten-3" style="height: 100%">
+  <v-container fluid class="container px-12 light-blue lighten-3" style="height: 100%">
     <v-row class="pt-8">
       <v-col cols="1">
         <v-img max-width="100%" :src="book.imgFile"></v-img>
@@ -49,8 +49,7 @@
           </v-expansion-panel>
           <v-expansion-panel class="blue-grey darken-4">
             <v-expansion-panel-header
-              >Annotations For Page
-              {{ page }}</v-expansion-panel-header
+              >Annotations For Page {{ page }}</v-expansion-panel-header
             >
             <v-expansion-panel-content>
               <v-container>
@@ -117,12 +116,12 @@
             <v-expansion-panel-content>
               <div class="d-flex flex-row">
                 <v-radio
-                  v-on:change="getAllCharacters"
+                  v-on:change="getAllCharacters()"
                   label="All"
                   value="radio-1"
                 ></v-radio>
                 <v-radio
-                  v-on:change="getCharactersOnPage"
+                  v-on:change="getCharactersOnPage()"
                   label="On Page"
                   class="ml-2"
                   value="radio-2"
@@ -136,20 +135,20 @@
                         <v-card outlined>
                           <v-list-item three-line>
                             <v-list-item-content>
-                              <div class="overline mb-4">
+                              <h2 class="overline mb-4">
                                 {{ char.name }}
-                              </div>
-                              <div>
+                              </h2>
+                              <p>
                                 {{ char.bio }}
-                              </div>
+                              </p>
                             </v-list-item-content>
                           </v-list-item>
-                          <v-card-action>
-                            <!-- buttons 
+                          <!-- <v-card-action> -->
+                          <!-- buttons 
                             Opens annotation panel and annotation panel has cards 
                             Takes you to the page
                             -->
-                          </v-card-action>
+                          <!-- </v-card-action> -->
                         </v-card>
                       </div>
                     </VueSlickCarousel>
@@ -164,14 +163,8 @@
             >
             <v-expansion-panel-content>
               <v-radio-group v-model="column" column>
-                <v-radio
-                  label="Character"
-                  value="radio-1"
-                ></v-radio>
-                <v-radio
-                  label="Annotation"
-                  value="radio-2"
-                ></v-radio>
+                <v-radio label="Character" value="radio-1"></v-radio>
+                <v-radio label="Annotation" value="radio-2"></v-radio>
               </v-radio-group>
               <div>
                 <p>
@@ -259,7 +252,7 @@ export default {
       docName: "",
       bio: "",
       annoSend: "",
-      fire: '',
+      fire: "",
       quoteSend: "",
       pageNew: 0,
       collectionName: "",
@@ -305,16 +298,18 @@ export default {
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            this.characterArray.push(doc.data());
             this.thirdCharacterArray.push(doc.data());
-            console.log(this.thirdCharacterArray);
+            this.characterArray.push(doc.data());
           });
         });
     },
     getAllCharacters() {
+      this.characterArray = [];
       this.characterArray = this.thirdCharacterArray;
     },
     getCharactersOnPage() {
+      this.characterArray = [];
+      this.secondCharacterArray = [];
       db.collection("characters")
         .where("numInPage", "array-contains", this.page)
         .get()
@@ -491,8 +486,8 @@ export default {
   watch: {
     pageNum: function (ev) {
       this.page = ev;
-    }
-  },      
+    },
+  },
   mounted() {
     this.page = 1;
     this.wait();
@@ -506,5 +501,8 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
+}
+p {
+  font-family: Open sans-serif;
 }
 </style>
