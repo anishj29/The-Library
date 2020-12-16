@@ -1,5 +1,9 @@
 <template>
-  <v-container fluid class="container px-12 light-blue lighten-3" style="height: 100%">
+  <v-container
+    fluid
+    class="container px-12 light-blue lighten-3"
+    style="height: 100%"
+  >
     <v-row class="pt-8">
       <v-col cols="1">
         <v-img max-width="100%" :src="book.imgFile"></v-img>
@@ -54,7 +58,7 @@
             <v-expansion-panel-content>
               <v-container>
                 <v-row>
-                  <v-radio-group v-model="column" column>
+                  <v-radio-group column>
                     <v-radio
                       v-on:change="getNothing()"
                       label="None"
@@ -114,44 +118,65 @@
           <v-expansion-panel class="blue-grey darken-4">
             <v-expansion-panel-header>Characters</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <div class="d-flex flex-row">
+              <v-radio-group row>
                 <v-radio
-                  v-on:change="getAllCharacters()"
+                  v-on:change="firstChar = true"
                   label="All"
                   value="radio-1"
                 ></v-radio>
                 <v-radio
-                  v-on:change="getCharactersOnPage()"
+                  v-on:change="firstChar = false"
                   label="On Page"
-                  class="ml-2"
                   value="radio-2"
                 ></v-radio>
-              </div>
+              </v-radio-group>
               <v-container>
                 <v-row>
-                  <v-col style="width: 30px">
-                    <VueSlickCarousel v-bind="settings">
-                      <div v-for="char in characterArray" :key="char">
-                        <v-card outlined>
-                          <v-list-item three-line>
-                            <v-list-item-content>
-                              <h2 class="overline mb-4">
-                                {{ char.name }}
-                              </h2>
-                              <p>
-                                {{ char.bio }}
-                              </p>
-                            </v-list-item-content>
-                          </v-list-item>
-                          <!-- <v-card-action> -->
-                          <!-- buttons 
-                            Opens annotation panel and annotation panel has cards 
-                            Takes you to the page
-                            -->
-                          <!-- </v-card-action> -->
-                        </v-card>
-                      </div>
-                    </VueSlickCarousel>
+                  <v-col style="width: 40px">
+                    <transition name="fade" mode="out-in">
+                      <VueSlickCarousel
+                        v-if="firstChar == true"
+                        key="firstDiv"
+                        v-bind="settings"
+                      >
+                        <div v-for="char in firstCharArray" :key="char">
+                          <v-card outlined>
+                            <v-list-item three-line>
+                              <v-list-item-content>
+                                <h2 class="overline mb-4">
+                                  {{ char.name }}
+                                </h2>
+                                <p>
+                                  {{ char.bio }}
+                                </p>
+                              </v-list-item-content>
+                            </v-list-item>
+                            <v-card-actions>
+                              <v-btn>{{ char.id }}</v-btn>
+                            </v-card-actions>
+                          </v-card>
+                        </div>
+                      </VueSlickCarousel>
+                      <VueSlickCarousel v-else key="secondDiv" v-bind="settings">
+                        <div v-for="char in secondCharArray" :key="char">
+                          <v-card outlined>
+                            <v-list-item three-line>
+                              <v-list-item-content>
+                                <h2 class="overline mb-4">
+                                  {{ char.name }}
+                                </h2>
+                                <p>
+                                  {{ char.bio }}
+                                </p>
+                              </v-list-item-content>
+                            </v-list-item>
+                            <v-card-actions>
+                              <v-btn>{{ char.id }}</v-btn>
+                            </v-card-actions>
+                          </v-card>
+                        </div>
+                      </VueSlickCarousel>
+                    </transition>  
                   </v-col>
                 </v-row>
               </v-container>
@@ -162,9 +187,9 @@
               >Create Annotations</v-expansion-panel-header
             >
             <v-expansion-panel-content>
-              <v-radio-group v-model="column" column>
-                <v-radio label="Character" value="radio-1"></v-radio>
-                <v-radio label="Annotation" value="radio-2"></v-radio>
+              <v-radio-group column>
+                <v-radio v-on:change="fire=false" label="Character" value="radio-1" />
+                <v-radio v-on:change="fire=true" label="Annotation" value="radio-2" />
               </v-radio-group>
               <div>
                 <p>
@@ -180,30 +205,34 @@
                   CharDoc: pLq9LQklnGxJhCebfvdz
                 </p>
               </div>
-              <form
-                v-if="fire == 'character'"
-                @submit.prevent="characterCollection"
-              >
-                <v-text-field label="Document" v-model="docName">
-                </v-text-field>
-                <v-text-field label="Name" v-model="name"> </v-text-field>
-                <v-text-field label="Bio" v-model="bio"> </v-text-field>
-                <v-btn type="submit">Click</v-btn>
-              </form>
-              <form
-                v-if="fire == 'annotation'"
-                @submit.prevent="bookAnnoCollection"
-              >
-                <v-text-field label="Collection" v-model="collectionName">
-                </v-text-field>
-                <v-text-field label="Document" v-model="docName">
-                </v-text-field>
-                <v-text-field label="Page" v-model="pageNew"> </v-text-field>
-                <v-text-field label="Quote" v-model="quoteSend"> </v-text-field>
-                <v-text-field label="Annotation" v-model="annoSend">
-                </v-text-field>
-                <v-btn type="submit">Click</v-btn>
-              </form>
+              <transition name="fade" mode="out-in">
+                <form
+                  v-if="fire == false"
+                  key="firstDiv"
+                  @submit.prevent="characterCollection"
+                >
+                  <v-text-field label="Document" v-model="docName">
+                  </v-text-field>
+                  <v-text-field label="Name" v-model="name"> </v-text-field>
+                  <v-text-field label="Bio" v-model="bio"> </v-text-field>
+                  <v-btn type="submit">Click</v-btn>
+                </form>
+                <form
+                  v-else
+                  key="seconDiv"
+                  @submit.prevent="bookAnnoCollection"
+                >
+                  <v-text-field label="Collection" v-model="collectionName">
+                  </v-text-field>
+                  <v-text-field label="Document" v-model="docName">
+                  </v-text-field>
+                  <v-text-field label="Page" v-model="pageNew"> </v-text-field>
+                  <v-text-field label="Quote" v-model="quoteSend"> </v-text-field>
+                  <v-text-field label="Annotation" v-model="annoSend">
+                  </v-text-field>
+                  <v-btn type="submit">Click</v-btn>
+                </form>
+              </transition>  
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -246,13 +275,14 @@ export default {
       pdf: this.$route.params.pdf,
       title: this.$route.params.name,
       annotationsAnalysis: [],
-      characterArray: [],
-      thirdCharacterArray: [],
-      secondCharacterArray: [],
+      charID: {},
+      firstCharArray: [],
+      secondCharArray: [],
+      firstChar: true,
       docName: "",
       bio: "",
       annoSend: "",
-      fire: "",
+      fire: false,
       quoteSend: "",
       pageNew: 0,
       collectionName: "",
@@ -263,14 +293,25 @@ export default {
         centerPadding: "20px",
         focusOnSelect: true,
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: 1,
         speed: 500,
       },
     };
   },
   computed: {
     pageNum() {
+      console.log(this.charID);
       return this.$store.state.page;
+    },
+    checkID: function (id) {
+      console.log("charID" + this.charID);
+      var arr = this.annotationsAnalysis;
+      console.log("1st arr" + arr);
+      arr = arr.filter(function (ev) {
+        return id.annotationID.includes(ev.id);
+      });
+      console.log("2nd arr" + arr);
+      return arr;
     },
   },
   methods: {
@@ -289,7 +330,9 @@ export default {
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            this.annotationsAnalysis.push(doc.data());
+            var d = doc.data();
+            d.id = doc.id;
+            this.annotationsAnalysis.push(d);
           });
         });
       await db
@@ -298,27 +341,18 @@ export default {
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            this.thirdCharacterArray.push(doc.data());
-            this.characterArray.push(doc.data());
+            this.firstCharArray.push(doc.data());
           });
         });
-    },
-    getAllCharacters() {
-      this.characterArray = [];
-      this.characterArray = this.thirdCharacterArray;
-    },
-    getCharactersOnPage() {
-      this.characterArray = [];
-      this.secondCharacterArray = [];
-      db.collection("characters")
+      await db
+        .collection("characters")
         .where("numInPage", "array-contains", this.page)
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            this.secondCharacterArray.push(doc.data());
+            this.secondCharArray.push(doc.data());
           });
         });
-      this.characterArray = this.secondCharacterArray;
     },
     getNothing() {
       this.bookAnno.quote = this.$store.getters.getQuote;
@@ -504,5 +538,15 @@ export default {
 }
 p {
   font-family: Open sans-serif;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
