@@ -34,7 +34,6 @@
 
 <script>
 import pdf from "vue-pdf";
-// import { db } from '@/firebase.js';
 
 export default {
   components: {

@@ -8,7 +8,7 @@
         >
       </v-container>
     </v-row>
-    <v-row class="cyan accent-2">
+    <v-row class="cyan lighten-1">
       <v-spacer></v-spacer>
       <v-col class="text-center about" cols="9">
         <h1>About Us</h1>
@@ -31,8 +31,8 @@
       </v-col>
       <v-spacer></v-spacer>
     </v-row>
-    <hr class="divider" />
-    <v-row class="cyan accent-2">
+    <v-divider color="black"></v-divider>
+    <v-row class="cyan lighten-1">
       <v-col class="text-center testimonials">
         <h1>Testimonials</h1>
         <h5 class="font-italic">"This is an AMAZING Product!"</h5>

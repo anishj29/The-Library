@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    class="container px-12 light-blue lighten-3"
+    class="container px-12 cyan lighten-1"
     style="height: 100%"
   >
     <v-row class="pt-8">
@@ -34,21 +34,25 @@
             <v-expansion-panel-content>
               <v-btn
                 class="mr-2 mt-2"
-                v-for="hi in theChapters"
-                :key="hi"
-                @click="hi.list"
+                v-for="(chapter, i) in theChapters"
+                :key="i"
+                @click="chapter.list"
               >
-                {{ hi.chapter }}
+                {{ chapter.chapter }}
               </v-btn>
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel class="blue-grey darken-4">
             <v-expansion-panel-header>Chapter Summary</v-expansion-panel-header>
-            <v-expansion-panel-content
-              >{{ this.$store.getters.getUser }}
-              (Students search up chapter summaries after reading something
+            <v-expansion-panel-content>
+              <!-- (Students search up chapter summaries after reading something
               because they don't get the meaning of a passage in the chapter or
-              the chapter itself)
+              the chapter itself) -->
+              <div v-for="i in chapterSummary" :key="i">
+                <div v-if="i.chapterNumber == 1">
+                  {{i.chapter}}
+                </div>  
+              </div>
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel class="blue-grey darken-4">
@@ -58,58 +62,40 @@
             <v-expansion-panel-content>
               <v-container>
                 <v-row>
-                  <v-radio-group column>
+                  <v-radio-group row>
                     <v-radio
                       v-on:change="getNothing()"
                       label="None"
-                      value="radio-1"
+                      value="1"
                     ></v-radio>
                     <v-radio
                       v-on:change="getSymbolism()"
                       label="Symbolism"
-                      value="radio-2"
+                      value="2"
                     ></v-radio>
                     <v-radio
                       v-on:change="getMetaphor()"
                       label="Metaphor"
-                      value="radio-3"
+                      value="3"
                     ></v-radio>
                   </v-radio-group>
-                  <v-col class="d-flex align-start flex-column mb-6">
-                    <v-btn
-                      @click="bookAnno = book"
-                      v-for="book in callAnno"
-                      :key="book"
-                      color="primary"
-                      class="mb-2"
-                    >
-                      <h2 class="truncate">{{ book.quote }}</h2>
-                    </v-btn>
-                  </v-col>
-                  <v-col>
-                    <v-card class="mx-auto" max-width="344" outlined>
-                      <v-list-item three-line>
-                        <v-list-item-content>
-                          <div
-                            v-if="
-                              this.$store.getters.getPage >= book.annoStart &&
-                              this.$store.getters.getPage < book.annoStop
-                            "
-                            class="overline mb-4"
-                          >
-                            {{ bookAnno.quote }}
-                          </div>
-                          <div
-                            v-if="
-                              this.$store.getters.getPage >= book.annoStart &&
-                              this.$store.getters.getPage < book.annoStop
-                            "
-                          >
-                            {{ bookAnno.anno }}
-                          </div>
-                        </v-list-item-content>
-                      </v-list-item>
-                    </v-card>
+                  <v-col style="width: 40px">
+                    <VueSlickCarousel v-bind="settings">
+                      <div v-for="(book, i) in callAnno" :key="i">
+                        <v-card outlined>
+                          <v-list-item three-line>
+                            <v-list-item-content>
+                              <h2 class="overline mb-4">
+                                {{ book.quote }}
+                              </h2>
+                              <p>
+                                {{ book.anno }}
+                              </p>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-card>
+                      </div>
+                    </VueSlickCarousel>
                   </v-col>
                 </v-row>
               </v-container>
@@ -139,7 +125,7 @@
                         key="firstDiv"
                         v-bind="settings"
                       >
-                        <div v-for="char in firstCharArray" :key="char">
+                        <div v-for="(char, i) in firstCharArray" :key="i">
                           <v-card outlined>
                             <v-list-item three-line>
                               <v-list-item-content>
@@ -152,12 +138,19 @@
                               </v-list-item-content>
                             </v-list-item>
                             <v-card-actions>
-                              <v-btn>{{ char.id }}</v-btn>
+                              <v-btn
+                                v-for="ann in checkID(char)"
+                                :key="ann"
+                              ></v-btn>
                             </v-card-actions>
                           </v-card>
                         </div>
                       </VueSlickCarousel>
-                      <VueSlickCarousel v-else key="secondDiv" v-bind="settings">
+                      <VueSlickCarousel
+                        v-else
+                        key="secondDiv"
+                        v-bind="settings"
+                      >
                         <div v-for="char in secondCharArray" :key="char">
                           <v-card outlined>
                             <v-list-item three-line>
@@ -176,7 +169,7 @@
                           </v-card>
                         </div>
                       </VueSlickCarousel>
-                    </transition>  
+                    </transition>
                   </v-col>
                 </v-row>
               </v-container>
@@ -188,8 +181,16 @@
             >
             <v-expansion-panel-content>
               <v-radio-group column>
-                <v-radio v-on:change="fire=false" label="Character" value="radio-1" />
-                <v-radio v-on:change="fire=true" label="Annotation" value="radio-2" />
+                <v-radio
+                  v-on:change="fire = false"
+                  label="Character"
+                  value="radio-1"
+                />
+                <v-radio
+                  v-on:change="fire = true"
+                  label="Annotation"
+                  value="radio-2"
+                />
               </v-radio-group>
               <div>
                 <p>
@@ -227,12 +228,13 @@
                   <v-text-field label="Document" v-model="docName">
                   </v-text-field>
                   <v-text-field label="Page" v-model="pageNew"> </v-text-field>
-                  <v-text-field label="Quote" v-model="quoteSend"> </v-text-field>
+                  <v-text-field label="Quote" v-model="quoteSend">
+                  </v-text-field>
                   <v-text-field label="Annotation" v-model="annoSend">
                   </v-text-field>
                   <v-btn type="submit">Click</v-btn>
                 </form>
-              </transition>  
+              </transition>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -246,8 +248,8 @@ import PDF from "./PDF.vue";
 import VueSlickCarousel from "vue-slick-carousel";
 import "vue-slick-carousel/dist/vue-slick-carousel.css";
 import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
-
 import { db } from "@/firebase.js";
+
 export default {
   components: {
     PDF,
@@ -258,23 +260,22 @@ export default {
       id: this.$route.params.id,
       book: {},
       theChapters: [
-        { chapter: "Chapter1", list: this.sendChapter1 },
+        { chapter: "Chapter 1", list: this.sendChapter1 },
         { chapter: "Chapter 2", list: this.sendChapter2 },
         { chapter: "Chapter 3", list: this.sendChapter3 },
         { chapter: "Chapter 4", list: this.sendChapter4 },
         { chapter: "Chapter 5", list: this.sendChapter5 },
         { chapter: "Chapter 6", list: this.sendChapter6 },
       ],
-      quotes: "",
       helloAnno: {},
       callAnno: [],
       page: this.$store.getters.getPage,
-      user: this.$store.getters.getLoggedIn,
-      bookAnno: {},
+      // user: this.$store.getters.getLoggedIn,
       img: this.$route.params.imgFile,
       pdf: this.$route.params.pdf,
       title: this.$route.params.name,
       annotationsAnalysis: [],
+      chapterSummary: [],
       charID: {},
       firstCharArray: [],
       secondCharArray: [],
@@ -300,21 +301,20 @@ export default {
   },
   computed: {
     pageNum() {
-      console.log(this.charID);
       return this.$store.state.page;
-    },
-    checkID: function (id) {
-      console.log("charID" + this.charID);
-      var arr = this.annotationsAnalysis;
-      console.log("1st arr" + arr);
-      arr = arr.filter(function (ev) {
-        return id.annotationID.includes(ev.id);
-      });
-      console.log("2nd arr" + arr);
-      return arr;
     },
   },
   methods: {
+    checkID(char) {
+      var arr = this.annotationsAnalysis;
+      arr = arr.filter(function (e) {
+        if (char.annotationID) {
+          return char.annotationID.includes(e.id);
+        }
+      });
+      console.log(arr[0]);
+      return arr;
+    },
     async wait() {
       await db
         .collection("books")
@@ -353,6 +353,16 @@ export default {
             this.secondCharArray.push(doc.data());
           });
         });
+      await db
+        .collection("books")
+        .doc(this.id)
+        .collection("chapters")
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.chapterSummary.push(doc.data());
+          }); 
+        });   
     },
     getNothing() {
       this.bookAnno.quote = this.$store.getters.getQuote;
@@ -541,7 +551,7 @@ p {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 .fade-enter {
   opacity: 0;
