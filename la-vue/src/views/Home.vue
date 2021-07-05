@@ -1,83 +1,80 @@
 <template>
   <div id="home" class="home">
-    <v-row class="purple darken-1 header">
+    <v-row class="black header">
       <v-container class="white--text">
-        <h1>THE BOOK GUIDE</h1>
+        <h1>The Book Guide</h1>
         <v-btn color="blue-grey darken-4 white--text" rounded to="/Library"
           >Start Reading Today</v-btn
         >
       </v-container>
     </v-row>
-    <v-row class="cyan lighten-1">
+    <v-row class="teal accent-3 pb-10">
       <v-spacer></v-spacer>
       <v-col class="text-center about" cols="9">
-        <h1>About Us</h1>
-        <h5 class="subtitle-1 font-italic">
-          "helping students survive ELA classes and help them thrive while
-          reading complex books"
-        </h5>
-        <p class="pt-7 font-weight-bold">Used By Students For</p>
-        <p>
-          Help in high school with understanding core ideas behind the books of
-          authors that have been written for more mature audiences. It can be
-          used to prepare for in-school test for LA classes and also to assist
-          during the reading of more complex texts as a hobby.
-        </p>
+        <h1 class="mt-8 mb-4">About Us</h1>
+        <v-row>
+          <v-card
+            class="mx-auto"
+            max-width="344"
+            v-for="i in cards"
+            :key="i"
+          >
+            <v-img
+              :src="i.url"
+              height="250px"
+            ></v-img>
 
-        <p class="pt-8 subtitle-2 font-italic">
-          Contains a catalog of books written by extremely famous authors
-          including Shakespeare, Homer, <br />Charles Dickens, and George Orwell
-        </p>
+            <h3 class="mt-2">
+              Helping students read complex ELA novels 
+            </h3>
+
+            <v-card-actions>
+              <v-btn
+                color="orange lighten-2"
+                text
+                @click="i.show = !i.show"
+              >
+                How We Help
+              </v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn
+                icon
+                @click="i.show = !i.show"
+              >
+                <v-icon>{{ i.show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="i.show">
+                <v-divider></v-divider>
+                <v-card-text>
+                  {{i.info}}
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+          </v-card>
+        </v-row>  
       </v-col>
       <v-spacer></v-spacer>
     </v-row>
-    <v-divider color="black"></v-divider>
-    <v-row class="cyan lighten-1">
-      <v-col class="text-center testimonials">
-        <h1>Testimonials</h1>
-        <h5 class="font-italic">"This is an AMAZING Product!"</h5>
-        <v-row>
-          <v-col>
-            <v-card class="mx-auto card" max-width="400">
-              <v-img
-                height="200px"
-                src="@/assets/images/funnyimage1.webp"
-              ></v-img>
-              <v-card-text class="text--primary">
-                <div>Person 1</div>
-                <div>Sample-The website allowed me to</div>
-              </v-card-text>
-            </v-card>
-          </v-col>
-          <v-col>
-            <v-card class="mx-auto card" max-width="400">
-              <v-img
-                height="200px"
-                src="@/assets/images/funnyimage1.webp"
-              ></v-img>
-              <v-card-text class="text--primary">
-                <div>Person 1</div>
-                <div>Sample-The website allowed me to</div>
-              </v-card-text>
-            </v-card>
-          </v-col>
-          <v-col>
-            <v-card class="mx-auto card" max-width="400">
-              <v-img
-                height="200px"
-                src="@/assets/images/funnymeme2.jpg"
-              ></v-img>
-              <v-card-text class="text--primary">
-                <div>Person 2</div>
-                <div>Sample-The website allowed me to</div>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
+    <v-spacer></v-spacer>
   </div>
 </template>
+
+<script>
+
+  export default {
+    data: () => ({
+      cards: [
+        {info: 'Help in high school with understanding core ideas behind the books of authors that have been written for more mature audiences. It can be used to prepare for in-school test for LA classes and also to assist during the reading of more complex texts as a hobby.',
+        show: false, url: 'https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1200&h=1&fit=max&auto=format%2Ccompress'}, {info: 'asdsad', show: false, url: 'https://media.glamour.com/photos/5e13b3afe07874000886ecfe/16:9/w_1600,c_limit/books_lede_social_river.jpg'}
+      ]
+    }),
+  }
+</script>
 
 <style lang="scss" scoped>
 .header {

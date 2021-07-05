@@ -1,17 +1,17 @@
 <template>
   <div id="library">
     <v-row
-      class="purple darken-1"
+      class="black"
       style="padding-top: 100px; padding-bottom: 70px"
     >
       <v-container class="text-center">
-        <h1 class="white--text">THE GIANT LIBRARY</h1>
+        <h1 class="white--text">The Catalog</h1>
         <v-btn color="blue-grey darken-4 white--text" rounded to="/SignUp"
           >Sign Up To Begin</v-btn
         >
       </v-container>
     </v-row>
-    <v-row justify="center">
+    <!-- <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="290">
         <v-card>
           <v-card-title>Sign In For More Features</v-card-title>
@@ -33,7 +33,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-row>
+    </v-row> -->
     <div class="cyan lighten-1">
       <v-row class="pt-5">
         <v-col cols="4" v-for="book of books" :key="book['.key']">

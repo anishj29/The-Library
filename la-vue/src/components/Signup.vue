@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialogSignUp" persistent max-width="290">
     <v-card>
-      <v-toolbar dark color="primary">
+      <v-toolbar dark color="black">
         <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -47,7 +47,7 @@
         <v-container>
           <div style="color: white">
             Already registered?
-            <v-btn @click="sendLogin" class="primary" dark style="width: 20px; height: 20px">Sign In</v-btn>
+            <v-btn @click="sendLogin" class="black" dark style="width: 20px; height: 20px">Sign In</v-btn>
           </div>
         </v-container>
       </form>

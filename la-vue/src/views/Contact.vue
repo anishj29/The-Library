@@ -1,9 +1,10 @@
 <template>
-  <v-container fluid class="cyan accent-2" style="height: 100%">
+  <v-container fluid class="black white--text" style="height: 100%">
     <h2 class="mt-5" style="text-align: center">Contact</h2>
     <v-form @submit.prevent="sendEmail" class="wrap">
       <v-text-field
         label="Name"
+        dark
         name="user_name"
         single-line
         full-width
@@ -15,12 +16,14 @@
         name="user_email"
         single-line
         full-width
+        dark
         hide-details
       ></v-text-field>
       <v-textarea
         name="message"
         label="Message"
         counter
+        dark
         maxlength="120"
         full-width
         single-line

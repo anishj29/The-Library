@@ -20,30 +20,66 @@
       <login></login>
       <signup></signup>
     </v-content>
+    <v-footer v-bind="localAttrs" :padless="padless">
+      <v-card
+        flat
+        tile
+        width="100%"
+        class="blue-grey darken-4 white--text text-center"
+      >
+        <v-card-text>
+          <v-btn v-for="icon in icons" :key="icon" class="mx-4 white" icon>
+            <v-icon size="24px">
+              {{ icon }}
+            </v-icon>
+          </v-btn>
+        </v-card-text>
+
+        <v-divider class="white"></v-divider>
+
+        <v-card-text class="white--text">
+          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import signup from '@/components/Signup.vue';
-import login from '@/components/Login.vue';
+import signup from "@/components/Signup.vue";
+import login from "@/components/Login.vue";
 
 export default {
   components: {
     signup,
-    login
+    login,
   },
-  data() {
-    return {
-      
-    }
+  data: () => ({
+    icons: ["mdi-home", "mdi-email", "mdi-calendar", "mdi-delete"],
+    items: ["default", "absolute", "fixed"],
+    padless: true,
+    variant: "default",
+  }),
+  computed: {
+    localAttrs() {
+      const attrs = {};
+
+      if (this.variant === "default") {
+        attrs.absolute = false;
+        attrs.fixed = false;
+      } else {
+        attrs[this.variant] = true;
+      }
+      return attrs;
+    },
   },
   methods: {
     dialogSignUp() {
-      this.$store.commit('dialogSignUp', true);
+      this.$store.commit("dialogSignUp", true);
     },
     dialogLogIn() {
-      this.$store.commit('dialogLogIn', true);
-    }
+      this.$store.commit("dialogLogIn", true);
+    },
   },
-}
+};
 </script>

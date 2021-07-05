@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialogLogIn" persistent max-width="290">
     <v-card>
-      <v-toolbar dark color="primary">
+      <v-toolbar dark color="black">
         <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
