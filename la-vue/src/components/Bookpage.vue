@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    class="container px-12 cyan lighten-1"
+    class="container px-12 cyan lighten-2"
     style="height: 100%"
   >
     <v-row class="pt-8">

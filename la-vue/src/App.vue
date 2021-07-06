@@ -38,7 +38,7 @@
         <v-divider class="white"></v-divider>
 
         <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+          {{ new Date().getFullYear() }} — <strong>The LA Catalog</strong>
         </v-card-text>
       </v-card>
     </v-footer>

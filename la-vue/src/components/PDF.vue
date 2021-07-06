@@ -10,7 +10,7 @@
           style="max-width: 80px"
         ></v-text-field
         >/{{ book.maxPage }}
-        <button @click="logContent">log content</button>
+        <!-- <button @click="logContent">log content</button> -->
       </p>
     </div>
     <div>
