@@ -45,13 +45,10 @@
           <v-expansion-panel class="blue-grey darken-4">
             <v-expansion-panel-header>Chapter Summary</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <!-- (Students search up chapter summaries after reading something
-              because they don't get the meaning of a passage in the chapter or
-              the chapter itself) -->
               <div v-for="i in chapterSummary" :key="i">
                 <div v-if="i.chapterNumber == 1">
-                  {{i.chapter}}
-                </div>  
+                  {{ i.chapter }}
+                </div>
               </div>
             </v-expansion-panel-content>
           </v-expansion-panel>
@@ -270,7 +267,6 @@ export default {
       helloAnno: {},
       callAnno: [],
       page: this.$store.getters.getPage,
-      // user: this.$store.getters.getLoggedIn,
       img: this.$route.params.imgFile,
       pdf: this.$route.params.pdf,
       title: this.$route.params.name,
@@ -361,8 +357,8 @@ export default {
         .then((snapshot) => {
           snapshot.forEach((doc) => {
             this.chapterSummary.push(doc.data());
-          }); 
-        });   
+          });
+        });
     },
     getNothing() {
       this.bookAnno.quote = this.$store.getters.getQuote;
