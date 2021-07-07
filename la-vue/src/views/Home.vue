@@ -17,7 +17,7 @@
                 <v-item v-slot="{ active, toggle }">
                   <v-img
                     :color="active ? 'primary' : ''"
-                    class="d-flex align-center"
+                    class="d-flex align-center card"
                     :src="n.url"
                     height="350"
                     @click="toggle"
@@ -77,7 +77,7 @@ export default {
           "Contains a catalog of books written by extremely famous authors" +
           "including Shakespeare, Homer, Charles Dickens, and George Orwell",
         show: false,
-        url: "https://media.glamour.com/photos/5e13b3afe07874000886ecfe/16:9/w_1600,c_limit/books_lede_social_river.jpg",
+        url: "https://www.teahub.io/photos/full/190-1905529_cool-book-computer-wallpapers-desktop-backgrounds.jpg",
       },
     ],
   }),
@@ -113,6 +113,6 @@ export default {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.2), 0 8px 8px rgba(0, 0, 0, 0.3),
     0 16px 16px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.4s ease-in-out;
 }
 </style>
