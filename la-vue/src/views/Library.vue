@@ -5,7 +5,7 @@
       style="padding-top: 100px; padding-bottom: 70px"
     >
       <v-container class="text-center">
-        <h1 class="white--text">The Catalog</h1>
+        <h1 class="white--text mb-2">The Catalog</h1>
         <v-btn color="blue-grey darken-4 white--text" rounded to="/SignUp"
           >Sign Up To Begin</v-btn
         >
@@ -35,7 +35,7 @@
       </v-dialog>
     </v-row> -->
     <div class="cyan lighten-1">
-      <v-row class="pt-5">
+      <v-row class="pt-10 pb-10">
         <v-col cols="4" v-for="book of books" :key="book['.key']">
           <book
             :bookTitle="book.name"

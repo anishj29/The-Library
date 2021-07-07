@@ -16,18 +16,18 @@
       <v-spacer></v-spacer>
     </v-row>
     <v-row class="pt-5">
-      <v-col cols="6" class="pdf blue-grey darken-4 white--text">
+      <v-col cols="6" class="pdf black white--text">
         <PDF class="pdf" :book="book"></PDF>
       </v-col>
       <v-col>
         <v-expansion-panels dark>
-          <v-expansion-panel class="blue-grey darken-4">
+          <v-expansion-panel class="dark">
             <v-expansion-panel-header> Description </v-expansion-panel-header>
             <v-expansion-panel-content>{{
               book.description
             }}</v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel class="blue-grey darken-4">
+          <v-expansion-panel class="dark">
             <v-expansion-panel-header
               >Table Of Contents</v-expansion-panel-header
             >
@@ -42,7 +42,7 @@
               </v-btn>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel class="blue-grey darken-4">
+          <v-expansion-panel class="dark">
             <v-expansion-panel-header>Chapter Summary</v-expansion-panel-header>
             <v-expansion-panel-content>
               <div v-for="i in chapterSummary" :key="i">
@@ -52,7 +52,7 @@
               </div>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel class="blue-grey darken-4">
+          <v-expansion-panel class="dark">
             <v-expansion-panel-header
               >Annotations For Page {{ page }}</v-expansion-panel-header
             >
@@ -98,7 +98,7 @@
               </v-container>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel class="blue-grey darken-4">
+          <v-expansion-panel class="dark">
             <v-expansion-panel-header>Characters</v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-radio-group row>
@@ -172,7 +172,7 @@
               </v-container>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel class="blue-grey darken-4">
+          <v-expansion-panel class="dark">
             <v-expansion-panel-header
               >Create Annotations</v-expansion-panel-header
             >

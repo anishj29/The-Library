@@ -1,79 +1,87 @@
 <template>
   <div id="home" class="home">
-    <v-row class="black header">
+    <div class="black header">
       <v-container class="white--text">
-        <h1>The Book Guide</h1>
+        <h1 class="mb-2">The LA Catalog</h1>
         <v-btn color="blue-grey darken-4 white--text" rounded to="/Library"
           >Start Reading Today</v-btn
         >
       </v-container>
-    </v-row>
-    <v-row class="teal accent-3 pb-10">
-      <v-spacer></v-spacer>
-      <v-col class="text-center about" cols="9">
-        <h1 class="mt-8 mb-4">About Us</h1>
-        <v-row>
-          <v-card
-            class="mx-auto"
-            max-width="344"
-            v-for="i in cards"
-            :key="i"
-          >
-            <v-img
-              :src="i.url"
-              height="250px"
-            ></v-img>
-
-            <h3 class="mt-2">
-              Helping students read complex ELA novels 
-            </h3>
-
-            <v-card-actions>
-              <v-btn
-                color="orange lighten-2"
-                text
-                @click="i.show = !i.show"
-              >
-                How We Help
-              </v-btn>
-
-              <v-spacer></v-spacer>
-
-              <v-btn
-                icon
-                @click="i.show = !i.show"
-              >
-                <v-icon>{{ i.show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-              </v-btn>
-            </v-card-actions>
-
-            <v-expand-transition>
-              <div v-show="i.show">
-                <v-divider></v-divider>
-                <v-card-text>
-                  {{i.info}}
-                </v-card-text>
-              </div>
-            </v-expand-transition>
-          </v-card>
-        </v-row>  
-      </v-col>
-      <v-spacer></v-spacer>
-    </v-row>
-    <v-spacer></v-spacer>
+    </div>
+    <div class="teal accent-3 pb-10 pt-10">
+      <div class="about">
+        <v-item-group>
+          <v-container>
+            <v-row>
+              <v-col v-for="n in cards" :key="n" style="max-width: 300px">
+                <v-item v-slot="{ active, toggle }">
+                  <v-img
+                    :color="active ? 'primary' : ''"
+                    class="d-flex align-center"
+                    :src="n.url"
+                    height="350"
+                    @click="toggle"
+                  >
+                    <v-scroll-y-transition>
+                      <div
+                        v-if="active"
+                        class="text-h2 flex-grow-1 text-center"
+                      >
+                        <v-card flat>
+                          <v-card-text color="black">
+                            <v-row class="mb-4" align="center">
+                              <strong class="text-h6">{{n.title}}</strong>
+                              <v-spacer></v-spacer>
+                            </v-row>
+                            <p>
+                              {{n.info}}
+                            </p>
+                          </v-card-text>
+                        </v-card>
+                      </div>
+                    </v-scroll-y-transition>
+                  </v-img>
+                </v-item>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-item-group>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-
-  export default {
-    data: () => ({
-      cards: [
-        {info: 'Help in high school with understanding core ideas behind the books of authors that have been written for more mature audiences. It can be used to prepare for in-school test for LA classes and also to assist during the reading of more complex texts as a hobby.',
-        show: false, url: 'https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1200&h=1&fit=max&auto=format%2Ccompress'}, {info: 'asdsad', show: false, url: 'https://media.glamour.com/photos/5e13b3afe07874000886ecfe/16:9/w_1600,c_limit/books_lede_social_river.jpg'}
-      ]
-    }),
-  }
+export default {
+  data: () => ({
+    cards: [
+      {
+        title: "Helping Students Read ELA Novels",
+        info:
+          "Help in high school with understanding core ideas behind the books of authors that have been written for more mature audiences." +
+          " It can be used to prepare for in-school test for LA classes and also to assist during the reading of more complex texts as a hobby.",
+        show: false,
+        url: "https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1200&h=1&fit=max&auto=format%2Ccompress",
+      },
+      {
+        title: "Check Out Our Reading Catalog",
+        info:
+          "Contains a catalog of books written by extremely famous authors" +
+          "including Shakespeare, Homer, Charles Dickens, and George Orwell",
+        show: false,
+        url: "https://media.glamour.com/photos/5e13b3afe07874000886ecfe/16:9/w_1600,c_limit/books_lede_social_river.jpg",
+      },
+      {
+        title: "Check Out Our Reading Catalog",
+        info:
+          "Contains a catalog of books written by extremely famous authors" +
+          "including Shakespeare, Homer, Charles Dickens, and George Orwell",
+        show: false,
+        url: "https://media.glamour.com/photos/5e13b3afe07874000886ecfe/16:9/w_1600,c_limit/books_lede_social_river.jpg",
+      },
+    ],
+  }),
+};
 </script>
 
 <style lang="scss" scoped>
@@ -93,7 +101,8 @@
 .about {
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px;
+  max-width: 900px;
+  height: 450px;
 }
 .testimonials {
   margin-left: auto;

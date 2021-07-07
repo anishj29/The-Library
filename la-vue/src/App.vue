@@ -5,7 +5,7 @@
         <img
           src="@/assets/images/Logo.png"
           alt="Logo"
-          style="width: 60px; height: 60px"
+          style="width: 90px; height: 90px"
         />
       </v-toolbar-title>
       <v-btn text dark rounded to="/">Home</v-btn>
@@ -16,7 +16,7 @@
     </v-app-bar>
 
     <v-content>
-      <router-view></router-view>
+      <router-view ></router-view>
       <login></login>
       <signup></signup>
     </v-content>
@@ -34,9 +34,7 @@
             </v-icon>
           </v-btn>
         </v-card-text>
-
         <v-divider class="white"></v-divider>
-
         <v-card-text class="white--text">
           {{ new Date().getFullYear() }} — <strong>The LA Catalog</strong>
         </v-card-text>
@@ -55,10 +53,8 @@ export default {
     login,
   },
   data: () => ({
-    icons: ["mdi-home", "mdi-email", "mdi-calendar", "mdi-delete"],
-    items: ["default", "absolute", "fixed"],
+    icons: ["mdi-home", "mdi-email"],
     padless: true,
-    variant: "default",
   }),
   computed: {
     localAttrs() {
