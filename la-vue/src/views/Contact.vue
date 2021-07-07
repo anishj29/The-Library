@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import emailjs from "emailjs-com";
+import emailjs from 'emailjs-com';
 
 export default {
   methods: {
