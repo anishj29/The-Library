@@ -1,22 +1,25 @@
 <template>
   <v-container
     fluid
-    class="container px-12 cyan lighten-2"
+    class="container px-12 pink lighten-3"
     style="height: 100%"
   >
-    <v-row class="pt-8">
+    <v-row class="pt-2">
       <v-col cols="1">
         <v-img max-width="100%" :src="book.imgFile"></v-img>
       </v-col>
       <v-col>
-        <h1 class="mt-10" style="padding-left: 400px">{{ book.name }}</h1>
+        <h1 class="mt-12" style="text-align: center; padding-right: 120px">{{ book.name }}</h1>
       </v-col>
     </v-row>
     <v-row>
       <v-spacer></v-spacer>
     </v-row>
+    <v-row>
+
+    </v-row>
     <v-row class="pt-5">
-      <v-col cols="6" class="pdf black white--text">
+      <v-col cols="6" elevation="12" style="width:50%" class="pdf black white--text">
         <PDF class="pdf" :book="book"></PDF>
       </v-col>
       <v-col>
@@ -36,7 +39,7 @@
                 class="mr-2 mt-2"
                 v-for="(chapter, i) in theChapters"
                 :key="i"
-                @click="chapter.list"
+                @click="chapter.list;h=i"
               >
                 {{ chapter.chapter }}
               </v-btn>
@@ -45,11 +48,7 @@
           <v-expansion-panel class="dark">
             <v-expansion-panel-header>Chapter Summary</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <div v-for="i in chapterSummary" :key="i">
-                <div v-if="i.chapterNumber == 1">
-                  {{ i.chapter }}
-                </div>
-              </div>
+              {{ chapterSummary[h].chapter }}
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel class="dark">
@@ -271,6 +270,7 @@ export default {
       pdf: this.$route.params.pdf,
       title: this.$route.params.name,
       annotationsAnalysis: [],
+      h: 1,
       chapterSummary: [],
       charID: {},
       firstCharArray: [],

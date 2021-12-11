@@ -9,6 +9,67 @@
         <v-btn color="blue-grey darken-4 white--text" rounded to="/SignUp"
           >Sign Up To Begin</v-btn
         >
+        <v-form class="justify-center" style="width: 400px">
+            <v-flex xs12>
+              <v-autocomplete
+                v-model="searchString"
+                :disabled="isUpdating"
+                :items="people"
+                solo
+                chips
+                color="orange"
+                label="Search"
+                item-text="name"
+                item-value="name"
+                multiple
+                clearable
+                append-icon="search"
+                :append-icon-cb="helo"
+                :open-on-click="false"
+              >
+                
+                <template slot="no-data">
+                  <v-list-tile>
+                    <v-list-tile-title>
+                      Search for your favorite
+                      <strong>Product</strong>
+                    </v-list-tile-title>
+                  </v-list-tile>
+                </template>
+                
+                <template
+                  slot="selection"
+                  slot-scope="data"
+                >
+                  <v-chip
+                    :selected="data.selected"
+                    close
+                    class="chip--select-multi"
+                    @input="data.parent.selectItem(data.item)"
+                  >
+                    <v-avatar>
+                      <img :src="data.item.avatar">
+                    </v-avatar>
+                    {{ data.item.name }}
+                  </v-chip>
+                </template>
+                <template
+                  slot="item"
+                  slot-scope="data"
+                >
+                  <template >
+                    <v-list-tile-avatar :tile="data.item.group=='Products'" :size="data.item.group=='Products'?50:40">
+                      <img :src="data.item.avatar">
+                    </v-list-tile-avatar>
+                    <v-list-tile-content>
+                      <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
+                      <v-list-tile-sub-title v-if="data.item.group=='Products'" v-html="data.item.seller"></v-list-tile-sub-title>
+                    </v-list-tile-content>
+                  </template>
+                </template>
+              </v-autocomplete>
+            </v-flex>
+      </v-form>
       </v-container>
     </v-row>
     <!-- <v-row justify="center">
@@ -34,7 +95,7 @@
         </v-card>
       </v-dialog>
     </v-row> -->
-    <div class="cyan lighten-1">
+    <div class="amber lighten-2">
       <v-row class="pt-10 pb-10">
         <v-col cols="4" v-for="book of books" :key="book['.key']">
           <book

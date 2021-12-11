@@ -16,7 +16,7 @@
     <div>
       <div
         v-if="loadedRatio > 0 && loadedRatio < 1"
-        style="background-color: green; color: white; text-align: center"
+        style="background-color: #FFD54F; color: white; text-align: center"
         :style="{ width: loadedRatio * 100 + '%' }"
       >
         {{ Math.floor(loadedRatio * 100) }}%
@@ -24,6 +24,7 @@
       <pdf
         v-if="show"
         ref="pdf"
+        style="width:50%"
         :src="book.pdfLink"
         :page="this.$store.getters.getPage"
         @progress="loadedRatio = $event"
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import pdf from "vue-pdf";
+import pdf from 'vue-pdf';
 
 export default {
   components: {

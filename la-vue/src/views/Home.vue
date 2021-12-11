@@ -8,7 +8,7 @@
         >
       </v-container>
     </div>
-    <div class="teal accent-3 pb-10 pt-10">
+    <div class="red lighten-1 pb-10 pt-10">
       <div class="about">
         <v-item-group>
           <v-container>
@@ -20,7 +20,8 @@
                     class="d-flex align-center card"
                     :src="n.url"
                     height="350"
-                    @click="toggle"
+                    @mouseenter="toggle"
+                    @mouseleave="toggle"
                   >
                     <v-scroll-y-transition>
                       <div
@@ -28,12 +29,12 @@
                         class="text-h2 flex-grow-1 text-center"
                       >
                         <v-card flat>
-                          <v-card-text color="black">
+                          <v-card-text>
                             <v-row class="mb-4" align="center">
                               <strong class="text-h6">{{n.title}}</strong>
                               <v-spacer></v-spacer>
                             </v-row>
-                            <p>
+                            <p class="op" color="white">
                               {{n.info}}
                             </p>
                           </v-card-text>
@@ -109,10 +110,22 @@ export default {
   margin-right: auto;
   max-width: 1300px;
 }
+.card {
+  width: 300px;
+  height: 300px;
+  float: left;
+  box-sizing: border-box;
+  padding: 30px;
+  font-family: sans-serif;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.op {
+  opacity: 1;
+}
 .card:hover {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.2), 0 8px 8px rgba(0, 0, 0, 0.3),
-    0 16px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
   transition: box-shadow 0.4s ease-in-out;
 }
 </style>
