@@ -1,2 +1,2 @@
-# LA-Project
+# Vue PDf Library
 Website: https://pdf-library.vercel.app/
