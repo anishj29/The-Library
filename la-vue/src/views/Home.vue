@@ -1,13 +1,14 @@
 <template>
   <div id="home" class="home">
-    <div class="black header">
-      <v-container class="white--text">
+    <v-img class="header" max-height="320"
+    src="https://firebasestorage.googleapis.com/v0/b/la-project-3fd8e.appspot.com/o/fantasylibraryart-1639629358259-4045.jpg?alt=media&token=d545310a-09bb-4a99-ae0b-0902eac84043">
+      <v-container class="white--text" style="filter: brightness(100%)">
         <h1 class="mb-2">The LA Catalog</h1>
         <v-btn color="blue-grey darken-4 white--text" rounded to="/Library"
           >Start Reading Today</v-btn
         >
       </v-container>
-    </div>
+    </v-img>
     <div class="red lighten-1 pb-10 pt-10">
       <div class="about">
         <v-item-group>
@@ -88,6 +89,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   padding-top: 100px;
+  filter: brightness(50%);
   padding-bottom: 70px;
   text-align: center;
 }
