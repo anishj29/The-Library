@@ -12,7 +12,7 @@
       <v-btn text dark rounded to="/library">Library</v-btn>
       <v-btn text dark rounded @click="dialogSignUp">Sign Up</v-btn>
       <v-btn text dark rounded @click="dialogLogIn">Login</v-btn>
-      <v-btn text dark rounded to="/contact">Contact</v-btn>
+      <v-btn text dark rounded to="/contact">Contact Us</v-btn>
     </v-app-bar>
 
     <v-content>

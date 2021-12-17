@@ -1,15 +1,15 @@
 <template>
   <div id="library">
-    <v-row
-      class="black"
-      style="padding-top: 100px; padding-bottom: 70px"
+    <v-img class="header"
+      max-height="320"
+    src="https://firebasestorage.googleapis.com/v0/b/la-project-3fd8e.appspot.com/o/fantasylibraryart-1639629358259-4045.jpg?alt=media&token=d545310a-09bb-4a99-ae0b-0902eac84043"
     >
       <v-container class="text-center">
         <h1 class="white--text mb-2">The Catalog</h1>
-        <v-btn color="blue-grey darken-4 white--text" rounded to="/SignUp"
-          >Sign Up To Begin</v-btn
-        >
-        <v-form class="justify-center" style="width: 400px">
+        <v-btn color="blue-grey darken-4 white--text" rounded to="/SignUp">
+          Sign Up To Begin
+        </v-btn>
+        <v-form class="justify-center mt-8">
             <v-flex xs12>
               <v-autocomplete
                 v-model="searchString"
@@ -31,8 +31,7 @@
                 <template slot="no-data">
                   <v-list-tile>
                     <v-list-tile-title>
-                      Search for your favorite
-                      <strong>Product</strong>
+                      Enter in the title of a book
                     </v-list-tile-title>
                   </v-list-tile>
                 </template>
@@ -71,30 +70,7 @@
             </v-flex>
       </v-form>
       </v-container>
-    </v-row>
-    <!-- <v-row justify="center">
-      <v-dialog v-model="dialog" persistent max-width="290">
-        <v-card>
-          <v-card-title>Sign In For More Features</v-card-title>
-          <v-card-text
-            >Sign in to save important information like the page number that
-            you're on for each book along with your own
-            annotations.</v-card-text
-          >
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              @click="dialog = false"
-              rounded
-              color="blue-grey darken-4"
-              text
-              >No</v-btn
-            >
-            <v-btn color="amber accent-4" rounded text to="/login">Login</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </v-row> -->
+    </v-img>
     <div class="amber lighten-2">
       <v-row class="pt-10 pb-10">
         <v-col cols="4" v-for="book of books" :key="book['.key']">
@@ -121,6 +97,8 @@ export default {
   },
   data() {
     return {
+      searchString:"",
+      isUpdating: false,
       books: [],
       dialog: false,
       user: this.$store.getters.getLoggedIn,
@@ -139,6 +117,11 @@ export default {
         this.dialog = false;
       }
     },
+    isUpdating (val) {
+      if (val) {
+        setTimeout(() => (this.isUpdating = false), 3000)
+      }
+    }
   },
   firestore() {
     db.collection("books")
@@ -162,3 +145,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.header {
+  padding-top: 100px;
+  filter: brightness(50%);
+  text-align: center;
+}
+.v-select.v-select--is-menu-active .v-input__icon--append .v-icon {
+    transform: none;
+}
+</style>

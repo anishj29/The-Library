@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import vuetify from '@/plugins/vuetify'
 import { firestorePlugin } from 'vuefire'
 import Vuex from 'vuex'
@@ -80,6 +81,9 @@ const store = new Vuex.Store({
 new Vue({
   router,
   vuetify,
+  icons: {
+    iconfont: 'md'
+  },
   store: store,
   render: h => h(App)
 }).$mount('#app')
