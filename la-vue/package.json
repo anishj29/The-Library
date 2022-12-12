@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "emailjs-com": "^2.6.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase": "^7.22.0",
     "intersection-observer": "^0.11.0",
     "vue": "^2.6.11",
